@@ -4,7 +4,7 @@ import de.samples.apicomparison.provider.boundary.rest.api.model.HashTagDto;
 import de.samples.apicomparison.provider.domain.model.HashTag;
 import org.mapstruct.Mapper;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface HashTagDtoMapper {
 
   HashTagDto map(HashTag source);

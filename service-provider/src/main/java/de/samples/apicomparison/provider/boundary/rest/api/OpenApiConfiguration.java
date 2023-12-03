@@ -39,7 +39,16 @@ public class OpenApiConfiguration {
                 .in("path")
                 .name("id")
                 .description("The id of the blog post")
-                .schema(new Schema<Integer>().type("integer"))
+                .schema(new Schema<String>().type("string").format("uuid"))
+                .required(true)
+            )
+            .addParameters(
+              OpenApiConstants.AUTHOR_ID_PARAMETER,
+              new Parameter()
+                .in("path")
+                .name("id")
+                .description("The id of the author")
+                .schema(new Schema<String>().type("string").format("uuid"))
                 .required(true)
             )
             .addParameters(

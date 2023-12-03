@@ -61,6 +61,9 @@ public class JpaBlogPostServiceImpl implements BlogPostService {
   public Stream<BlogPost> findAllByAuthor(String name) {
     return this.repo
       .streamAllByAuthorNameOrderByTimestampDesc(name)
+      // TODO we collect all elements to allow closing the transaction - could we do this with a transaction around the whole request?
+      .toList()
+      .stream()
       .map(this.mapper::map);
   }
 
@@ -68,6 +71,9 @@ public class JpaBlogPostServiceImpl implements BlogPostService {
   public Stream<BlogPost> findAllByHashTag(String tag) {
     return this.repo
       .streamAllByTagsContainingIgnoreCase(tag)
+      // TODO we collect all elements to allow closing the transaction - could we do this with a transaction around the whole request?
+      .toList()
+      .stream()
       .map(this.mapper::map);
   }
 
@@ -75,6 +81,10 @@ public class JpaBlogPostServiceImpl implements BlogPostService {
   public Stream<BlogPost> findAllByTimestamp(LocalDateTime startTime, LocalDateTime endTime) {
     return this.repo
       .streamAllByTimestampBetweenOrderByTimestampDesc(startTime, endTime)
+      // TODO we collect all elements to allow closing the transaction - could we do this with a transaction around the whole request?
+      .toList()
+      .stream()
       .map(this.mapper::map);
   }
+
 }

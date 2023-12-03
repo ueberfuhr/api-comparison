@@ -24,10 +24,22 @@ public class HashTagRestController implements HashTagRestApi {
   }
 
   @Override
-  public void save(String name, HashTagDto tag) {
-    tag.setName(name);
+  public HashTagDto findByName(String name) {
+    return this.mapper
+      .map(
+        this.service
+          .findByNameOrThrow(name)
+      );
+  }
+
+  @Override
+  public SaveResult save(HashTagDto tag) {
+    final var result = this.service
+      .findByName(tag.getName())
+      .isPresent() ? SaveResult.UPDATED : SaveResult.CREATED;
     this.service
       .save(this.mapper.map(tag));
+    return result;
   }
 
   @Override

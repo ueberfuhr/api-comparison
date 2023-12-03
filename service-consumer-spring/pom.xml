@@ -11,7 +11,7 @@
   <groupId>de.samples.api-comparison</groupId>
   <artifactId>service-consumer-spring</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <name>service-consumer-spring</name>
+  <name>Service Consumer Implementation</name>
   <description>Consumer for REST, GraphQL, SOAP and gRPC (implemented with Spring)</description>
   <properties>
     <java.version>21</java.version>

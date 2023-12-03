@@ -8,9 +8,13 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.stream.Stream;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @RequestMapping("/api/v1/hashtags")
 @ResponseBody
@@ -29,11 +33,31 @@ public interface HashTagRestApi {
   )
   Stream<HashTagDto> findAll();
 
+  @GetMapping(
+    value = "/{name}",
+    produces = MediaType.APPLICATION_JSON_VALUE
+  )
+  @Operation(
+    summary = "Read hash tag details."
+  )
+  @ApiResponse(
+    responseCode = "200",
+    description = "The description was found and returned."
+  )
+  @ApiResponse(
+    responseCode = "404",
+    description = "The metadata could not be found."
+  )
+  HashTagDto findByName(
+    @Parameter(ref = OpenApiConstants.HASHTAG_NAME_PARAMETER)
+    @PathVariable("name")
+    String name
+  );
+
   @PutMapping(
     value = "/{name}",
     consumes = MediaType.APPLICATION_JSON_VALUE
   )
-  @ResponseStatus(HttpStatus.NO_CONTENT)
   @Operation(
     summary = "Assign some metadata to a hash tag name."
   )
@@ -45,14 +69,35 @@ public interface HashTagRestApi {
     responseCode = "204",
     description = "The metadata already existed and was successfully replaced."
   )
-  void save(
+  @ApiResponse(
+    responseCode = "400",
+    description = "The sent data is not valid."
+  )
+  default ResponseEntity<Void> saveWithResponse(
     @Parameter(ref = OpenApiConstants.HASHTAG_NAME_PARAMETER)
     @PathVariable("name")
     String name,
     @Valid
     @RequestBody
     HashTagDto tag
-  );
+  ) {
+    tag.setName(name);
+    return (
+      switch (this.save(tag)) {
+        case CREATED -> ResponseEntity.created(
+          linkTo(methodOn(HashTagRestApi.class).findByName(name))
+            .toUri()
+        );
+        case UPDATED -> ResponseEntity.noContent();
+      }
+    ).build();
+  }
+
+  enum SaveResult {
+    CREATED, UPDATED
+  }
+
+  SaveResult save(HashTagDto tag);
 
   @DeleteMapping(
     value = "/{name}"

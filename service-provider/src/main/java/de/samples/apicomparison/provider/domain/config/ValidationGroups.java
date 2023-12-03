@@ -1,4 +1,4 @@
-package de.samples.apicomparison.provider.config;
+package de.samples.apicomparison.provider.domain.config;
 
 public interface ValidationGroups {
 

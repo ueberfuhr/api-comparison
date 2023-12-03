@@ -31,3 +31,8 @@ management:
     health:
       show-details: always
       show-components: always
+web:
+  cors:
+    allowed:
+      origins:
+        - ${ALLOWED_CLIENT:*}

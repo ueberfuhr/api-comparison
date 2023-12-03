@@ -1,6 +1,6 @@
 package de.samples.apicomparison.provider.domain.model;
 
-import de.samples.apicomparison.provider.config.ValidationGroups;
+import de.samples.apicomparison.provider.domain.config.ValidationGroups;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Null;
 import jakarta.validation.constraints.Size;

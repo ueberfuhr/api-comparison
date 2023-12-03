@@ -1,6 +1,6 @@
 package de.samples.apicomparison.provider.domain;
 
-import de.samples.apicomparison.provider.config.ValidationGroups;
+import de.samples.apicomparison.provider.domain.config.ValidationGroups;
 import de.samples.apicomparison.provider.domain.model.BlogPost;
 import jakarta.validation.constraints.NotNull;
 import org.springframework.validation.annotation.Validated;
