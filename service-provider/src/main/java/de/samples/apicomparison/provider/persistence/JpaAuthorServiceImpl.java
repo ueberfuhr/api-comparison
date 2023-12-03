@@ -4,6 +4,7 @@ import de.samples.apicomparison.provider.domain.AuthorService;
 import de.samples.apicomparison.provider.domain.NotFoundException;
 import de.samples.apicomparison.provider.domain.model.Author;
 import de.samples.apicomparison.provider.persistence.mappers.AuthorEntityMapper;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -57,6 +58,7 @@ public class JpaAuthorServiceImpl implements AuthorService {
   }
 
   @Override
+  @Transactional
   public Stream<Author> findAll() {
     return this.repo
       .streamAll()
@@ -67,6 +69,7 @@ public class JpaAuthorServiceImpl implements AuthorService {
   }
 
   @Override
+  @Transactional
   public Stream<Author> findAllByName(String name) {
     return this.repo
       .streamAllByName(name)

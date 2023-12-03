@@ -28,11 +28,20 @@ public class AuthorRestController implements AuthorRestApi {
 
   @Override
   public AuthorDto findById(UUID id) {
-    return null;
+    return this.mapper.map(
+      this.service
+        .findByIdOrThrow(id)
+    );
   }
 
   @Override
   public void save(AuthorDto author) {
-
+    final var mappedAuthor = this.mapper.map(author);
+    if(null != author.getId()) {
+      this.service.update(mappedAuthor);
+    } else {
+      this.service.create(mappedAuthor);
+      this.mapper.copy(mappedAuthor, author);
+    }
   }
 }
