@@ -18,7 +18,8 @@ import java.util.stream.Stream;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
-@RequestMapping("/api/v1/authors")
+@V1Api
+@RequestMapping("/authors")
 @ResponseBody
 @Tag(name = OpenApiConstants.TAG_AUTHOR_NAME)
 public interface AuthorRestApi {

@@ -18,7 +18,8 @@ import java.util.stream.Stream;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
-@RequestMapping("/api/v1/blogposts")
+@V1Api
+@RequestMapping("/blogposts")
 @ResponseBody
 @Tag(name = OpenApiConstants.TAG_BLOGPOST_NAME)
 public interface BlogPostRestApi {

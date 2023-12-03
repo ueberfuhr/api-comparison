@@ -17,7 +17,8 @@ import java.util.stream.Stream;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
-@RequestMapping("/api/v1/blogposts/{id}/hashtags")
+@V1Api
+@RequestMapping("/blogposts/{id}/hashtags")
 @ResponseBody
 @Tag(name = OpenApiConstants.TAG_BLOGPOST_NAME)
 @Tag(name = OpenApiConstants.TAG_HASHTAG_NAME)

@@ -17,7 +17,8 @@ import java.util.UUID;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
-@RequestMapping("/api/v1/blogposts/{id}/author")
+@V1Api
+@RequestMapping("/blogposts/{id}/author")
 @ResponseBody
 @Tag(name = OpenApiConstants.TAG_BLOGPOST_NAME)
 @Tag(name = OpenApiConstants.TAG_AUTHOR_NAME)

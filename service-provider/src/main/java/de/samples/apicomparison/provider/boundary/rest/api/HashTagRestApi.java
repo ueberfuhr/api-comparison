@@ -17,7 +17,8 @@ import java.util.stream.Stream;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
-@RequestMapping("/api/v1/hashtags")
+@V1Api
+@RequestMapping("/hashtags")
 @ResponseBody
 @Tag(name = OpenApiConstants.TAG_HASHTAG_NAME)
 public interface HashTagRestApi {
