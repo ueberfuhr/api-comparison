@@ -19,7 +19,8 @@ public class AuthorRestController implements AuthorRestApi {
 
   @Override
   public Stream<AuthorDto> findAll(String name) {
-    return (null != name && !name.isEmpty()
+    return (
+      null != name && !name.isEmpty()
       ? this.service.findAllByName(name)
       : this.service.findAll()
     )

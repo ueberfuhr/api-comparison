@@ -36,7 +36,7 @@ public class HashTagRestController implements HashTagRestApi {
   public SaveResult save(HashTagDto tag) {
     final var result = this.service
       .findByName(tag.getName())
-      .isPresent() ? SaveResult.UPDATED : SaveResult.CREATED;
+      .isPresent() ? SaveResult.REPLACED : SaveResult.CREATED;
     this.service
       .save(this.mapper.map(tag));
     return result;

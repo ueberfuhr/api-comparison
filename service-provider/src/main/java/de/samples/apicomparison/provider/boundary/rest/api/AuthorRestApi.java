@@ -127,7 +127,6 @@ public interface AuthorRestApi {
   ) {
     author.setId(id);
     this.save(author);
-
   }
 
   void save(AuthorDto author);

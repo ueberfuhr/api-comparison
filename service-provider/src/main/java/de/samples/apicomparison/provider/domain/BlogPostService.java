@@ -28,6 +28,8 @@ public interface BlogPostService {
                 .orElseThrow(NotFoundException::new);
     }
 
+    Stream<BlogPost> findAll();
+
     Stream<BlogPost> findAllByAuthor(@NotNull String name);
 
     Stream<BlogPost> findAllByHashTag(@NotNull String tag);

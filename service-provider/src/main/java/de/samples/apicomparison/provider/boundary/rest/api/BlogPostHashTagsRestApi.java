@@ -6,50 +6,62 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.headers.Header;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
 import java.util.stream.Stream;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
-@RequestMapping("/api/v1/hashtags")
+@RequestMapping("/api/v1/blogposts/{id}/hashtags")
 @ResponseBody
+@Tag(name = OpenApiConstants.TAG_BLOGPOST_NAME)
 @Tag(name = OpenApiConstants.TAG_HASHTAG_NAME)
-public interface HashTagRestApi {
+public interface BlogPostHashTagsRestApi {
 
   @GetMapping(
     produces = MediaType.APPLICATION_JSON_VALUE
   )
   @Operation(
-    summary = "Read all available hash tag details."
+    summary = "Read the hash tags assigned to the blog post."
   )
   @ApiResponse(
     responseCode = "200",
-    description = "The descriptions were found and returned."
+    description = "The hash tags could be found."
   )
-  Stream<HashTagDto> findAll();
+  @ApiResponse(
+    responseCode = "404",
+    description = "The blog post could not be found."
+  )
+  Stream<HashTagDto> findAll(
+    @Parameter(ref = OpenApiConstants.BLOGPOST_ID_PARAMETER)
+    @PathVariable("id")
+    UUID blogPostId
+  );
 
   @GetMapping(
     value = "/{name}",
     produces = MediaType.APPLICATION_JSON_VALUE
   )
   @Operation(
-    summary = "Read hash tag details."
+    summary = "Read a single hash tag assigned to the blog post."
   )
   @ApiResponse(
     responseCode = "200",
-    description = "The description was found and returned."
+    description = "The hash tag is assigned to the blog post."
   )
   @ApiResponse(
     responseCode = "404",
-    description = "The metadata could not be found."
+    description = "The blog post could not be found or does not have the hash tag assigned."
   )
   HashTagDto findByName(
+    @Parameter(ref = OpenApiConstants.BLOGPOST_ID_PARAMETER)
+    @PathVariable("id")
+    UUID blogPostId,
     @Parameter(ref = OpenApiConstants.HASHTAG_NAME_PARAMETER)
     @PathVariable("name")
     String name
@@ -57,37 +69,36 @@ public interface HashTagRestApi {
 
   @PutMapping(
     value = "/{name}",
-    consumes = MediaType.APPLICATION_JSON_VALUE
+    consumes = MediaType.TEXT_PLAIN_VALUE
   )
   @Operation(
-    summary = "Assign some metadata to a hash tag name."
+    summary = "Assigns the hash tag to the blog post."
   )
   @ApiResponse(
     responseCode = "201",
-    description = "The metadata was assigned for the first time.",
-    headers = @Header(name = "Location", description = "URL to the newly created hash tag.")
+    description = "The hash tag was newly assigned to the blog post.",
+    headers = @Header(name = "Location", description = "URL to the newly assigned hash tag.")
   )
   @ApiResponse(
     responseCode = "204",
-    description = "The metadata already existed and was successfully replaced."
+    description = "The hash tag was already assigned."
   )
   @ApiResponse(
-    responseCode = "400",
-    description = "The sent data is not valid."
+    responseCode = "404",
+    description = "The blog post could not be found."
   )
-  default ResponseEntity<Void> saveWithResponse(
+  default ResponseEntity<Void> assignWithResponse(
+    @Parameter(ref = OpenApiConstants.BLOGPOST_ID_PARAMETER)
+    @PathVariable("id")
+    UUID blogPostId,
     @Parameter(ref = OpenApiConstants.HASHTAG_NAME_PARAMETER)
     @PathVariable("name")
-    String name,
-    @Valid
-    @RequestBody
-    HashTagDto tag
+    String name
   ) {
-    tag.setName(name);
     return (
-      switch (this.save(tag)) {
+      switch (this.assign(blogPostId, name)) {
         case CREATED -> ResponseEntity.created(
-          linkTo(methodOn(HashTagRestApi.class).findByName(name))
+          linkTo(methodOn(BlogPostHashTagsRestApi.class).findByName(blogPostId, name))
             .toUri()
         );
         case REPLACED -> ResponseEntity.noContent();
@@ -95,32 +106,34 @@ public interface HashTagRestApi {
     ).build();
   }
 
-  enum SaveResult {
+  enum AssignResult {
     CREATED, REPLACED
   }
 
-  SaveResult save(HashTagDto tag);
+  AssignResult assign(UUID blogPostId, String name);
 
   @DeleteMapping(
     value = "/{name}"
   )
   @ResponseStatus(HttpStatus.NO_CONTENT)
   @Operation(
-    summary = "Deletes the metadata of a hash tag name."
+    summary = "Deletes the hash tag assignment to the blog post."
   )
   @ApiResponse(
     responseCode = "204",
-    description = "The metadata was successfully deleted."
+    description = "The hash tag assignment to was successfully deleted."
   )
   @ApiResponse(
     responseCode = "404",
-    description = "The metadata did not exist before."
+    description = "The blog post does not exist."
   )
   void delete(
+    @Parameter(ref = OpenApiConstants.BLOGPOST_ID_PARAMETER)
+    @PathVariable("id")
+    UUID blogPostId,
     @Parameter(ref = OpenApiConstants.HASHTAG_NAME_PARAMETER)
     @PathVariable("name")
     String name
   );
-
 
 }

@@ -38,7 +38,7 @@ public class JpaBlogPostServiceImpl implements BlogPostService {
 
   @Override
   public void update(BlogPost post) throws NotFoundException {
-    if (!repo.existsById(post.getId())) {
+    if (!this.repo.existsById(post.getId())) {
       throw new NotFoundException();
     }
     this.save(post);
@@ -54,7 +54,15 @@ public class JpaBlogPostServiceImpl implements BlogPostService {
 
   @Override
   public Optional<BlogPost> findById(UUID id) {
-    return repo.findById(id)
+    return this.repo
+      .findById(id)
+      .map(this.mapper::map);
+  }
+
+  @Override
+  public Stream<BlogPost> findAll() {
+    return this.repo
+      .streamAll()
       .map(this.mapper::map);
   }
 

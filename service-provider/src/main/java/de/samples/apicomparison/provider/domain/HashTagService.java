@@ -7,6 +7,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import org.springframework.validation.annotation.Validated;
 
+import java.util.Collection;
 import java.util.Optional;
 import java.util.stream.Stream;
 
@@ -26,7 +27,7 @@ public interface HashTagService {
       .orElseThrow(NotFoundException::new);
   }
 
-  Stream<HashTag> findAllByNames(@NotNull @Size(min = 1) String... name);
+  Stream<HashTag> findAllByNames(@NotNull @Size(min = 1) Collection<String> name);
 
   Stream<HashTag> findAll();
 

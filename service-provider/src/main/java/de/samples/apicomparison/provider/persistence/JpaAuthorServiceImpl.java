@@ -53,7 +53,8 @@ public class JpaAuthorServiceImpl implements AuthorService {
 
   @Override
   public Optional<Author> findById(UUID id) {
-    return repo.findById(id)
+    return this.repo
+      .findById(id)
       .map(this.mapper::map);
   }
 

@@ -5,12 +5,10 @@ import de.samples.apicomparison.provider.domain.NotFoundException;
 import de.samples.apicomparison.provider.domain.model.HashTag;
 import de.samples.apicomparison.provider.persistence.mappers.HashTagEntityMapper;
 import jakarta.transaction.Transactional;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
+import java.util.Collection;
 import java.util.Optional;
 import java.util.stream.Stream;
 
@@ -44,15 +42,16 @@ public class JpaHashTagServiceImpl implements HashTagService {
   @Override
   @Transactional
   public Optional<HashTag> findByName(String name) {
-    return this.repo.findById(name)
+    return this.repo
+      .findById(name)
       .map(this.mapper::map);
   }
 
   @Override
   @Transactional
-  public Stream<HashTag> findAllByNames(@NotNull @Size(min = 1) String... names) {
+  public Stream<HashTag> findAllByNames(Collection<String> names) {
     return this.repo
-      .streamAllByNameIsIn(Arrays.asList(names))
+      .streamAllByNameIsIn(names)
       // TODO we collect all elements to allow closing the transaction - could we do this with a transaction around the whole request?
       .toList()
       .stream()
