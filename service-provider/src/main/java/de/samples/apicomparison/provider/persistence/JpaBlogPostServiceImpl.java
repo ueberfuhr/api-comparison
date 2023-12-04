@@ -60,9 +60,13 @@ public class JpaBlogPostServiceImpl implements BlogPostService {
   }
 
   @Override
+  @Transactional
   public Stream<BlogPost> findAll() {
     return this.repo
       .streamAll()
+      // TODO we collect all elements to allow closing the transaction - could we do this with a transaction around the whole request?
+      .toList()
+      .stream()
       .map(this.mapper::map);
   }
 

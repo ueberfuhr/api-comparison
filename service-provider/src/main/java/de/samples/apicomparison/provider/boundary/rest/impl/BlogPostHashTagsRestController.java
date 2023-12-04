@@ -10,6 +10,7 @@ import de.samples.apicomparison.provider.domain.model.HashTag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 
+import java.util.Collections;
 import java.util.UUID;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -33,9 +34,12 @@ public class BlogPostHashTagsRestController implements BlogPostHashTagsRestApi {
     final var post = this.blogPostService
       .findByIdOrThrow(blogPostId);
     final var tags = post.getTags();
-    final var existingTagsByName = this.hashTagService
-      .findAllByNames(tags)
-      .collect(Collectors.toMap(HashTag::getName, Function.identity()));
+    final var existingTagsByName =
+      tags.size() > 1
+        ? this.hashTagService
+        .findAllByNames(tags)
+        .collect(Collectors.toMap(HashTag::getName, Function.identity()))
+        : Collections.<String, HashTag>emptyMap();
     return tags.stream()
       .map(
         name -> existingTagsByName.getOrDefault(

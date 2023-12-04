@@ -10,7 +10,6 @@ import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.UUID;
 
 @Builder
@@ -29,6 +28,6 @@ public class BlogPost {
   private String content;
   private LocalDateTime timestamp;
   private Author author;
-  private final Collection<String> tags = new HashSet<>();
+  private Collection<String> tags;
 
 }

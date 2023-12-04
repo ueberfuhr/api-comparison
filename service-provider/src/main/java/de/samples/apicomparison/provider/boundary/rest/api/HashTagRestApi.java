@@ -6,6 +6,7 @@ import de.samples.apicomparison.provider.boundary.rest.api.model.HashTagDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.headers.Header;
+import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -82,6 +83,7 @@ public interface HashTagRestApi {
     @Valid
     @RequestBody
     HashTagDto tag,
+    @Schema(hidden = true)
     UriMappingResolver uriMappingResolver
   ) {
     tag.setName(name);

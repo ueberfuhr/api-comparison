@@ -1,0 +1,152 @@
+POST {{endpoint}}/blogposts
+Content-Type: application/json
+
+{
+  "content": "Lorem ipsum..."
+}
+
+> {%
+client.test("Blog Post invalid", () => {
+  client.assert(response.status === 400);
+});
+%}
+
+###
+POST {{endpoint}}/blogposts
+Content-Type: application/json
+
+{
+  "title": "test blog",
+  "content": "Lorem ipsum..."
+}
+
+> {%
+  client.test("BlogPost created", () => {
+    client.assert(response.status === 201);
+    client.assert(response.headers.valueOf("Location") !== undefined);
+    client.assert(response.body['id'] !== undefined);
+    client.assert(response.body['timestamp'] !== undefined);
+  });
+  client.global.set('postUrl', response.headers.valueOf("Location"));
+  client.global.set('postId', response.body['id']);
+%}
+
+###
+GET {{postUrl}}
+Accept: application/json
+
+> {%
+  client.test("BlogPost found", () => {
+    client.assert(response.status === 200);
+    client.assert(response.body['title'] === 'test blog');
+    client.assert(response.body['id'] === client.global.get('postId'));
+  });
+%}
+###
+GET {{postUrl}}/hashtags
+Accept: application/json
+
+> {%
+  client.test("BlogPost Tags found, but empty", () => {
+    client.assert(response.status === 200);
+    client.assert(response.body.length == 0);
+  });
+%}
+###
+GET {{postUrl}}/hashtags/TEST
+Accept: application/json
+
+> {%
+  client.test("BlogPost Tag assigned", () => {
+    client.assert(response.status === 404);
+  });
+%}
+###
+PUT {{postUrl}}/hashtags/TEST
+Content-Type: text/plain
+
+> {%
+  client.test("BlogPost Tag assigned", () => {
+    client.assert(response.status === 201);
+    client.assert(response.headers.valueOf("Location") === client.global.get('postUrl') + '/hashtags/TEST');
+  });
+%}
+###
+PUT {{postUrl}}/hashtags/TEST
+Content-Type: text/plain
+
+> {%
+  client.test("BlogPost Tag assigned again", () => {
+    client.assert(response.status === 204);
+  });
+%}
+###
+GET {{postUrl}}/hashtags/TEST
+Accept: application/json
+
+> {%
+  client.test("BlogPost Tag assignment found", () => {
+    client.assert(response.status === 200);
+    client.assert(response.body['name'] === 'TEST');
+  });
+%}
+###
+DELETE {{postUrl}}/hashtags/TEST
+
+> {%
+  client.test("Hashtag assignment deleted", () => {
+    client.assert(response.status === 204);
+  });
+%}
+###
+DELETE {{postUrl}}/hashtags/TEST
+
+> {%
+  client.test("Hashtag assignment already deleted", () => {
+    client.assert(response.status === 404);
+  });
+%}
+###
+GET {{postUrl}}/hashtags/TEST
+Accept: application/json
+
+> {%
+  client.test("BlogPost Tag assignment not existing anymore", () => {
+    client.assert(response.status === 404);
+  });
+%}
+###
+PUT {{postUrl}}/hashtags/TEST
+Content-Type: text/plain
+
+> {%
+  client.test("BlogPost Tag assigned", () => {
+    client.assert(response.status === 201);
+    client.assert(response.headers.valueOf("Location") === client.global.get('postUrl') + '/hashtags/TEST');
+  });
+%}
+###
+DELETE {{postUrl}}
+
+> {%
+  client.test("BlogPost deleted", () => {
+    client.assert(response.status === 204);
+  });
+%}
+###
+DELETE {{postUrl}}
+
+> {%
+  client.test("BlogPost already deleted", () => {
+    client.assert(response.status === 404);
+  });
+%}
+###
+GET {{postUrl}}/hashtags/TEST
+Accept: application/json
+
+> {%
+  client.test("BlogPost Tag assignment not existing anymore", () => {
+    client.assert(response.status === 404);
+  });
+%}

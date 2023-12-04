@@ -6,6 +6,7 @@ import de.samples.apicomparison.provider.boundary.rest.api.model.BlogPostDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.headers.Header;
+import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -85,6 +86,7 @@ public interface BlogPostRestApi {
     @Valid
     @RequestBody
     BlogPostDto post,
+    @Schema(hidden = true)
     UriMappingResolver uriMappingResolver
   ) {
     post.setId(null); // just to be sure
@@ -93,7 +95,7 @@ public interface BlogPostRestApi {
       .created(
         uriMappingResolver.resolve(
           this.getClass(),
-          c -> findById(post.getId())
+          c -> c.findById(post.getId())
         )
       )
       .body(post);

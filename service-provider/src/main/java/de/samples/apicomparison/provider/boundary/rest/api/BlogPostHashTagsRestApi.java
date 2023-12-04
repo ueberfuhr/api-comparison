@@ -6,6 +6,7 @@ import de.samples.apicomparison.provider.boundary.rest.api.model.HashTagDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.headers.Header;
+import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
@@ -94,6 +95,7 @@ public interface BlogPostHashTagsRestApi {
     @Parameter(ref = OpenApiConstants.HASHTAG_NAME_PARAMETER)
     @PathVariable("name")
     String name,
+    @Schema(hidden = true)
     UriMappingResolver uriMappingResolver
   ) {
     return (

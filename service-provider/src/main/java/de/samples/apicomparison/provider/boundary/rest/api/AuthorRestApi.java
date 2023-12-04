@@ -6,6 +6,7 @@ import de.samples.apicomparison.provider.boundary.rest.api.model.AuthorDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.headers.Header;
+import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -85,6 +86,7 @@ public interface AuthorRestApi {
     @Valid
     @RequestBody
     AuthorDto author,
+    @Schema(hidden = true)
     UriMappingResolver uriMappingResolver
   ) {
     author.setId(null); // just to be sure
