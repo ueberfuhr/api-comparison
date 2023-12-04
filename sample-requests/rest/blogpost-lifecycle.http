@@ -255,7 +255,7 @@ Content-Type: text/plain
     client.assert(
       response.headers.valueOf("Location")
       ===
-      client.global.get('postUrl') + '/author/'
+      client.global.get('postUrl') + '/author'
     );
   });
 %}
