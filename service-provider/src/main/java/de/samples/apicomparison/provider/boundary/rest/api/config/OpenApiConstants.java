@@ -1,9 +1,9 @@
-package de.samples.apicomparison.provider.boundary.rest.api;
+package de.samples.apicomparison.provider.boundary.rest.api.config;
 
 import lombok.experimental.UtilityClass;
 
 @UtilityClass
-class OpenApiConstants {
+public class OpenApiConstants {
 
   public static final String TAG_BLOGPOST_NAME = "blogpost";
   public static final String TAG_HASHTAG_NAME = "hashtag";

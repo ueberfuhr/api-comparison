@@ -1,5 +1,6 @@
 package de.samples.apicomparison.provider.boundary.rest.api;
 
+import de.samples.apicomparison.provider.boundary.rest.api.config.OpenApiConstants;
 import de.samples.apicomparison.provider.boundary.rest.api.model.BlogPostDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;

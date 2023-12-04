@@ -36,3 +36,7 @@ web:
     allowed:
       origins:
         - ${ALLOWED_CLIENT:*}
+application:
+  apis:
+    - annotation: de.samples.apicomparison.provider.boundary.rest.api.V1Api
+      base-path: /api/v1
