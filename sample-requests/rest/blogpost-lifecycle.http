@@ -126,6 +126,141 @@ Content-Type: text/plain
   });
 %}
 ###
+POST {{endpoint}}/authors
+Content-Type: application/json
+Accept: application/json
+
+{
+  "name": "John Doe"
+}
+
+> {%
+  client.test("Author created", () => {
+    client.assert(response.status === 201);
+  });
+  client.global.set('authorUrl', response.headers.valueOf("Location"));
+  client.global.set('authorId', response.body['id']);
+%}
+
+###
+PUT {{postUrl}}/author
+Content-Type: text/plain
+
+3fa85f64-5717-4562-b3fc-2c963f66afa6
+
+> {%
+  client.test("Author not assigned because it does not exist", () => {
+    client.assert(response.status === 400);
+  });
+%}
+
+###
+PUT {{postUrl}}/author
+Content-Type: text/plain
+
+3fa85f
+
+> {%
+  client.test("Author not assigned because uuid is not valid", () => {
+    client.assert(response.status === 400);
+  });
+%}
+
+###
+GET {{postUrl}}/author
+Accept: application/json
+
+> {%
+  client.test("Author found", () => {
+    client.assert(response.status === 404);
+  });
+%}
+
+###
+PUT {{postUrl}}/author
+Content-Type: text/plain
+
+{{authorId}}
+
+> {%
+  client.test("Author assigned", () => {
+    client.assert(response.status === 201);
+    client.assert(
+      response.headers.valueOf("Location")
+      ===
+      client.global.get('postUrl') + '/author'
+    );
+  });
+%}
+
+###
+PUT {{postUrl}}/author
+Content-Type: text/plain
+
+{{authorId}}
+
+> {%
+  client.test("Author assigned again", () => {
+    client.assert(response.status === 204);
+  });
+%}
+
+###
+GET {{postUrl}}/author
+Accept: application/json
+
+> {%
+  client.test("Author found", () => {
+    client.assert(response.status === 200);
+  });
+%}
+
+###
+DELETE {{postUrl}}/author
+
+> {%
+  client.test("Author deleted", () => {
+    client.assert(response.status === 204);
+  });
+%}
+
+###
+DELETE {{postUrl}}/author
+
+> {%
+  client.test("Author deleted again", () => {
+    client.assert(response.status === 404);
+  });
+%}
+
+###
+GET {{postUrl}}/author
+Accept: application/json
+
+> {%
+  client.test("Author found", () => {
+    client.assert(response.status === 404);
+  });
+%}
+
+###
+PUT {{postUrl}}/author
+Content-Type: text/plain
+
+{{authorId}}
+
+> {%
+  client.test("Author assigned", () => {
+    client.assert(response.status === 201);
+    client.assert(
+      response.headers.valueOf("Location")
+      ===
+      client.global.get('postUrl') + '/author/'
+    );
+  });
+%}
+
+###
 DELETE {{postUrl}}
 
 > {%
@@ -147,6 +282,16 @@ Accept: application/json
 
 > {%
   client.test("BlogPost Tag assignment not existing anymore", () => {
+    client.assert(response.status === 404);
+  });
+%}
+
+###
+GET {{postUrl}}/author
+Accept: application/json
+
+> {%
+  client.test("Author found", () => {
     client.assert(response.status === 404);
   });
 %}

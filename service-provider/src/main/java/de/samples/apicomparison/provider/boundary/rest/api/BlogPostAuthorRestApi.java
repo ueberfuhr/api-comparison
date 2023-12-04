@@ -72,13 +72,14 @@ public interface BlogPostAuthorRestApi {
     @PathVariable("id")
     UUID blogPostId,
     @Valid
+    @org.hibernate.validator.constraints.UUID
     @RequestBody
-    UUID authorId,
+    String authorId,
     @Schema(hidden = true)
     UriMappingResolver uriMappingResolver
   ) {
     return (
-      switch (this.assign(blogPostId, authorId)) {
+      switch (this.assign(blogPostId, UUID.fromString(authorId))) {
         case CREATED -> ResponseEntity.created(
           uriMappingResolver.resolve(
             this.getClass(),

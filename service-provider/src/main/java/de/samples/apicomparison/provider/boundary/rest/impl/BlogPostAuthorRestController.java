@@ -6,6 +6,7 @@ import de.samples.apicomparison.provider.boundary.rest.impl.mappers.AuthorDtoMap
 import de.samples.apicomparison.provider.domain.AuthorService;
 import de.samples.apicomparison.provider.domain.BlogPostService;
 import de.samples.apicomparison.provider.domain.NotFoundException;
+import jakarta.validation.ValidationException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 
@@ -38,7 +39,8 @@ public class BlogPostAuthorRestController implements BlogPostAuthorRestApi {
     final AssignResult result =
       null == blogPost.getAuthor() ? AssignResult.CREATED : AssignResult.REPLACED;
     final var author = this.authorService
-      .findByIdOrThrow(authorId);
+      .findById(authorId)
+      .orElseThrow(ValidationException::new);
     blogPost.setAuthor(author);
     this.blogPostService.update(blogPost);
     return result;
