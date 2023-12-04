@@ -1,6 +1,7 @@
 package de.samples.apicomparison.provider.boundary.rest.api;
 
 import de.samples.apicomparison.provider.boundary.rest.api.config.OpenApiConstants;
+import de.samples.apicomparison.provider.boundary.rest.api.config.UriMappingResolver;
 import de.samples.apicomparison.provider.boundary.rest.api.model.HashTagDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -14,9 +15,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.stream.Stream;
-
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @V1Api
 @RequestMapping("/hashtags")
@@ -83,14 +81,17 @@ public interface HashTagRestApi {
     String name,
     @Valid
     @RequestBody
-    HashTagDto tag
+    HashTagDto tag,
+    UriMappingResolver uriMappingResolver
   ) {
     tag.setName(name);
     return (
       switch (this.save(tag)) {
         case CREATED -> ResponseEntity.created(
-          linkTo(methodOn(HashTagRestApi.class).findByName(name))
-            .toUri()
+          uriMappingResolver.resolve(
+            this.getClass(),
+            c -> c.findByName(name)
+          )
         );
         case REPLACED -> ResponseEntity.noContent();
       }

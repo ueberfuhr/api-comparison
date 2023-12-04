@@ -1,0 +1,46 @@
+DELETE {{endpoint}}/hashtags/TEST
+###
+
+PUT {{endpoint}}/hashtags/TEST
+Content-Type: application/json
+
+{
+  "description": "this is a test tag"
+}
+
+> {%
+client.test("HashTag created", () => {
+  client.assert(response.status === 201);
+});
+%}
+
+###
+GET {{endpoint}}/hashtags/TEST
+Accept: application/json
+
+> {%
+  client.test("HashTag found", () => {
+    client.assert(response.status === 200);
+    client.assert(response.body['name'] === 'TEST');
+    client.assert(response.body['description'] !== undefined);
+  });
+%}
+
+###
+DELETE {{endpoint}}/hashtags/TEST
+
+> {%
+  client.test("HashTag deleted", () => {
+    client.assert(response.status === 204);
+  });
+%}
+
+###
+DELETE {{endpoint}}/hashtags/TEST
+
+> {%
+  client.test("HashTag not found after deleted", () => {
+    client.assert(response.status === 404);
+  });
+%}
+

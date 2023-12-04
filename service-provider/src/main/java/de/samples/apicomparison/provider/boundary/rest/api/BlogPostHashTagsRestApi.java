@@ -1,6 +1,7 @@
 package de.samples.apicomparison.provider.boundary.rest.api;
 
 import de.samples.apicomparison.provider.boundary.rest.api.config.OpenApiConstants;
+import de.samples.apicomparison.provider.boundary.rest.api.config.UriMappingResolver;
 import de.samples.apicomparison.provider.boundary.rest.api.model.HashTagDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -14,9 +15,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 import java.util.stream.Stream;
-
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @V1Api
 @RequestMapping("/blogposts/{id}/hashtags")
@@ -95,13 +93,16 @@ public interface BlogPostHashTagsRestApi {
     UUID blogPostId,
     @Parameter(ref = OpenApiConstants.HASHTAG_NAME_PARAMETER)
     @PathVariable("name")
-    String name
+    String name,
+    UriMappingResolver uriMappingResolver
   ) {
     return (
       switch (this.assign(blogPostId, name)) {
         case CREATED -> ResponseEntity.created(
-          linkTo(methodOn(BlogPostHashTagsRestApi.class).findByName(blogPostId, name))
-            .toUri()
+          uriMappingResolver.resolve(
+            this.getClass(),
+            c -> c.findByName(blogPostId, name)
+          )
         );
         case REPLACED -> ResponseEntity.noContent();
       }

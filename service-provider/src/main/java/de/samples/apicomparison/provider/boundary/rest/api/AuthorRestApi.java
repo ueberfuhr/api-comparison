@@ -1,6 +1,7 @@
 package de.samples.apicomparison.provider.boundary.rest.api;
 
 import de.samples.apicomparison.provider.boundary.rest.api.config.OpenApiConstants;
+import de.samples.apicomparison.provider.boundary.rest.api.config.UriMappingResolver;
 import de.samples.apicomparison.provider.boundary.rest.api.model.AuthorDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -15,9 +16,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 import java.util.stream.Stream;
-
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @V1Api
 @RequestMapping("/authors")
@@ -86,15 +84,17 @@ public interface AuthorRestApi {
   default ResponseEntity<AuthorDto> create(
     @Valid
     @RequestBody
-    AuthorDto author
+    AuthorDto author,
+    UriMappingResolver uriMappingResolver
   ) {
     author.setId(null); // just to be sure
     this.save(author);
     return ResponseEntity
       .created(
-        linkTo(
-          methodOn(AuthorRestApi.class).findById(author.getId())
-        ).toUri()
+        uriMappingResolver.resolve(
+          this.getClass(),
+          c -> c.findById(author.getId())
+        )
       )
       .body(author);
   }

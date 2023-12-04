@@ -1,6 +1,7 @@
 package de.samples.apicomparison.provider.boundary.rest.api;
 
 import de.samples.apicomparison.provider.boundary.rest.api.config.OpenApiConstants;
+import de.samples.apicomparison.provider.boundary.rest.api.config.UriMappingResolver;
 import de.samples.apicomparison.provider.boundary.rest.api.model.AuthorDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -14,9 +15,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
-
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @V1Api
 @RequestMapping("/blogposts/{id}/author")
@@ -74,13 +72,16 @@ public interface BlogPostAuthorRestApi {
     UUID blogPostId,
     @Valid
     @RequestBody
-    UUID authorId
+    UUID authorId,
+    UriMappingResolver uriMappingResolver
   ) {
     return (
       switch (this.assign(blogPostId, authorId)) {
         case CREATED -> ResponseEntity.created(
-          linkTo(methodOn(BlogPostAuthorRestApi.class).getAuthor(blogPostId))
-            .toUri()
+          uriMappingResolver.resolve(
+            this.getClass(),
+            c -> c.getAuthor(blogPostId)
+          )
         );
         case REPLACED -> ResponseEntity.noContent();
       }

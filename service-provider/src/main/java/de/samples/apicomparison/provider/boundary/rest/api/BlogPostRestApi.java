@@ -1,6 +1,7 @@
 package de.samples.apicomparison.provider.boundary.rest.api;
 
 import de.samples.apicomparison.provider.boundary.rest.api.config.OpenApiConstants;
+import de.samples.apicomparison.provider.boundary.rest.api.config.UriMappingResolver;
 import de.samples.apicomparison.provider.boundary.rest.api.model.BlogPostDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -15,9 +16,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 import java.util.stream.Stream;
-
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
 @V1Api
 @RequestMapping("/blogposts")
@@ -86,15 +84,17 @@ public interface BlogPostRestApi {
   default ResponseEntity<BlogPostDto> create(
     @Valid
     @RequestBody
-    BlogPostDto post
+    BlogPostDto post,
+    UriMappingResolver uriMappingResolver
   ) {
     post.setId(null); // just to be sure
     this.save(post);
     return ResponseEntity
       .created(
-        linkTo(
-          methodOn(BlogPostRestApi.class).findById(post.getId())
-        ).toUri()
+        uriMappingResolver.resolve(
+          this.getClass(),
+          c -> findById(post.getId())
+        )
       )
       .body(post);
   }

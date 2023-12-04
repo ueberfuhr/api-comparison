@@ -1,0 +1,62 @@
+POST {{endpoint}}/authors
+Content-Type: application/json
+
+{
+  "description": "this is a test author"
+}
+
+> {%
+client.test("Author invalid", () => {
+  client.assert(response.status === 400);
+});
+%}
+
+###
+POST {{endpoint}}/authors
+Content-Type: application/json
+
+{
+  "name": "John Doe",
+  "description": "this is a test author"
+}
+
+> {%
+  client.test("Author created", () => {
+    client.assert(response.status === 201);
+    client.assert(response.headers.valueOf("Location") !== undefined);
+    client.assert(response.body['id'] !== undefined);
+  });
+  client.global.set('authorUrl', response.headers.valueOf("Location"));
+  client.global.set('authorId', response.body['id']);
+%}
+
+###
+GET {{authorUrl}}
+Accept: application/json
+
+> {%
+  client.test("Author found", () => {
+    client.assert(response.status === 200);
+    client.assert(response.body['name'] === 'John Doe');
+    client.assert(response.body['id'] !== client.global.get('authorId'));
+  });
+%}
+
+###
+DELETE {{authorUrl}}
+
+> {%
+  client.test("Author deleted", () => {
+    client.assert(response.status === 204);
+  });
+%}
+
+###
+DELETE {{authorUrl}}
+
+> {%
+  client.test("Author not found after deleted", () => {
+    client.assert(response.status === 404);
+  });
+%}
+
