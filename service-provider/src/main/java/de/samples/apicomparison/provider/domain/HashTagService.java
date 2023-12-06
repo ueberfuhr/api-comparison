@@ -9,9 +9,12 @@ import org.springframework.validation.annotation.Validated;
 
 import java.util.Collection;
 import java.util.Optional;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Validated
+@SuppressWarnings("unused")
 public interface HashTagService {
 
   long count();
@@ -27,7 +30,19 @@ public interface HashTagService {
       .orElseThrow(NotFoundException::new);
   }
 
-  Stream<HashTag> findAllByNames(@NotNull @Size(min = 1) Collection<String> name);
+  default Stream<HashTag> findAllByNamesWithDefaults(@NotNull @Size(min = 1) Collection<String> names) {
+    final var existingTagsByName = this.findAllByNames(names)
+      .collect(Collectors.toMap(HashTag::getName, Function.identity()));
+    return names.stream()
+      .map(
+        name -> existingTagsByName.getOrDefault(
+          name,
+          HashTag.builder().name(name).build()
+        )
+      );
+  }
+
+  Stream<HashTag> findAllByNames(@NotNull @Size(min = 1) Collection<String> names);
 
   Stream<HashTag> findAll();
 

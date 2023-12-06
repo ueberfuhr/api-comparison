@@ -69,8 +69,7 @@ public interface BlogPostHashTagsRestApi {
   );
 
   @PutMapping(
-    value = "/{name}",
-    consumes = MediaType.TEXT_PLAIN_VALUE
+    value = "/{name}"
   )
   @Operation(
     summary = "Assigns the hash tag to the blog post."

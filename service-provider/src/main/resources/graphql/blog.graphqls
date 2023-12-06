@@ -3,13 +3,15 @@
 # GraphQL is more a query language
 
 # Validation constraints: https://www.npmjs.com/package/graphql-constraint-directive
+# https://github.com/polovyivan/spring-graphql-directives/blob/main/src/main/resources/graphql/query.graphqls
 """A constraint to the length of a string, array or collection."""
 directive @Size(min : Int, max : Int) on ARGUMENT_DEFINITION | INPUT_FIELD_DEFINITION | FIELD_DEFINITION
 """A constraint for strings to contain at least one none-space character."""
 directive @NotEmpty on ARGUMENT_DEFINITION | INPUT_FIELD_DEFINITION | FIELD_DEFINITION
 
-"""An ISO-8601 encoded UTC date string."""
+"""An ISO-8601 encoded UTC date strings."""
 scalar Date
+scalar DateTime
 """An RFC-4122 standardized universal identifier."""
 scalar UUID
 """A scalar for no return value."""
@@ -20,9 +22,9 @@ type BlogPost {
   id: UUID!,
   title: String! @Size(min: 3)
   content: String @Size(min: 10)
-  timestamp: Date!
+  timestamp: DateTime!
   author: Author
-  hashTags: [HashTag]!
+  tags: [HashTag]!
 }
 
 """A hash tag that describes blog posts."""

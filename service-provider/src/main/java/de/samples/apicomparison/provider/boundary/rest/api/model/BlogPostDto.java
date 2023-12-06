@@ -4,8 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -14,9 +13,7 @@ import java.util.UUID;
   name = "BlogPost",
   description = "A blog post contains a title and a content."
 )
-@Getter
-@Setter
-public class BlogPostDto {
+public @Data class BlogPostDto {
 
   @JsonProperty(access = JsonProperty.Access.READ_ONLY)
   @Schema(description = "The id of the blog post.")

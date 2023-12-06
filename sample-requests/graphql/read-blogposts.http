@@ -1,0 +1,25 @@
+### needs plugin "HTTPX Requests"
+// @name query
+GRAPHQL {{endpoint}}
+Content-Type: application/graphql
+
+query {
+  findBlogPosts {
+    id,
+    title,
+    content,
+    timestamp,
+		author {name, description}
+    tags {name, description}
+  }
+}
+###
+# no need for any plugin
+
+POST {{endpoint}}
+Content-Type: application/json
+Accept: application/json, multipart/mixed
+
+{
+  "query": "query {findBlogPosts {id,title,content,timestamp,author {name, description}, tags {name, description} } }"
+}

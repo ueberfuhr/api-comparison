@@ -3,8 +3,7 @@ package de.samples.apicomparison.provider.boundary.rest.api.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotEmpty;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import java.util.UUID;
 
@@ -12,9 +11,7 @@ import java.util.UUID;
   name = "Author",
   description = "Information about a blog post's author"
 )
-@Getter
-@Setter
-public class AuthorDto {
+public @Data class AuthorDto {
 
   @JsonProperty(access = JsonProperty.Access.READ_ONLY)
   @Schema(description = "The id of the author.")

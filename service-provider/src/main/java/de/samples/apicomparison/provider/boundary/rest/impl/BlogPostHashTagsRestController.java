@@ -10,10 +10,7 @@ import de.samples.apicomparison.provider.domain.model.HashTag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 
-import java.util.Collections;
 import java.util.UUID;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Controller
@@ -29,24 +26,17 @@ public class BlogPostHashTagsRestController implements BlogPostHashTagsRestApi {
   }
 
 
+
   @Override
   public Stream<HashTagDto> findAll(UUID blogPostId) {
     final var post = this.blogPostService
       .findByIdOrThrow(blogPostId);
     final var tags = post.getTags();
-    final var existingTagsByName =
-      tags.size() > 1
-        ? this.hashTagService
-        .findAllByNames(tags)
-        .collect(Collectors.toMap(HashTag::getName, Function.identity()))
-        : Collections.<String, HashTag>emptyMap();
-    return tags.stream()
-      .map(
-        name -> existingTagsByName.getOrDefault(
-          name,
-          defaultHashTag(name)
-        )
-      )
+    if(tags == null || tags.isEmpty()) {
+      return Stream.empty();
+    }
+    return this.hashTagService
+      .findAllByNamesWithDefaults(tags)
       .map(this.mapper::map);
   }
 

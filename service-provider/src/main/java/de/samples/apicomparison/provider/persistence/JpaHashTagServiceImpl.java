@@ -47,6 +47,12 @@ public class JpaHashTagServiceImpl implements HashTagService {
       .map(this.mapper::map);
   }
 
+  @Transactional
+  @Override
+  public Stream<HashTag> findAllByNamesWithDefaults(Collection<String> names) {
+    return HashTagService.super.findAllByNamesWithDefaults(names);
+  }
+
   @Override
   @Transactional
   public Stream<HashTag> findAllByNames(Collection<String> names) {
