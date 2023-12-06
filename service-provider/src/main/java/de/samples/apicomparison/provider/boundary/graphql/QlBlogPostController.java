@@ -2,10 +2,13 @@ package de.samples.apicomparison.provider.boundary.graphql;
 
 import de.samples.apicomparison.provider.boundary.graphql.mappers.BlogPostMapper;
 import de.samples.apicomparison.provider.boundary.graphql.model.QlBlogPostDto;
+import de.samples.apicomparison.provider.boundary.graphql.model.QlBlogPostInputDto;
 import de.samples.apicomparison.provider.domain.BlogPostService;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.RequiredArgsConstructor;
 import org.springframework.graphql.data.method.annotation.Argument;
+import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
 
@@ -39,6 +42,18 @@ public class QlBlogPostController {
       .map(
         this.service.findByIdOrThrow(id)
       );
+  }
+
+  @MutationMapping("createBlogPost")
+  public QlBlogPostDto create(@Valid @Argument QlBlogPostInputDto input) {
+    var post = this.mapper.map(input);
+    this.service.create(post);
+    return this.mapper.map(post);
+  }
+
+  @MutationMapping("deleteBlogPost")
+  public void delete(@Argument UUID id) {
+    this.service.deleteById(id);
   }
 
 }

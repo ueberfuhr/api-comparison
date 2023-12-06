@@ -1,0 +1,30 @@
+POST {{endpoint}}
+Content-Type: application/json
+Accept: application/json, multipart/mixed
+
+{
+  "query": "mutation { createBlogPost(input: { title: \"Das ist ein toller Post\", content: \"Das ist ein toller Content\" }) { id } }"
+}
+
+> {%
+  client.test("Blog Post created", () => {
+    client.assert(response.status === 200);
+    client.assert(response.body['data']['createBlogPost']['id'] !== undefined);
+  });
+  client.global.set('blogPostId', response.body['data']['createBlogPost']['id']);
+%}
+
+###
+POST {{endpoint}}
+Content-Type: application/json
+Accept: application/json, multipart/mixed
+
+{
+  "query": "mutation {  deleteBlogPost(id: \"{{blogPostId}}\") }"
+}
+
+> {%
+  client.test("Blog Post created", () => {
+    client.assert(response.status === 200);
+  });
+%}
