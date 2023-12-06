@@ -20,11 +20,43 @@ Content-Type: application/json
 Accept: application/json, multipart/mixed
 
 {
+  "query": "query {  findBlogPostById(id: \"{{blogPostId}}\") { id } }"
+}
+
+> {%
+  client.test("Blog Post created", () => {
+    client.assert(response.status === 200);
+    client.assert(response.body['data']['findBlogPostById']['id'] === client.global.get('blogPostId'));
+  });
+%}
+
+###
+POST {{endpoint}}
+Content-Type: application/json
+Accept: application/json, multipart/mixed
+
+{
   "query": "mutation {  deleteBlogPost(id: \"{{blogPostId}}\") }"
 }
 
 > {%
   client.test("Blog Post created", () => {
     client.assert(response.status === 200);
+  });
+%}
+
+###
+POST {{endpoint}}
+Content-Type: application/json
+Accept: application/json, multipart/mixed
+
+{
+  "query": "query {  findBlogPostById(id: \"{{blogPostId}}\") { id } }"
+}
+
+> {%
+  client.test("Blog Post created", () => {
+    client.assert(response.status === 200);
+    client.assert(response.body['errors'][0]['extensions']['classification'] === 'NOT_FOUND');
   });
 %}
