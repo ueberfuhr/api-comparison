@@ -8,10 +8,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import static org.springframework.http.HttpHeaders.*;
 
 @Configuration
-public class WebConfiguration {
+public class CorsConfiguration {
 
   @Bean
-  WebMvcConfigurer configureWeb(CorsConfigurationProperties allowed) {
+  WebMvcConfigurer configureCors(CorsConfigurationProperties allowed) {
     return new WebMvcConfigurer() {
       @Override
       public void addCorsMappings(@SuppressWarnings("NullableProblems") CorsRegistry registry) {
