@@ -1,0 +1,55 @@
+# Validation is not natively provided
+# ReadOnly fields for mutations -> we need input
+# GraphQL is more a query language
+
+# Validation constraints: https://www.npmjs.com/package/graphql-constraint-directive
+"""A constraint to the length of a string, array or collection."""
+directive @Size(min : Int, max : Int) on ARGUMENT_DEFINITION | INPUT_FIELD_DEFINITION | FIELD_DEFINITION
+"""A constraint for strings to contain at least one none-space character."""
+directive @NotEmpty on ARGUMENT_DEFINITION | INPUT_FIELD_DEFINITION | FIELD_DEFINITION
+
+"""An ISO-8601 encoded UTC date string."""
+scalar Date
+"""An RFC-4122 standardized universal identifier."""
+scalar UUID
+"""A scalar for no return value."""
+scalar Void
+
+"""A blog post."""
+type BlogPost {
+  id: UUID!,
+  title: String! @Size(min: 3)
+  content: String @Size(min: 10)
+  timestamp: Date!
+  author: Author
+  hashTags: [HashTag]!
+}
+
+"""A hash tag that describes blog posts."""
+type HashTag {
+  name: String! @NotEmpty
+  description: String
+}
+
+"""Information about an author that publishes blog posts."""
+type Author {
+  id: UUID!
+  name: String! @NotEmpty
+  description: String
+}
+
+"""Blog post fields that can be sent to the provider to save a blog post."""
+input BlogPostInput {
+  title: String! @Size(min: 3)
+  content: String @Size(min: 10)
+}
+
+type Query {
+  findBlogPosts: [BlogPost]!
+  findBlogPostsByAuthor(name: String! @NotEmpty): [BlogPost]!
+  findBlogPostById(id: UUID!): BlogPost
+}
+type Mutation {
+  createBlogPost(post: BlogPostInput!): BlogPost!
+  deleteBlogPost(id: UUID!): Void
+}
