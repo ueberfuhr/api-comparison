@@ -21,11 +21,11 @@ public class HttpClientFactoryBean implements FactoryBean<Object>, BeanFactoryAw
   }
 
   @Override
-  public Object getObject() throws Exception {
+  public Object getObject() {
     final var webClient = beanFactory.getBean(WebClient.class);
-    final var adapter = WebClientAdapter
-      .forClient(webClient);
-    final var factory = HttpServiceProxyFactory.builder(adapter)
+    final var adapter = WebClientAdapter.create(webClient);
+    final var factory = HttpServiceProxyFactory
+      .builderFor(adapter)
       .build();
     return factory.createClient(this.objectType);
   }

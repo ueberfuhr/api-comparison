@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 import static org.springframework.core.annotation.MergedAnnotation.VALUE;
 
 @RequiredArgsConstructor(access = AccessLevel.PRIVATE)
+@SuppressWarnings("unused")
 public class AnnotationAttributes<T extends Annotation> {
   private final Class<T> annotationType;
   private MergedAnnotation<T> annotation;

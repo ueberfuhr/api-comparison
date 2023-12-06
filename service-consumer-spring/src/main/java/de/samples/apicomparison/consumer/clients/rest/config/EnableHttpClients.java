@@ -16,6 +16,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 @Import(HttpClientBeansRegistrar.class)
+@SuppressWarnings("unused")
 public @interface EnableHttpClients {
   /**
    * Alias for {@link #basePackages()}.

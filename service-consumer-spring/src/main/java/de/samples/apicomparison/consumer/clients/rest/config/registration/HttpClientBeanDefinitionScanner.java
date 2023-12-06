@@ -23,7 +23,12 @@ public class HttpClientBeanDefinitionScanner extends ClassPathBeanDefinitionScan
   }
 
   @Override
-  protected void postProcessBeanDefinition(AbstractBeanDefinition beanDefinition, String beanName) {
+  protected void postProcessBeanDefinition(
+    AbstractBeanDefinition beanDefinition,
+    @SuppressWarnings("NullableProblems")
+    String beanName
+  ) {
+
     beanDefinition.setBeanClassName(HttpClientFactoryBean.class.getName());
 
     beanDefinition
@@ -31,6 +36,7 @@ public class HttpClientBeanDefinitionScanner extends ClassPathBeanDefinitionScan
       .addGenericArgumentValue(((AnnotatedBeanDefinition) beanDefinition).getMetadata());
 
     beanDefinition.setDependsOn(WebClientAutoConfiguration.WEB_CLIENT_NAME);
+
   }
 
 }

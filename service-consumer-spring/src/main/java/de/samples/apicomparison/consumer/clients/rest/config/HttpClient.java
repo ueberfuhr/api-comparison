@@ -16,6 +16,7 @@ import java.lang.annotation.*;
 @Target(ElementType.TYPE)
 @Documented
 @Component
+@SuppressWarnings("unused")
 public @interface HttpClient {
 
   /**

@@ -20,6 +20,7 @@ public class HttpClientBeansRegistrar implements ImportBeanDefinitionRegistrar {
   private final Class<? extends Annotation> annotationType;
   private final Function<BeanDefinitionRegistry, ClassPathBeanDefinitionScanner> scanner;
 
+  @SuppressWarnings("unused")
   public HttpClientBeansRegistrar() {
     this(
       new DefaultPackageResolver(),
@@ -29,7 +30,11 @@ public class HttpClientBeansRegistrar implements ImportBeanDefinitionRegistrar {
   }
 
   @Override
-  public void registerBeanDefinitions(AnnotationMetadata configMetadata, BeanDefinitionRegistry registry) {
+  public void registerBeanDefinitions(
+    AnnotationMetadata configMetadata,
+    @SuppressWarnings("NullableProblems")
+    BeanDefinitionRegistry registry
+  ) {
     final var className = configMetadata.getClassName();
     configMetadata
       .getAnnotations()
