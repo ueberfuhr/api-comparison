@@ -1,1 +1,4 @@
-
+application:
+  webclient:
+    timeout: 2000
+    base-url: http://localhost:8081
