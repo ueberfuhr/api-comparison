@@ -6,6 +6,8 @@ import de.samples.apicomparison.provider.boundary.rest.api.model.BlogPostDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.headers.Header;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -28,11 +30,19 @@ public interface BlogPostRestApi {
     produces = MediaType.APPLICATION_JSON_VALUE
   )
   @Operation(
+    operationId = "findBlogPosts",
     summary = "Read all available blog post details."
   )
   @ApiResponse(
     responseCode = "200",
-    description = "The blog posts were found and returned."
+    description = "The blog posts were found and returned.",
+    content = @Content(
+      array = @ArraySchema(
+        schema = @Schema(
+          implementation = BlogPostDto.class
+        )
+      )
+    )
   )
   Stream<BlogPostDto> findAll(
     @Parameter(
@@ -51,6 +61,7 @@ public interface BlogPostRestApi {
     produces = MediaType.APPLICATION_JSON_VALUE
   )
   @Operation(
+    operationId = "findBlogPostById",
     summary = "Read blog post details."
   )
   @ApiResponse(
@@ -71,12 +82,16 @@ public interface BlogPostRestApi {
     consumes = MediaType.APPLICATION_JSON_VALUE
   )
   @Operation(
+    operationId = "createBlogPost",
     summary = "Create the blog post."
   )
   @ApiResponse(
     responseCode = "201",
     description = "The blog post was successfully created.",
-    headers = @Header(name = "Location", description = "URL to the newly created blog post")
+    headers = @Header(
+      name = OpenApiConstants.LOCATION_HEADER_NAME,
+      ref = OpenApiConstants.LOCATION_HEADER_COMPONENT_NAME
+    )
   )
   @ApiResponse(
     responseCode = "400",
@@ -107,6 +122,7 @@ public interface BlogPostRestApi {
     produces = MediaType.APPLICATION_JSON_VALUE
   )
   @Operation(
+    operationId = "replaceBlogPost",
     summary = "Replace the blog post."
   )
   @ApiResponse(
@@ -141,6 +157,7 @@ public interface BlogPostRestApi {
   )
   @ResponseStatus(HttpStatus.NO_CONTENT)
   @Operation(
+    operationId = "deleteBlogPost",
     summary = "Deletes the metadata of a hash tag name."
   )
   @ApiResponse(

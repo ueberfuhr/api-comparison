@@ -6,6 +6,8 @@ import de.samples.apicomparison.provider.boundary.rest.api.model.AuthorDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.headers.Header;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -28,12 +30,19 @@ public interface AuthorRestApi {
     produces = MediaType.APPLICATION_JSON_VALUE
   )
   @Operation(
+    operationId = "findAuthors",
     summary = "Read all available author details."
   )
   @ApiResponse(
     responseCode = "200",
-    description = "The authors were found and returned."
-  )
+    description = "The authors were found and returned.",
+    content = @Content(
+      array = @ArraySchema(
+        schema = @Schema(
+          implementation = AuthorDto.class
+        )
+      )
+    ))
   Stream<AuthorDto> findAll(
     @Parameter(
       name = "name",
@@ -51,6 +60,7 @@ public interface AuthorRestApi {
     produces = MediaType.APPLICATION_JSON_VALUE
   )
   @Operation(
+    operationId = "findAuthorById",
     summary = "Read author details."
   )
   @ApiResponse(
@@ -71,12 +81,16 @@ public interface AuthorRestApi {
     consumes = MediaType.APPLICATION_JSON_VALUE
   )
   @Operation(
+    operationId = "createAuthor",
     summary = "Create the author's data."
   )
   @ApiResponse(
     responseCode = "201",
     description = "The author was successfully created.",
-    headers = @Header(name = "Location", description = "URL to the newly created author")
+    headers = @Header(
+      name = OpenApiConstants.LOCATION_HEADER_NAME,
+      ref = OpenApiConstants.LOCATION_HEADER_COMPONENT_NAME
+    )
   )
   @ApiResponse(
     responseCode = "400",
@@ -107,6 +121,7 @@ public interface AuthorRestApi {
   )
   @ResponseStatus(HttpStatus.NO_CONTENT)
   @Operation(
+    operationId = "replaceAuthor",
     summary = "Replace the author's data."
   )
   @ApiResponse(

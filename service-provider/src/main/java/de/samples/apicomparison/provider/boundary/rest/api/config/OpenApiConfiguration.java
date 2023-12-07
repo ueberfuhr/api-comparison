@@ -2,6 +2,7 @@ package de.samples.apicomparison.provider.boundary.rest.api.config;
 
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.headers.Header;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.media.Schema;
 import io.swagger.v3.oas.models.parameters.Parameter;
@@ -59,6 +60,12 @@ public class OpenApiConfiguration {
               .description("The name of the hash tag")
               .schema(new Schema<String>().type("string"))
               .required(true)
+          )
+          .addHeaders(
+            OpenApiConstants.LOCATION_HEADER_COMPONENT_NAME,
+            new Header()
+              .description("URL to the newly created item")
+              .schema(new Schema<String>().type("string"))
           )
       );
   }

@@ -6,6 +6,8 @@ import de.samples.apicomparison.provider.boundary.rest.api.model.HashTagDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.headers.Header;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -28,11 +30,19 @@ public interface BlogPostHashTagsRestApi {
     produces = MediaType.APPLICATION_JSON_VALUE
   )
   @Operation(
+    operationId = "findHashTagsForBlogPost",
     summary = "Read the hash tags assigned to the blog post."
   )
   @ApiResponse(
     responseCode = "200",
-    description = "The hash tags could be found."
+    description = "The hash tags could be found.",
+    content = @Content(
+      array = @ArraySchema(
+        schema = @Schema(
+          implementation = HashTagDto.class
+        )
+      )
+    )
   )
   @ApiResponse(
     responseCode = "404",
@@ -49,6 +59,7 @@ public interface BlogPostHashTagsRestApi {
     produces = MediaType.APPLICATION_JSON_VALUE
   )
   @Operation(
+    operationId = "findHashTagForBlogPostByName",
     summary = "Read a single hash tag assigned to the blog post."
   )
   @ApiResponse(
@@ -72,12 +83,16 @@ public interface BlogPostHashTagsRestApi {
     value = "/{name}"
   )
   @Operation(
+    operationId = "setHashTagForBlogPost",
     summary = "Assigns the hash tag to the blog post."
   )
   @ApiResponse(
     responseCode = "201",
     description = "The hash tag was newly assigned to the blog post.",
-    headers = @Header(name = "Location", description = "URL to the newly assigned hash tag.")
+    headers = @Header(
+      name = OpenApiConstants.LOCATION_HEADER_NAME,
+      ref = OpenApiConstants.LOCATION_HEADER_COMPONENT_NAME
+    )
   )
   @ApiResponse(
     responseCode = "204",
@@ -121,6 +136,7 @@ public interface BlogPostHashTagsRestApi {
   )
   @ResponseStatus(HttpStatus.NO_CONTENT)
   @Operation(
+    operationId = "deleteHashTagFromBlogPost",
     summary = "Deletes the hash tag assignment to the blog post."
   )
   @ApiResponse(

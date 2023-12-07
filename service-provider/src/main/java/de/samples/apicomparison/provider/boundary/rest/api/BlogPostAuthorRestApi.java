@@ -28,6 +28,7 @@ public interface BlogPostAuthorRestApi {
     produces = MediaType.APPLICATION_JSON_VALUE
   )
   @Operation(
+    operationId = "findAuthorOfBlogPost",
     summary = "Read the author of the blog post."
   )
   @ApiResponse(
@@ -48,12 +49,16 @@ public interface BlogPostAuthorRestApi {
     consumes = MediaType.TEXT_PLAIN_VALUE
   )
   @Operation(
+    operationId = "assignAuthorOfBlogPost",
     summary = "Assigns the author to the blog post."
   )
   @ApiResponse(
     responseCode = "201",
     description = "The author was newly assigned to the blog post.",
-    headers = @Header(name = "Location", description = "URL to the newly assigned author.")
+    headers = @Header(
+      name = OpenApiConstants.LOCATION_HEADER_NAME,
+      ref = OpenApiConstants.LOCATION_HEADER_COMPONENT_NAME
+    )
   )
   @ApiResponse(
     responseCode = "204",
@@ -100,6 +105,7 @@ public interface BlogPostAuthorRestApi {
   @DeleteMapping
   @ResponseStatus(HttpStatus.NO_CONTENT)
   @Operation(
+    operationId = "deleteAuthorFromBlogPost",
     summary = "Deletes the author's assignment to the blog post."
   )
   @ApiResponse(

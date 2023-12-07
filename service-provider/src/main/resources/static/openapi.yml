@@ -1,0 +1,498 @@
+openapi: 3.0.1
+info:
+  title: Blog Post API
+  description: Manage blog posts and assign hash tags
+  version: 1.0.0
+servers:
+  - url: http://localhost:8081/api/v1
+    description: Generated server url
+tags:
+  - name: blogpost
+    description: Everything about your blog posts
+  - name: hashtag
+    description: Everything about the hash tags
+paths:
+  /hashtags/{name}:
+    parameters:
+      - $ref: '#/components/parameters/hashTagName'
+    get:
+      tags:
+        - hashtag
+      summary: Read hash tag details.
+      operationId: findHashTagByName
+      responses:
+        '200':
+          description: The description was found and returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HashTag'
+        '400':
+          description: Bad Request
+        '404':
+          description: The metadata could not be found.
+    put:
+      tags:
+        - hashtag
+      summary: Assign some metadata to a hash tag name.
+      operationId: assignHashTagMetadata
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HashTag'
+        required: true
+      responses:
+        '201':
+          description: The metadata was assigned for the first time.
+          headers:
+            Location:
+              $ref: '#/components/headers/LocationHeader'
+        '204':
+          description: The metadata already existed and was successfully replaced.
+        '400':
+          description: The sent data is not valid.
+        '404':
+          description: Not Found
+    delete:
+      tags:
+        - hashtag
+      summary: Deletes the metadata of a hash tag name.
+      operationId: deleteHashTagMetadata
+      responses:
+        '204':
+          description: The metadata was successfully deleted.
+        '400':
+          description: Bad Request
+        '404':
+          description: The metadata did not exist before.
+  /blogposts/{id}:
+    parameters:
+      - $ref: '#/components/parameters/blogPostId'
+    get:
+      tags:
+        - blogpost
+      summary: Read blog post details.
+      operationId: findBlogPostById
+      responses:
+        '200':
+          description: The blog post was found and returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlogPost'
+        '400':
+          description: Bad Request
+        '404':
+          description: The blog post could not be found.
+    put:
+      tags:
+        - blogpost
+      summary: Replace the blog post.
+      operationId: replaceBlogPost
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BlogPost'
+        required: true
+      responses:
+        '204':
+          description: The blog post was successfully replaced.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BlogPost'
+        '400':
+          description: The sent data is not valid.
+        '404':
+          description: The blog post could not be found.
+    delete:
+      tags:
+        - blogpost
+      summary: Deletes the metadata of a hash tag name.
+      operationId: deleteBlogPost
+      responses:
+        '204':
+          description: The blog post was successfully deleted.
+        '400':
+          description: Bad Request
+        '404':
+          description: The blog post did not exist before.
+  /blogposts/{id}/hashtags/{name}:
+    parameters:
+      - $ref: '#/components/parameters/blogPostId'
+      - $ref: '#/components/parameters/hashTagName'
+    get:
+      tags:
+        - blogpost
+        - hashtag
+      summary: Read a single hash tag assigned to the blog post.
+      operationId: findHashTagForBlogPostByName
+      responses:
+        '200':
+          description: The hash tag is assigned to the blog post.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HashTag'
+        '400':
+          description: Bad Request
+        '404':
+          description: The blog post could not be found or does not have the hash tag assigned.
+    put:
+      tags:
+        - blogpost
+        - hashtag
+      summary: Assigns the hash tag to the blog post.
+      operationId: setHashTagForBlogPost
+      responses:
+        '201':
+          description: The hash tag was newly assigned to the blog post.
+          headers:
+            Location:
+              $ref: '#/components/headers/LocationHeader'
+        '204':
+          description: The hash tag was already assigned.
+        '400':
+          description: Bad Request
+        '404':
+          description: The blog post could not be found.
+    delete:
+      tags:
+        - blogpost
+        - hashtag
+      summary: Deletes the hash tag assignment to the blog post.
+      operationId: deleteHashTagFromBlogPost
+      responses:
+        '204':
+          description: The hash tag assignment to was successfully deleted.
+        '400':
+          description: Bad Request
+        '404':
+          description: The blog post does not exist.
+  /blogposts/{id}/author:
+    parameters:
+      - $ref: '#/components/parameters/blogPostId'
+    get:
+      tags:
+        - author
+        - blogpost
+      summary: Read the author of the blog post.
+      operationId: findAuthorOfBlogPost
+      responses:
+        '200':
+          description: The author of the blog post could be found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Author'
+        '400':
+          description: Bad Request
+        '404':
+          description: The blog post could not be found or does not have an assigned author.
+    put:
+      tags:
+        - author
+        - blogpost
+      summary: Assigns the author to the blog post.
+      operationId: assignAuthorOfBlogPost
+      requestBody:
+        content:
+          text/plain:
+            schema:
+              type: string
+        required: true
+      responses:
+        '201':
+          description: The author was newly assigned to the blog post.
+          headers:
+            Location:
+              $ref: '#/components/headers/LocationHeader'
+        '204':
+          description: The author of the blog post was successfully replaced.
+        '400':
+          description: The sent data is not valid. Maybe, the author does not exist.
+        '404':
+          description: The blog post could not be found.
+    delete:
+      tags:
+        - author
+        - blogpost
+      summary: Deletes the author's assignment to the blog post.
+      operationId: deleteAuthorFromBlogPost
+      responses:
+        '204':
+          description: The author's assignment to was successfully deleted.
+        '400':
+          description: Bad Request
+        '404':
+          description: The blog post does not exist or did not have any assigned author before.
+  /authors/{id}:
+    parameters:
+      - $ref: '#/components/parameters/authorId'
+    get:
+      tags:
+        - author
+      summary: Read author details.
+      operationId: findAuthorById
+      responses:
+        '200':
+          description: The author was found and returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Author'
+        '400':
+          description: Bad Request
+        '404':
+          description: The author could not be found.
+    put:
+      tags:
+        - author
+      summary: Replace the author's data.
+      operationId: replaceAuthor
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Author'
+        required: true
+      responses:
+        '204':
+          description: The author was successfully replaced.
+        '400':
+          description: The sent data is not valid.
+        '404':
+          description: The author could not be found.
+  /blogposts:
+    get:
+      tags:
+        - blogpost
+      summary: Read all available blog post details.
+      operationId: findBlogPosts
+      parameters:
+        - name: author
+          in: query
+          description: If specified, only blog posts with the given author name are returned
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The blog posts were found and returned.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BlogPost'
+        '400':
+          description: Bad Request
+        '404':
+          description: Not Found
+    post:
+      tags:
+        - blogpost
+      summary: Create the blog post.
+      operationId: createBlogPost
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BlogPost'
+        required: true
+      responses:
+        '201':
+          description: The blog post was successfully created.
+          headers:
+            Location:
+              $ref: '#/components/headers/LocationHeader'
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BlogPost'
+        '400':
+          description: The sent data is not valid.
+        '404':
+          description: Not Found
+  /authors:
+    get:
+      tags:
+        - author
+      summary: Read all available author details.
+      operationId: findAuthors
+      parameters:
+        - name: name
+          in: query
+          description: If specified, only authors with the given name are returned
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The authors were found and returned.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Author'
+        '400':
+          description: Bad Request
+        '404':
+          description: Not Found
+    post:
+      tags:
+        - author
+      summary: Create the author's data.
+      operationId: createAuthor
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Author'
+        required: true
+      responses:
+        '201':
+          description: The author was successfully created.
+          headers:
+            Location:
+              $ref: '#/components/headers/LocationHeader'
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/Author'
+        '400':
+          description: The sent data is not valid.
+        '404':
+          description: Not Found
+  /hashtags:
+    get:
+      tags:
+        - hashtag
+      summary: Read all available hash tag details.
+      operationId: findAllHashTags
+      responses:
+        '200':
+          description: The descriptions were found and returned.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/HashTag'
+        '400':
+          description: Bad Request
+        '404':
+          description: Not Found
+  /blogposts/{id}/hashtags:
+    parameters:
+      - $ref: '#/components/parameters/blogPostId'
+    get:
+      tags:
+        - blogpost
+        - hashtag
+      summary: Read the hash tags assigned to the blog post.
+      operationId: findHashTagsForBlogPost
+      responses:
+        '200':
+          description: The hash tags could be found.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/HashTag'
+        '400':
+          description: Bad Request
+        '404':
+          description: The blog post could not be found.
+components:
+  schemas:
+    HashTag:
+      required:
+        - description
+      type: object
+      properties:
+        name:
+          type: string
+          description: The unique name of the hash tag.
+          readOnly: true
+        description:
+          type: string
+          description: A description for the hash tag.
+      description: A hash tag marks a blog post semantically.
+    BlogPost:
+      required:
+        - content
+        - title
+      type: object
+      properties:
+        id:
+          type: string
+          description: The id of the blog post.
+          format: uuid
+          readOnly: true
+        title:
+          maxLength: 2147483647
+          minLength: 3
+          type: string
+          description: The title of the blog post.
+        content:
+          maxLength: 2147483647
+          minLength: 10
+          type: string
+          description: The content of the blog post.
+        timestamp:
+          type: string
+          description: The timestamp the blog post was saved.
+          format: date-time
+          readOnly: true
+      description: A blog post contains a title and a content.
+    Author:
+      required:
+        - name
+      type: object
+      properties:
+        id:
+          type: string
+          description: The id of the author.
+          format: uuid
+          readOnly: true
+        name:
+          type: string
+          description: The name of the author.
+        description:
+          type: string
+          description: A description for the author.
+      description: Information about a blog post's author
+  parameters:
+    blogPostId:
+      name: id
+      in: path
+      description: The id of the blog post
+      required: true
+      schema:
+        type: string
+        format: uuid
+    authorId:
+      name: id
+      in: path
+      description: The id of the author
+      required: true
+      schema:
+        type: string
+        format: uuid
+    hashTagName:
+      name: name
+      in: path
+      description: The name of the hash tag
+      required: true
+      schema:
+        type: string
+  headers:
+    LocationHeader:
+      description: URL to the newly created item
+      schema:
+        type: string

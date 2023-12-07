@@ -6,6 +6,8 @@ import de.samples.apicomparison.provider.boundary.rest.api.model.HashTagDto;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.headers.Header;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -27,12 +29,19 @@ public interface HashTagRestApi {
     produces = MediaType.APPLICATION_JSON_VALUE
   )
   @Operation(
+    operationId = "findAllHashTags",
     summary = "Read all available hash tag details."
   )
   @ApiResponse(
     responseCode = "200",
-    description = "The descriptions were found and returned."
-  )
+    description = "The descriptions were found and returned.",
+    content = @Content(
+      array = @ArraySchema(
+        schema = @Schema(
+          implementation = HashTagDto.class
+        )
+      )
+    ))
   Stream<HashTagDto> findAll();
 
   @GetMapping(
@@ -40,6 +49,7 @@ public interface HashTagRestApi {
     produces = MediaType.APPLICATION_JSON_VALUE
   )
   @Operation(
+    operationId = "findHashTagByName",
     summary = "Read hash tag details."
   )
   @ApiResponse(
@@ -61,12 +71,16 @@ public interface HashTagRestApi {
     consumes = MediaType.APPLICATION_JSON_VALUE
   )
   @Operation(
+    operationId = "assignHashTagMetadata",
     summary = "Assign some metadata to a hash tag name."
   )
   @ApiResponse(
     responseCode = "201",
     description = "The metadata was assigned for the first time.",
-    headers = @Header(name = "Location", description = "URL to the newly created hash tag.")
+    headers = @Header(
+      name = OpenApiConstants.LOCATION_HEADER_NAME,
+      ref = OpenApiConstants.LOCATION_HEADER_COMPONENT_NAME
+    )
   )
   @ApiResponse(
     responseCode = "204",
@@ -111,6 +125,7 @@ public interface HashTagRestApi {
   )
   @ResponseStatus(HttpStatus.NO_CONTENT)
   @Operation(
+    operationId = "deleteHashTagMetadata",
     summary = "Deletes the metadata of a hash tag name."
   )
   @ApiResponse(

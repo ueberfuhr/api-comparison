@@ -12,4 +12,7 @@ public class OpenApiConstants {
   public static final String AUTHOR_ID_PARAMETER = "authorId";
   public static final String HASHTAG_NAME_PARAMETER = "hashTagName";
 
+  public static final String LOCATION_HEADER_NAME = "Location";
+  public static final String LOCATION_HEADER_COMPONENT_NAME = "LocationHeader";
+
 }
