@@ -10,9 +10,9 @@ import lombok.Setter;
 public class HashTagDto {
 
   @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-  String name;
+  private String name;
 
   @NotEmpty
-  String description;
+  private String description;
 
 }

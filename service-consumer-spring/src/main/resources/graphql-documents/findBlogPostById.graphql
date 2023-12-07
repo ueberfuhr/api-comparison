@@ -1,0 +1,10 @@
+query findBlogPosts($id: UUID!) {
+  findBlogPostById(id: $id) {
+    id,
+    title,
+    content,
+    timestamp,
+    author{id, name, description},
+    tags{name, description}
+  }
+}

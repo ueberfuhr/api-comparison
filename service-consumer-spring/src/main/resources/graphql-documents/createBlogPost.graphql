@@ -1,0 +1,10 @@
+mutation createBlogPost($input: BlogPostInput!) {
+  createBlogPost(input: $input) {
+    id,
+    title,
+    content,
+    timestamp,
+    author{id, name, description},
+    tags{name, description}
+  }
+}

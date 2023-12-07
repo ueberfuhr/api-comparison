@@ -1,7 +1,7 @@
 package de.samples.apicomparison.consumer.clients.rest.config.registration;
 
-import de.samples.apicomparison.consumer.clients.config.WebClientAutoConfiguration;
 import de.samples.apicomparison.consumer.clients.rest.config.HttpClient;
+import de.samples.apicomparison.consumer.clients.rest.config.RestWebClientConfiguration;
 import org.springframework.beans.factory.annotation.AnnotatedBeanDefinition;
 import org.springframework.beans.factory.support.AbstractBeanDefinition;
 import org.springframework.beans.factory.support.BeanDefinitionRegistry;
@@ -35,7 +35,7 @@ public class HttpClientBeanDefinitionScanner extends ClassPathBeanDefinitionScan
       .getConstructorArgumentValues()
       .addGenericArgumentValue(((AnnotatedBeanDefinition) beanDefinition).getMetadata());
 
-    beanDefinition.setDependsOn(WebClientAutoConfiguration.WEB_CLIENT_NAME);
+    beanDefinition.setDependsOn(RestWebClientConfiguration.REST_WEBCLIENT_BEAN_NAME);
 
   }
 

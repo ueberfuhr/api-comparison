@@ -1,5 +1,6 @@
 package de.samples.apicomparison.consumer.clients.rest.config.registration;
 
+import de.samples.apicomparison.consumer.clients.rest.config.RestWebClientConfiguration;
 import lombok.Setter;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.BeanFactoryAware;
@@ -22,7 +23,10 @@ public class HttpClientFactoryBean implements FactoryBean<Object>, BeanFactoryAw
 
   @Override
   public Object getObject() {
-    final var webClient = beanFactory.getBean(WebClient.class);
+    final var webClient = beanFactory.getBean(
+      RestWebClientConfiguration.REST_WEBCLIENT_BEAN_NAME,
+      WebClient.class
+    );
     final var adapter = WebClientAdapter.create(webClient);
     final var factory = HttpServiceProxyFactory
       .builderFor(adapter)

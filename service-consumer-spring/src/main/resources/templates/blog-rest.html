@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Blog Posts</title>
+</head>
+<body th:inline="text">
+
+<h1>Welcome to my blog</h1>
+
+<form method="post">
+  <div>
+    <label for="txtTitle">Title</label>
+    <input name="title" id="txtTitle" type="text" required minlength="3"/>
+  </div>
+  <div>
+    <label for="txtContent">Content</label>
+    <textarea name="content" id="txtContent" required minlength="10"></textarea>
+  </div>
+  <div>
+    <button type="submit">Erstellen</button>
+  </div>
+</form>
+
+<div data-th-each="blog: ${blogposts}">
+  <h2>[[${blog.title}]]</h2>
+  <p style="font-size: 0.6em;">[[${#temporals.format(blog.timestamp, 'dd.MM.yyyy hh:mm:ss')}]]h</p>
+  <p>[[${blog.content}]]</p>
+  <form action="./blog-rest/delete" method="post">
+    <input type="hidden" name="id" th:value="${blog.id}">
+    <button type="submit">🗑️</button>
+  </form>
+</div>
+
+</body>
+</html>

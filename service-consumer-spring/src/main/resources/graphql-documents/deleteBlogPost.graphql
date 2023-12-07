@@ -1,0 +1,3 @@
+mutation deleteBlogPosts($id: UUID!) {
+  deleteBlogPost(id: $id)
+}

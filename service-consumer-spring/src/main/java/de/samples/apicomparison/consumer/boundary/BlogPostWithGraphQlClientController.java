@@ -1,7 +1,7 @@
 package de.samples.apicomparison.consumer.boundary;
 
-import de.samples.apicomparison.consumer.clients.rest.BlogPostRestApiClient;
-import de.samples.apicomparison.consumer.clients.rest.model.BlogPostDto;
+import de.samples.apicomparison.consumer.clients.graphql.BlogPostGraphQlClient;
+import de.samples.apicomparison.consumer.clients.graphql.model.QlBlogPostInputDto;
 import jakarta.validation.ValidationException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -18,11 +18,11 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Controller
-@RequestMapping("/blog")
+@RequestMapping("/blog-graphql")
 @RequiredArgsConstructor
-public class BlogPostController {
+public class BlogPostWithGraphQlClientController {
 
-  private final BlogPostRestApiClient blogPostApi;
+  private final BlogPostGraphQlClient blogPostApi;
 
   @GetMapping
   public String showBlogPosts(final Model model) {
@@ -31,11 +31,11 @@ public class BlogPostController {
       "blogposts",
       new ReactiveDataDriverContextVariable(
         this.blogPostApi
-          .getAll(),
+          .findAll(),
         1
       )
     );
-    return "blogs";
+    return "blog-graphql";
   }
 
   // this does not work here ([SPR-16190]):
@@ -50,14 +50,14 @@ public class BlogPostController {
     return exchange.getFormData()
       .map(
         data -> {
-          BlogPostDto dto = new BlogPostDto();
+          QlBlogPostInputDto dto = new QlBlogPostInputDto();
           dto.setTitle(data.getFirst("title"));
           dto.setContent(data.getFirst("content")); // Validation?!
           return dto;
         }
       )
       .flatMap(this.blogPostApi::create)
-      .then(Mono.just("redirect:/blog"));
+      .then(Mono.just("redirect:/blog-graphql"));
   }
 
   protected UUID getId(MultiValueMap<String, String> data) {
@@ -77,7 +77,7 @@ public class BlogPostController {
     return exchange.getFormData()
       .map(this::getId)
       .flatMap(this.blogPostApi::delete)
-      .then(Mono.just("redirect:/blog"));
+      .then(Mono.just("redirect:/blog-graphql"));
   }
 
 }

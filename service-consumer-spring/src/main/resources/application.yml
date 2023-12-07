@@ -2,3 +2,8 @@ application:
   webclient:
     timeout: 2000
     base-url: http://localhost:8081
+  apis:
+    rest:
+      endpoint: /api
+    graphql:
+      end-point: /graphql

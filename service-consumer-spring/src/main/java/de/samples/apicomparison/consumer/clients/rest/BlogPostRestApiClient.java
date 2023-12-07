@@ -18,14 +18,14 @@ import java.util.UUID;
 
 @Validated
 @HttpClient
-@HttpExchange("/api/v1/blogposts")
+@HttpExchange("/v1/blogposts")
 public interface BlogPostRestApiClient {
 
-  default Flux<BlogPostDto> getAll() {
-    return this.getAll(null);
+  default Flux<BlogPostDto> findAll() {
+    return this.findAll(null);
   }
   @GetExchange
-  Flux<BlogPostDto> getAll(@RequestParam(required = false) String author);
+  Flux<BlogPostDto> findAll(@RequestParam(required = false) String author);
 
   @PostExchange
   Mono<BlogPostDto> create(@Valid @RequestBody BlogPostDto post);

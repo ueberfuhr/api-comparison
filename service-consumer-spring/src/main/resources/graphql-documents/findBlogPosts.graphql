@@ -1,0 +1,10 @@
+query findBlogPosts {
+  findBlogPosts {
+    id,
+    title,
+    content,
+    timestamp,
+    author{id, name, description},
+    tags{name, description}
+  }
+}
