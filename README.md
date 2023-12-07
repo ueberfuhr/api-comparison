@@ -25,17 +25,16 @@ To find out more details about one kind of API, we can read the docs:
 - [gRPC](./docs/GRPC.md)
 
 The table below shows a comparison between those types
-|                             | **REST**                    | **GraphQL**                 | **SOAP**                      | **gRPC**                    |
-|-----------------------------|-----------------------------|-----------------------------|-------------------------------|-----------------------------|
-| **Description**             | Use HTTP as designed        | Query Language for APIs     | XML-based Web Services        | High Performance RPC        |
-| **API Style**               | Resources-based             | RPC                         | RPC                           | RPC                         |
-| **Top-Level API Elements**  | Resources and Operations    | Queries and Mutations       | Operations + Messages         | Services + Messages         |
-| **HTTP Binding**            | URLs, methods, status codes | single endpoint, `POST`, status `200` even for exceptions | single endpoint, `POST`, status `200` even for exceptions | HTTP/2 protobuf+streaming |
-| **Alternative Protocols**   | _not possible_              | Websockets, RSockets       | SMTP, JMS                     | _not possible_              |
-| **Media Types**             | JSON (negotiable)           | JSON (pre-defined schema)   | XML/SOAP (pre-defined schema) | `application/grpc` (binary) |
-| 
-Exceptions
-Schema / Tools
-Advantages
-Disadvantages
-When to use
+|                                 | **REST**                      | **GraphQL**                 | **SOAP**                      | **gRPC**                    |
+|---------------------------------|-------------------------------|-----------------------------|-------------------------------|-----------------------------|
+| **Description**                 | Use HTTP as designed          | Query Language for APIs     | XML-based Web Services        | High Performance RPC        |
+| **API Style**                   | Resources-based               | RPC                         | RPC                           | RPC                         |
+| **Top-Level API Elements**      | Resources and Operations      | Queries and Mutations       | Operations + Messages         | Services + Messages         |
+| **HTTP Binding**                | URLs, methods, status codes   | single endpoint, `POST`, status `200` even for exceptions | single endpoint, `POST`, status `200` even for exceptions | HTTP/2 protobuf+streaming |
+| **Alternative Protocols**       | _not possible_                | Websockets, RSockets        | SMTP, JMS                     | _not possible_              |
+| **Media Types**                 | JSON (negotiable)             | JSON (pre-defined schema)   | XML/SOAP (pre-defined schema) | `application/grpc` (binary) |
+| **API Description**             | OpenAPI                       | GraphQL-Schema              | WSDL + XSD                    | Proto File                  |
+| **Tools** _(except Postman...)_ | Swagger (Editor, UI, Codegen) | GraphiQL                    | _nothing_                     | _nothing_                   | 
+| **Advantages**                  | lightweight, uniformly, based on HTTP standards (compatible with Caches, Firewalls, Proxies, Gateways) | no over-/underfetching, hiding of complex architectures
+| **Disadvantages**               | over-/underfetching (performance!)  | HTTP is just the transport protocol, no unique design, scalars and directives per platform, only JSON (e.g. no file uploads) | HTTP is just the transport protocol, no unique design | not readable as plaint text, special libraries/no integration into Spring Boot |
+| **When to use**                 | _(default choice)_   | flexible queries for complex hierarchies, providing multiple services with a single API | when W3C XML-based standards like XSL-T, XML encryption... are necessary, S2S | high-performance data exchange, bi-directional streaming |
