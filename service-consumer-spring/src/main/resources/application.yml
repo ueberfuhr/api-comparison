@@ -7,3 +7,6 @@ application:
       endpoint: /api
     graphql:
       end-point: /graphql
+logging:
+  level:
+    org.springframework.web.reactive.function.client: debug

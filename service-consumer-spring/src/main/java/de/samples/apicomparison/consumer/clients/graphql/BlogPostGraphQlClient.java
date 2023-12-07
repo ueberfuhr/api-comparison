@@ -47,13 +47,11 @@ public class BlogPostGraphQlClient {
   }
 
   public Mono<Void> delete(@NotNull UUID id) {
-    //noinspection DataFlowIssue
     return this.api
       .documentName("deleteBlogPost")
       .variable("id", id.toString())
       .execute()
-      .then(Mono.just(null))
-      ;
+      .then();
   }
 
 }
