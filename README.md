@@ -30,7 +30,7 @@ The table below shows a comparison between those types
 | **Description**             | Use HTTP as designed        | Query Language for APIs     | XML-based Web Services        | High Performance RPC        |
 | **API Style**               | Resources-based             | RPC                         | RPC                           | RPC                         |
 | **Top-Level API Elements**  | Resources and Operations    | Queries and Mutations       | Operations + Messages         | Services + Messages         |
-| **HTTP Binding**            | URLs, methods, status codes | single endpoint, `POST`, status `200` even for eceptions
+| **HTTP Binding**            | URLs, methods, status codes | single endpoint, `POST`, status `200` even for exceptions | single endpoint, `POST`, status `200` even for exceptions | HTTP/2 protobuf+streaming |
 | **Alternative Protocols**   | _not possible_              | Websockets, RSockets       | SMTP, JMS                     | _not possible_              |
 | **Media Types**             | JSON (negotiable)           | JSON (pre-defined schema)   | XML/SOAP (pre-defined schema) | `application/grpc` (binary) |
 | 
