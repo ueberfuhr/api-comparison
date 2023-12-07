@@ -25,11 +25,12 @@ To find out more details about one kind of API, we can read the docs:
 - [gRPC](./docs/GRPC.md)
 
 The table below shows a comparison between those types
-|                             | REST                        | GraphQL                     | SOAP                        | gRPC                        |
+|                             | **REST**                    | **GraphQL**                 | **SOAP**                    | **gRPC**                    |
 |-----------------------------|-----------------------------|-----------------------------|-----------------------------|-----------------------------|
-| Description                 | Use HTTP as designed        | Query Language for APIs     | 
+| **Description**             | Use HTTP as designed        | Query Language for APIs     | XML-based Web Services      | High Performance RPC        |
+| **API Stype**               | Resources-based             | RPC                         | RPC                         | RPC                         |
+|                             | (Resources and Operations)  | (Queries and Mutations)     | (Operations + Messages)     | (Services + Messages)       |
 
-Description
 RPC/Resource-Style
 Protocols
 Media Types
