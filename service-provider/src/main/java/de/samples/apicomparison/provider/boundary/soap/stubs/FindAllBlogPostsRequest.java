@@ -3,6 +3,7 @@ package de.samples.apicomparison.provider.boundary.soap.stubs;
 
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlRootElement;
 import jakarta.xml.bind.annotation.XmlType;
 
 
@@ -26,7 +27,8 @@ import jakarta.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "void")
-public class Void {
+@XmlRootElement(name = "findAllBlogPostsRequest")
+public class FindAllBlogPostsRequest {
 
 
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlRootElement;
 import jakarta.xml.bind.annotation.XmlType;
 
 
@@ -30,26 +31,27 @@ import jakarta.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "BlogPostListResponse", propOrder = {
-    "blogPost"
+    "blogPosts"
 })
-public class BlogPostListResponse {
+@XmlRootElement(name = "findAllBlogPostsResponse")
+public class FindAllBlogPostsResponse {
 
-    @XmlElement(namespace = "")
-    protected List<BlogPost> blogPost;
+    @XmlElement(name = "blogPost", namespace = "")
+    protected List<BlogPost> blogPosts;
 
     /**
-     * Gets the value of the blogPost property.
+     * Gets the value of the blogPosts property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the Jakarta XML Binding object.
-     * This is why there is not a {@code set} method for the blogPost property.
+     * This is why there is not a {@code set} method for the blogPosts property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getBlogPost().add(newItem);
+     *    getBlogPosts().add(newItem);
      * </pre>
      * 
      * 
@@ -59,13 +61,13 @@ public class BlogPostListResponse {
      * 
      * 
      * @return
-     *     The value of the blogPost property.
+     *     The value of the blogPosts property.
      */
-    public List<BlogPost> getBlogPost() {
-        if (blogPost == null) {
-            blogPost = new ArrayList<>();
+    public List<BlogPost> getBlogPosts() {
+        if (blogPosts == null) {
+            blogPosts = new ArrayList<>();
         }
-        return this.blogPost;
+        return this.blogPosts;
     }
 
 }

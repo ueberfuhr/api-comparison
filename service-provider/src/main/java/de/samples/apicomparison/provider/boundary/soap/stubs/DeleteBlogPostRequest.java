@@ -5,6 +5,7 @@ import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlID;
+import jakarta.xml.bind.annotation.XmlRootElement;
 import jakarta.xml.bind.annotation.XmlSchemaType;
 import jakarta.xml.bind.annotation.XmlType;
 import jakarta.xml.bind.annotation.adapters.CollapsedStringAdapter;
@@ -34,7 +35,8 @@ import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 @XmlType(name = "UuidRequest", propOrder = {
     "id"
 })
-public class UuidRequest {
+@XmlRootElement(name = "deleteBlogPostRequest")
+public class DeleteBlogPostRequest {
 
     @XmlElement(namespace = "", required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)

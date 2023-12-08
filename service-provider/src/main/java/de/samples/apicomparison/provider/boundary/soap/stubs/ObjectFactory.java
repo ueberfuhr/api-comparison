@@ -1,9 +1,6 @@
 
 package de.samples.apicomparison.provider.boundary.soap.stubs;
 
-import javax.xml.namespace.QName;
-import jakarta.xml.bind.JAXBElement;
-import jakarta.xml.bind.annotation.XmlElementDecl;
 import jakarta.xml.bind.annotation.XmlRegistry;
 
 
@@ -24,10 +21,6 @@ import jakarta.xml.bind.annotation.XmlRegistry;
 @XmlRegistry
 public class ObjectFactory {
 
-    private static final QName _FindAllBlogPostsRequest_QNAME = new QName("http://samples.de/spring/soap/blog/messages", "findAllBlogPostsRequest");
-    private static final QName _FindAllBlogPostsResponse_QNAME = new QName("http://samples.de/spring/soap/blog/messages", "findAllBlogPostsResponse");
-    private static final QName _CreateBlogPostRequest_QNAME = new QName("http://samples.de/spring/soap/blog/messages", "createBlogPostRequest");
-    private static final QName _DeleteBlogPostRequest_QNAME = new QName("http://samples.de/spring/soap/blog/messages", "deleteBlogPostRequest");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: de.samples.apicomparison.provider.boundary.soap.stubs
@@ -37,43 +30,63 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Void }
+     * Create an instance of {@link FindAllBlogPostsRequest }
      * 
      * @return
-     *     the new instance of {@link Void }
+     *     the new instance of {@link FindAllBlogPostsRequest }
      */
-    public Void createVoid() {
-        return new Void();
+    public FindAllBlogPostsRequest createFindAllBlogPostsRequest() {
+        return new FindAllBlogPostsRequest();
     }
 
     /**
-     * Create an instance of {@link BlogPostListResponse }
+     * Create an instance of {@link FindAllBlogPostsResponse }
      * 
      * @return
-     *     the new instance of {@link BlogPostListResponse }
+     *     the new instance of {@link FindAllBlogPostsResponse }
      */
-    public BlogPostListResponse createBlogPostListResponse() {
-        return new BlogPostListResponse();
+    public FindAllBlogPostsResponse createFindAllBlogPostsResponse() {
+        return new FindAllBlogPostsResponse();
     }
 
     /**
-     * Create an instance of {@link BlogPostInputRequest }
+     * Create an instance of {@link BlogPost }
      * 
      * @return
-     *     the new instance of {@link BlogPostInputRequest }
+     *     the new instance of {@link BlogPost }
      */
-    public BlogPostInputRequest createBlogPostInputRequest() {
-        return new BlogPostInputRequest();
+    public BlogPost createBlogPost() {
+        return new BlogPost();
     }
 
     /**
-     * Create an instance of {@link UuidRequest }
+     * Create an instance of {@link CreateBlogPostRequest }
      * 
      * @return
-     *     the new instance of {@link UuidRequest }
+     *     the new instance of {@link CreateBlogPostRequest }
      */
-    public UuidRequest createUuidRequest() {
-        return new UuidRequest();
+    public CreateBlogPostRequest createCreateBlogPostRequest() {
+        return new CreateBlogPostRequest();
+    }
+
+    /**
+     * Create an instance of {@link BlogPostInput }
+     * 
+     * @return
+     *     the new instance of {@link BlogPostInput }
+     */
+    public BlogPostInput createBlogPostInput() {
+        return new BlogPostInput();
+    }
+
+    /**
+     * Create an instance of {@link DeleteBlogPostRequest }
+     * 
+     * @return
+     *     the new instance of {@link DeleteBlogPostRequest }
+     */
+    public DeleteBlogPostRequest createDeleteBlogPostRequest() {
+        return new DeleteBlogPostRequest();
     }
 
     /**
@@ -94,78 +107,6 @@ public class ObjectFactory {
      */
     public Author createAuthor() {
         return new Author();
-    }
-
-    /**
-     * Create an instance of {@link BlogPost }
-     * 
-     * @return
-     *     the new instance of {@link BlogPost }
-     */
-    public BlogPost createBlogPost() {
-        return new BlogPost();
-    }
-
-    /**
-     * Create an instance of {@link BlogPostInput }
-     * 
-     * @return
-     *     the new instance of {@link BlogPostInput }
-     */
-    public BlogPostInput createBlogPostInput() {
-        return new BlogPostInput();
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Void }{@code >}
-     * 
-     * @param value
-     *     Java instance representing xml element's value.
-     * @return
-     *     the new instance of {@link JAXBElement }{@code <}{@link Void }{@code >}
-     */
-    @XmlElementDecl(namespace = "http://samples.de/spring/soap/blog/messages", name = "findAllBlogPostsRequest")
-    public JAXBElement<Void> createFindAllBlogPostsRequest(Void value) {
-        return new JAXBElement<>(_FindAllBlogPostsRequest_QNAME, Void.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link BlogPostListResponse }{@code >}
-     * 
-     * @param value
-     *     Java instance representing xml element's value.
-     * @return
-     *     the new instance of {@link JAXBElement }{@code <}{@link BlogPostListResponse }{@code >}
-     */
-    @XmlElementDecl(namespace = "http://samples.de/spring/soap/blog/messages", name = "findAllBlogPostsResponse")
-    public JAXBElement<BlogPostListResponse> createFindAllBlogPostsResponse(BlogPostListResponse value) {
-        return new JAXBElement<>(_FindAllBlogPostsResponse_QNAME, BlogPostListResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link BlogPostInputRequest }{@code >}
-     * 
-     * @param value
-     *     Java instance representing xml element's value.
-     * @return
-     *     the new instance of {@link JAXBElement }{@code <}{@link BlogPostInputRequest }{@code >}
-     */
-    @XmlElementDecl(namespace = "http://samples.de/spring/soap/blog/messages", name = "createBlogPostRequest")
-    public JAXBElement<BlogPostInputRequest> createCreateBlogPostRequest(BlogPostInputRequest value) {
-        return new JAXBElement<>(_CreateBlogPostRequest_QNAME, BlogPostInputRequest.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link UuidRequest }{@code >}
-     * 
-     * @param value
-     *     Java instance representing xml element's value.
-     * @return
-     *     the new instance of {@link JAXBElement }{@code <}{@link UuidRequest }{@code >}
-     */
-    @XmlElementDecl(namespace = "http://samples.de/spring/soap/blog/messages", name = "deleteBlogPostRequest")
-    public JAXBElement<UuidRequest> createDeleteBlogPostRequest(UuidRequest value) {
-        return new JAXBElement<>(_DeleteBlogPostRequest_QNAME, UuidRequest.class, null, value);
     }
 
 }

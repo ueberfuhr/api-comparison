@@ -52,7 +52,7 @@ import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
     "title",
     "content",
     "author",
-    "tag"
+    "tags"
 })
 public class BlogPostInput {
 
@@ -64,7 +64,8 @@ public class BlogPostInput {
     @XmlID
     @XmlSchemaType(name = "ID")
     protected String author;
-    protected List<String> tag;
+    @XmlElement(name = "tag")
+    protected List<String> tags;
 
     /**
      * Ruft den Wert der title-Eigenschaft ab.
@@ -139,18 +140,18 @@ public class BlogPostInput {
     }
 
     /**
-     * Gets the value of the tag property.
+     * Gets the value of the tags property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the Jakarta XML Binding object.
-     * This is why there is not a {@code set} method for the tag property.
+     * This is why there is not a {@code set} method for the tags property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getTag().add(newItem);
+     *    getTags().add(newItem);
      * </pre>
      * 
      * 
@@ -160,13 +161,13 @@ public class BlogPostInput {
      * 
      * 
      * @return
-     *     The value of the tag property.
+     *     The value of the tags property.
      */
-    public List<String> getTag() {
-        if (tag == null) {
-            tag = new ArrayList<>();
+    public List<String> getTags() {
+        if (tags == null) {
+            tags = new ArrayList<>();
         }
-        return this.tag;
+        return this.tags;
     }
 
 }

@@ -4,6 +4,7 @@ package de.samples.apicomparison.provider.boundary.soap.stubs;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlElement;
+import jakarta.xml.bind.annotation.XmlRootElement;
 import jakarta.xml.bind.annotation.XmlType;
 
 
@@ -30,7 +31,8 @@ import jakarta.xml.bind.annotation.XmlType;
 @XmlType(name = "BlogPostInputRequest", propOrder = {
     "input"
 })
-public class BlogPostInputRequest {
+@XmlRootElement(name = "createBlogPostRequest")
+public class CreateBlogPostRequest {
 
     @XmlElement(namespace = "", required = true)
     protected BlogPostInput input;

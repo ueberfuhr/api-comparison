@@ -1,7 +1,6 @@
 package de.samples.apicomparison.provider.boundary.soap;
 
 import de.samples.apicomparison.provider.boundary.soap.mappers.BlogPostSoapStubMapper;
-import de.samples.apicomparison.provider.boundary.soap.stubs.Void;
 import de.samples.apicomparison.provider.boundary.soap.stubs.*;
 import de.samples.apicomparison.provider.domain.BlogPostService;
 import lombok.RequiredArgsConstructor;
@@ -23,12 +22,12 @@ public class BlogPostSoapController implements BlogPostServiceInterface {
   )
   @ResponsePayload
   @Override
-  public BlogPostListResponse findAll(@RequestPayload Void findAllInputPart) {
-    final var result = new BlogPostListResponse();
+  public FindAllBlogPostsResponse findAll(@RequestPayload FindAllBlogPostsRequest findAllInputPart) {
+    final var result = new FindAllBlogPostsResponse();
     this.service
       .findAll()
       .map(this.mapper::map)
-      .forEach(result.getBlogPost()::add);
+      .forEach(result.getBlogPosts()::add);
     return result;
   }
 
@@ -40,7 +39,7 @@ public class BlogPostSoapController implements BlogPostServiceInterface {
   @Override
   public void create(
     @RequestPayload
-    BlogPostInputRequest input
+    CreateBlogPostRequest input
   ) {
     System.out.println("klappt");
   }
@@ -53,7 +52,7 @@ public class BlogPostSoapController implements BlogPostServiceInterface {
   @Override
   public void deleteById(
     @RequestPayload
-    UuidRequest id
+    DeleteBlogPostRequest id
   ) {
 
   }
