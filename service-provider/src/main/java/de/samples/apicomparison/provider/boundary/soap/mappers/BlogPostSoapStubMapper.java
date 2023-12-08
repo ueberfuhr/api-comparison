@@ -14,9 +14,8 @@ import org.mapstruct.Mapping;
 )
 public interface BlogPostSoapStubMapper {
 
-  @Mapping(target = "tag", source = "tags")
   de.samples.apicomparison.provider.boundary.soap.stubs.BlogPost map(BlogPost source);
-  @InheritInverseConfiguration
+
   BlogPost map(de.samples.apicomparison.provider.boundary.soap.stubs.BlogPost source);
 
 }
