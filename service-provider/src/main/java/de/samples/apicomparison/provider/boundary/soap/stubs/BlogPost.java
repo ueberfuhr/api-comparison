@@ -29,7 +29,7 @@ import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *         <element name="content" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         <element name="timestamp" type="{http://www.w3.org/2001/XMLSchema}dateTime"/>
  *         <element name="author" type="{http://samples.de/spring/soap/blog/types}Author" minOccurs="0"/>
- *         <element name="hashTag" type="{http://samples.de/spring/soap/blog/types}HashTag" maxOccurs="unbounded" minOccurs="0"/>
+ *         <element name="tag" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
  *       </sequence>
  *     </restriction>
  *   </complexContent>
@@ -39,13 +39,13 @@ import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "BlogPost", propOrder = {
+@XmlType(name = "BlogPost", namespace = "http://samples.de/spring/soap/blog/types", propOrder = {
     "id",
     "title",
     "content",
     "timestamp",
     "author",
-    "hashTag"
+    "tag"
 })
 public class BlogPost {
 
@@ -62,7 +62,7 @@ public class BlogPost {
     @XmlSchemaType(name = "dateTime")
     protected XMLGregorianCalendar timestamp;
     protected Author author;
-    protected List<HashTag> hashTag;
+    protected List<String> tag;
 
     /**
      * Ruft den Wert der id-Eigenschaft ab.
@@ -185,34 +185,34 @@ public class BlogPost {
     }
 
     /**
-     * Gets the value of the hashTag property.
+     * Gets the value of the tag property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the Jakarta XML Binding object.
-     * This is why there is not a {@code set} method for the hashTag property.
+     * This is why there is not a {@code set} method for the tag property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getHashTag().add(newItem);
+     *    getTag().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link HashTag }
+     * {@link String }
      * 
      * 
      * @return
-     *     The value of the hashTag property.
+     *     The value of the tag property.
      */
-    public List<HashTag> getHashTag() {
-        if (hashTag == null) {
-            hashTag = new ArrayList<>();
+    public List<String> getTag() {
+        if (tag == null) {
+            tag = new ArrayList<>();
         }
-        return this.hashTag;
+        return this.tag;
     }
 
 }
