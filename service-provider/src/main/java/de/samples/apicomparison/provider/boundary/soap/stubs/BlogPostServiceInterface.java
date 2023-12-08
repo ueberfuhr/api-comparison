@@ -26,12 +26,15 @@ public interface BlogPostServiceInterface {
 
     /**
      * 
+     * @param findAllInputPart
      * @return
      *     returns de.samples.apicomparison.provider.boundary.soap.stubs.BlogPostListResponse
      */
     @WebMethod(action = "findAll")
-    @WebResult(name = "BlogPostListResponse", targetNamespace = "http://samples.de/spring/soap/blog/messages", partName = "blogPosts")
-    public BlogPostListResponse findAll();
+    @WebResult(name = "findAllBlogPostsResponse", targetNamespace = "http://samples.de/spring/soap/blog/messages", partName = "findAllOutputPart")
+    public BlogPostListResponse findAll(
+        @WebParam(name = "findAllBlogPostsRequest", targetNamespace = "http://samples.de/spring/soap/blog/messages", partName = "findAllInputPart")
+        Void findAllInputPart);
 
     /**
      * 
@@ -40,7 +43,7 @@ public interface BlogPostServiceInterface {
     @WebMethod(action = "create")
     @Oneway
     public void create(
-        @WebParam(name = "BlogPostInputRequest", targetNamespace = "http://samples.de/spring/soap/blog/messages", partName = "input")
+        @WebParam(name = "createBlogPostRequest", targetNamespace = "http://samples.de/spring/soap/blog/messages", partName = "input")
         BlogPostInputRequest input);
 
     /**
@@ -50,7 +53,7 @@ public interface BlogPostServiceInterface {
     @WebMethod(action = "deleteById")
     @Oneway
     public void deleteById(
-        @WebParam(name = "UuidRequest", targetNamespace = "http://samples.de/spring/soap/blog/messages", partName = "id")
+        @WebParam(name = "deleteBlogPostRequest", targetNamespace = "http://samples.de/spring/soap/blog/messages", partName = "id")
         UuidRequest id);
 
 }

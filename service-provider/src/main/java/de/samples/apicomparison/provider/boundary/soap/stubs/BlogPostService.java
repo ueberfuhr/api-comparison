@@ -17,7 +17,7 @@ import jakarta.xml.ws.WebServiceFeature;
  * Generated source version: 3.0
  * 
  */
-@WebServiceClient(name = "BlogPostService", targetNamespace = "http://samples.de/spring/soap/blog/service", wsdlLocation = "file:/E:/Daten/Sonstige/github/api-comparison/service-provider/src/main/resources/soap/blogpost-service.wsdl")
+@WebServiceClient(name = "BlogPostService", targetNamespace = "http://samples.de/spring/soap/blog/service", wsdlLocation = "file:/E:/Daten/Sonstige/github/api-comparison/service-provider/src/main/resources/soap/blogPostService.wsdl")
 public class BlogPostService
     extends Service
 {
@@ -30,7 +30,7 @@ public class BlogPostService
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("file:/E:/Daten/Sonstige/github/api-comparison/service-provider/src/main/resources/soap/blogpost-service.wsdl");
+            url = new URL("file:/E:/Daten/Sonstige/github/api-comparison/service-provider/src/main/resources/soap/blogPostService.wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }

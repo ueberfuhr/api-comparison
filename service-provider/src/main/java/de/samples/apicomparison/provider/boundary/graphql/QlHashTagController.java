@@ -1,6 +1,6 @@
 package de.samples.apicomparison.provider.boundary.graphql;
 
-import de.samples.apicomparison.provider.boundary.graphql.mappers.HashTagMapper;
+import de.samples.apicomparison.provider.boundary.graphql.mappers.QlHashTagDtoMapper;
 import de.samples.apicomparison.provider.boundary.graphql.model.QlBlogPostDto;
 import de.samples.apicomparison.provider.boundary.graphql.model.QlHashTagDto;
 import de.samples.apicomparison.provider.domain.HashTagService;
@@ -15,7 +15,7 @@ import java.util.stream.Stream;
 public class QlHashTagController {
 
   private final HashTagService service;
-  private final HashTagMapper mapper;
+  private final QlHashTagDtoMapper mapper;
 
   @SchemaMapping(typeName = "BlogPost", field = "tags")
   public Stream<QlHashTagDto> findHashTags(QlBlogPostDto blogPost) {

@@ -1,6 +1,6 @@
 package de.samples.apicomparison.provider.boundary.graphql;
 
-import de.samples.apicomparison.provider.boundary.graphql.mappers.AuthorMapper;
+import de.samples.apicomparison.provider.boundary.graphql.mappers.QlAuthorDtoMapper;
 import de.samples.apicomparison.provider.boundary.graphql.model.QlAuthorDto;
 import de.samples.apicomparison.provider.boundary.graphql.model.QlBlogPostDto;
 import de.samples.apicomparison.provider.domain.AuthorService;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Controller;
 public class QlAuthorController {
 
   private final AuthorService service;
-  private final AuthorMapper mapper;
+  private final QlAuthorDtoMapper mapper;
 
   @SchemaMapping(typeName = "BlogPost", field = "author")
   public QlAuthorDto findAssignee(QlBlogPostDto blogPost) {

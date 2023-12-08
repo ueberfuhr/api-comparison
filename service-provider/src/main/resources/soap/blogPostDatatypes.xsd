@@ -36,7 +36,7 @@
       <xs:element name="content" type="xs:string"/>
       <xs:element name="timestamp" type="xs:dateTime"/>
       <xs:element name="author" type="blog:Author" minOccurs="0"/>
-      <xs:element name="hashTag" type="blog:HashTag" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="tag" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
     </xs:sequence>
   </xs:complexType>
 
@@ -57,7 +57,7 @@
         </xs:simpleType>
       </xs:element>
       <xs:element name="author" type="blog:uuid" minOccurs="0"/>
-      <xs:element name="hashTag" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="tag" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
     </xs:sequence>
   </xs:complexType>
 

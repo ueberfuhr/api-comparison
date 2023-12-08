@@ -5,6 +5,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.ws.config.annotation.EnableWs;
 import org.springframework.ws.config.annotation.WsConfigurerAdapter;
 import org.springframework.ws.transport.http.MessageDispatcherServlet;
@@ -19,22 +20,23 @@ public class SoapConfiguration extends WsConfigurerAdapter {
 
   @Bean
   public ServletRegistrationBean<MessageDispatcherServlet> messageDispatcherServlet(ApplicationContext applicationContext) {
-    MessageDispatcherServlet servlet = new MessageDispatcherServlet();
+    final var servlet = new MessageDispatcherServlet();
     servlet.setApplicationContext(applicationContext);
     servlet.setTransformWsdlLocations(true);
     return new ServletRegistrationBean<>(servlet, "/ws/*");
   }
 
-  @Bean
-  public Wsdl11Definition blogPostServicesdl11Definition(XsdSchema countriesSchema) {
+  @CrossOrigin
+  @Bean // http://localhost:8081/ws/blogPostServiceApi.wsdl
+  public Wsdl11Definition blogPostServiceApi() {
     final var result = new SimpleWsdl11Definition();
-    result.setWsdl(new ClassPathResource("soap/blogpost-service.wsdl"));
+    result.setWsdl(new ClassPathResource("soap/blogPostService.wsdl"));
     return result;
   }
 
-  @Bean
-  public XsdSchema blogPostSchema() {
-    return new SimpleXsdSchema(new ClassPathResource("soap/blogpost-datatypes.xsd"));
+  @Bean // http://localhost:8081/ws/blogPostDatatypes.xsd
+  public XsdSchema blogPostDatatypes() {
+    return new SimpleXsdSchema(new ClassPathResource("soap/blogPostDatatypes.xsd"));
   }
 
 }

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jaxws:bindings
+  xmlns:jaxws="https://jakarta.ee/xml/ns/jaxws"
+  xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+  xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <jaxws:bindings
+    node="wsdl:definitions/wsdl:types/xs:schema[@targetNamespace='http://samples.de/spring/soap/blog/messages']">
+    <jaxb:globalBindings>
+      <xjc:simple/>
+    </jaxb:globalBindings>
+    <jaxb:bindings node="//xs:complexType[@name='BlogPostListResponse']/xs:sequence/xs:element[@name='blogPost']">
+      <jaxb:property name="blogPosts"/>
+    </jaxb:bindings>
+  </jaxws:bindings>
+</jaxws:bindings>

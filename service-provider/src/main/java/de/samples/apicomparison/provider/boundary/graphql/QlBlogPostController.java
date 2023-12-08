@@ -1,6 +1,6 @@
 package de.samples.apicomparison.provider.boundary.graphql;
 
-import de.samples.apicomparison.provider.boundary.graphql.mappers.BlogPostMapper;
+import de.samples.apicomparison.provider.boundary.graphql.mappers.QlBlogPostDtoMapper;
 import de.samples.apicomparison.provider.boundary.graphql.model.QlBlogPostDto;
 import de.samples.apicomparison.provider.boundary.graphql.model.QlBlogPostInputDto;
 import de.samples.apicomparison.provider.domain.BlogPostService;
@@ -20,7 +20,7 @@ import java.util.stream.Stream;
 public class QlBlogPostController {
 
   private final BlogPostService service;
-  private final BlogPostMapper mapper;
+  private final QlBlogPostDtoMapper mapper;
 
   @QueryMapping("findBlogPosts")
   public Stream<QlBlogPostDto> findAll() {

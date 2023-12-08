@@ -1,0 +1,18 @@
+POST {{endpoint}}
+Content-Type: text/xml;charset=UTF-8
+SOAPAction: findAll
+
+<soapenv:Envelope
+        xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+        xmlns:blog-messages="http://samples.de/spring/soap/blog/messages">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <blog-messages:findAllBlogPostsRequest/>
+    </soapenv:Body>
+</soapenv:Envelope>
+
+> {%
+  client.test("BlogPosts found", () => {
+    client.assert(response.status === 200);
+  });
+%}

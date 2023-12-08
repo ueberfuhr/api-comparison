@@ -1,0 +1,19 @@
+GET {{endpoint}}/blogPostDatatypes.xsd
+Accept: application/xml, text/xml
+
+> {%
+  client.test("Schema found", () => {
+    client.assert(response.status === 200);
+  });
+%}
+
+###
+
+GET {{endpoint}}/blogPostServiceApi.wsdl
+Accept: application/xml, text/xml
+
+> {%
+  client.test("WSDL found", () => {
+    client.assert(response.status === 200);
+  });
+%}

@@ -1,10 +1,60 @@
 package de.samples.apicomparison.provider.boundary.soap;
 
+import de.samples.apicomparison.provider.boundary.soap.mappers.BlogPostSoapStubMapper;
+import de.samples.apicomparison.provider.boundary.soap.stubs.Void;
+import de.samples.apicomparison.provider.boundary.soap.stubs.*;
+import de.samples.apicomparison.provider.domain.BlogPostService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
+import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
+import org.springframework.ws.server.endpoint.annotation.RequestPayload;
+import org.springframework.ws.server.endpoint.annotation.ResponsePayload;
 
 @Endpoint
-public class BlogPostSoapController {
+@RequiredArgsConstructor
+public class BlogPostSoapController implements BlogPostServiceInterface {
 
+  private final BlogPostService service;
+  private final BlogPostSoapStubMapper mapper;
 
+  @PayloadRoot(
+    namespace = "http://samples.de/spring/soap/blog/messages",
+    localPart = "findAllBlogPostsRequest"
+  )
+  @ResponsePayload
+  @Override
+  public BlogPostListResponse findAll(@RequestPayload Void findAllInputPart) {
+    final var result = new BlogPostListResponse();
+    this.service
+      .findAll()
+      .map(this.mapper::map)
+      .forEach(result.getBlogPost()::add);
+    return result;
+  }
 
+  @PayloadRoot(
+    namespace = "http://samples.de/spring/soap/blog/messages",
+    localPart = "createBlogPostRequest"
+  )
+  @ResponsePayload
+  @Override
+  public void create(
+    @RequestPayload
+    BlogPostInputRequest input
+  ) {
+    System.out.println("klappt");
+  }
+
+  @PayloadRoot(
+    namespace = "http://samples.de/spring/soap/blog/messages",
+    localPart = "deleteBlogPostRequest"
+  )
+  @ResponsePayload
+  @Override
+  public void deleteById(
+    @RequestPayload
+    UuidRequest id
+  ) {
+
+  }
 }

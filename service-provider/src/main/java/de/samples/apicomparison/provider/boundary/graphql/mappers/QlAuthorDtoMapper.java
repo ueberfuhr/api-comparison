@@ -5,7 +5,7 @@ import de.samples.apicomparison.provider.domain.model.Author;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
-public interface AuthorMapper {
+public interface QlAuthorDtoMapper {
 
   QlAuthorDto map(Author source);
 

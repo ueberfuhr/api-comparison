@@ -28,7 +28,7 @@ import jakarta.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "HashTag", propOrder = {
+@XmlType(name = "HashTag", namespace = "http://samples.de/spring/soap/blog/types", propOrder = {
     "name",
     "description"
 })

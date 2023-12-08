@@ -7,7 +7,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
-public interface BlogPostMapper {
+public interface QlBlogPostDtoMapper {
 
   @Mapping(target = "authorId", source = "author.id")
   @Mapping(target = "tags", source = "tags")

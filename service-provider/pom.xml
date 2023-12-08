@@ -118,6 +118,9 @@
             <wsdlDirectory>${project.basedir}/src/main/resources/soap/</wsdlDirectory>
             <packageName>de.samples.apicomparison.provider.boundary.soap.stubs</packageName>
             <sourceDestDir>src/main/java</sourceDestDir>
+            <bindingFiles>
+              <bindingFile>${project.basedir}/src/main/resources/soap/wsimport.xjb</bindingFile>
+            </bindingFiles>
           </configuration>
         </plugin>
       </plugins>

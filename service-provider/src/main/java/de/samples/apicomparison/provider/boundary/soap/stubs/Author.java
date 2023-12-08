@@ -33,7 +33,7 @@ import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Author", propOrder = {
+@XmlType(name = "Author", namespace = "http://samples.de/spring/soap/blog/types", propOrder = {
     "id",
     "name",
     "description"
