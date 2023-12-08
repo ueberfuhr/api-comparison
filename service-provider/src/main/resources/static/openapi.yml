@@ -12,60 +12,57 @@ tags:
   - name: hashtag
     description: Everything about the hash tags
 paths:
-  /hashtags/{name}:
-    parameters:
-      - $ref: '#/components/parameters/hashTagName'
+  /blogposts:
     get:
       tags:
-        - hashtag
-      summary: Read hash tag details.
-      operationId: findHashTagByName
+        - blogpost
+      summary: Read all available blog post details.
+      operationId: findBlogPosts
+      parameters:
+        - name: author
+          in: query
+          description: If specified, only blog posts with the given author name are returned
+          required: false
+          schema:
+            type: string
       responses:
         '200':
-          description: The description was found and returned.
+          description: The blog posts were found and returned.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/HashTag'
+                type: array
+                items:
+                  $ref: '#/components/schemas/BlogPost'
         '400':
           description: Bad Request
         '404':
-          description: The metadata could not be found.
-    put:
+          description: Not Found
+    post:
       tags:
-        - hashtag
-      summary: Assign some metadata to a hash tag name.
-      operationId: assignHashTagMetadata
+        - blogpost
+      summary: Create the blog post.
+      operationId: createBlogPost
       requestBody:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/HashTag'
+              $ref: '#/components/schemas/BlogPost'
         required: true
       responses:
         '201':
-          description: The metadata was assigned for the first time.
+          description: The blog post was successfully created.
           headers:
             Location:
               $ref: '#/components/headers/LocationHeader'
-        '204':
-          description: The metadata already existed and was successfully replaced.
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/BlogPost'
         '400':
           description: The sent data is not valid.
         '404':
           description: Not Found
-    delete:
-      tags:
-        - hashtag
-      summary: Deletes the metadata of a hash tag name.
-      operationId: deleteHashTagMetadata
-      responses:
-        '204':
-          description: The metadata was successfully deleted.
-        '400':
-          description: Bad Request
-        '404':
-          description: The metadata did not exist before.
   /blogposts/{id}:
     parameters:
       - $ref: '#/components/parameters/blogPostId'
@@ -119,58 +116,6 @@ paths:
           description: Bad Request
         '404':
           description: The blog post did not exist before.
-  /blogposts/{id}/hashtags/{name}:
-    parameters:
-      - $ref: '#/components/parameters/blogPostId'
-      - $ref: '#/components/parameters/hashTagName'
-    get:
-      tags:
-        - blogpost
-        - hashtag
-      summary: Read a single hash tag assigned to the blog post.
-      operationId: findHashTagForBlogPostByName
-      responses:
-        '200':
-          description: The hash tag is assigned to the blog post.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/HashTag'
-        '400':
-          description: Bad Request
-        '404':
-          description: The blog post could not be found or does not have the hash tag assigned.
-    put:
-      tags:
-        - blogpost
-        - hashtag
-      summary: Assigns the hash tag to the blog post.
-      operationId: setHashTagForBlogPost
-      responses:
-        '201':
-          description: The hash tag was newly assigned to the blog post.
-          headers:
-            Location:
-              $ref: '#/components/headers/LocationHeader'
-        '204':
-          description: The hash tag was already assigned.
-        '400':
-          description: Bad Request
-        '404':
-          description: The blog post could not be found.
-    delete:
-      tags:
-        - blogpost
-        - hashtag
-      summary: Deletes the hash tag assignment to the blog post.
-      operationId: deleteHashTagFromBlogPost
-      responses:
-        '204':
-          description: The hash tag assignment to was successfully deleted.
-        '400':
-          description: Bad Request
-        '404':
-          description: The blog post does not exist.
   /blogposts/{id}/author:
     parameters:
       - $ref: '#/components/parameters/blogPostId'
@@ -228,94 +173,80 @@ paths:
           description: Bad Request
         '404':
           description: The blog post does not exist or did not have any assigned author before.
-  /authors/{id}:
+  /blogposts/{id}/hashtags:
     parameters:
-      - $ref: '#/components/parameters/authorId'
-    get:
-      tags:
-        - author
-      summary: Read author details.
-      operationId: findAuthorById
-      responses:
-        '200':
-          description: The author was found and returned.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Author'
-        '400':
-          description: Bad Request
-        '404':
-          description: The author could not be found.
-    put:
-      tags:
-        - author
-      summary: Replace the author's data.
-      operationId: replaceAuthor
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Author'
-        required: true
-      responses:
-        '204':
-          description: The author was successfully replaced.
-        '400':
-          description: The sent data is not valid.
-        '404':
-          description: The author could not be found.
-  /blogposts:
+      - $ref: '#/components/parameters/blogPostId'
     get:
       tags:
         - blogpost
-      summary: Read all available blog post details.
-      operationId: findBlogPosts
-      parameters:
-        - name: author
-          in: query
-          description: If specified, only blog posts with the given author name are returned
-          required: false
-          schema:
-            type: string
+        - hashtag
+      summary: Read the hash tags assigned to the blog post.
+      operationId: findHashTagsForBlogPost
       responses:
         '200':
-          description: The blog posts were found and returned.
+          description: The hash tags could be found.
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/BlogPost'
+                  $ref: '#/components/schemas/HashTag'
         '400':
           description: Bad Request
         '404':
-          description: Not Found
-    post:
+          description: The blog post could not be found.
+  /blogposts/{id}/hashtags/{name}:
+    parameters:
+      - $ref: '#/components/parameters/blogPostId'
+      - $ref: '#/components/parameters/hashTagName'
+    get:
       tags:
         - blogpost
-      summary: Create the blog post.
-      operationId: createBlogPost
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/BlogPost'
-        required: true
+        - hashtag
+      summary: Read a single hash tag assigned to the blog post.
+      operationId: findHashTagForBlogPostByName
+      responses:
+        '200':
+          description: The hash tag is assigned to the blog post.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HashTag'
+        '400':
+          description: Bad Request
+        '404':
+          description: The blog post could not be found or does not have the hash tag assigned.
+    put:
+      tags:
+        - blogpost
+        - hashtag
+      summary: Assigns the hash tag to the blog post.
+      operationId: setHashTagForBlogPost
       responses:
         '201':
-          description: The blog post was successfully created.
+          description: The hash tag was newly assigned to the blog post.
           headers:
             Location:
               $ref: '#/components/headers/LocationHeader'
-          content:
-            '*/*':
-              schema:
-                $ref: '#/components/schemas/BlogPost'
+        '204':
+          description: The hash tag was already assigned.
         '400':
-          description: The sent data is not valid.
+          description: Bad Request
         '404':
-          description: Not Found
+          description: The blog post could not be found.
+    delete:
+      tags:
+        - blogpost
+        - hashtag
+      summary: Deletes the hash tag assignment to the blog post.
+      operationId: deleteHashTagFromBlogPost
+      responses:
+        '204':
+          description: The hash tag assignment to was successfully deleted.
+        '400':
+          description: Bad Request
+        '404':
+          description: The blog post does not exist.
   /authors:
     get:
       tags:
@@ -367,6 +298,43 @@ paths:
           description: The sent data is not valid.
         '404':
           description: Not Found
+  /authors/{id}:
+    parameters:
+      - $ref: '#/components/parameters/authorId'
+    get:
+      tags:
+        - author
+      summary: Read author details.
+      operationId: findAuthorById
+      responses:
+        '200':
+          description: The author was found and returned.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Author'
+        '400':
+          description: Bad Request
+        '404':
+          description: The author could not be found.
+    put:
+      tags:
+        - author
+      summary: Replace the author's data.
+      operationId: replaceAuthor
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Author'
+        required: true
+      responses:
+        '204':
+          description: The author was successfully replaced.
+        '400':
+          description: The sent data is not valid.
+        '404':
+          description: The author could not be found.
   /hashtags:
     get:
       tags:
@@ -386,28 +354,60 @@ paths:
           description: Bad Request
         '404':
           description: Not Found
-  /blogposts/{id}/hashtags:
+  /hashtags/{name}:
     parameters:
-      - $ref: '#/components/parameters/blogPostId'
+      - $ref: '#/components/parameters/hashTagName'
     get:
       tags:
-        - blogpost
         - hashtag
-      summary: Read the hash tags assigned to the blog post.
-      operationId: findHashTagsForBlogPost
+      summary: Read hash tag details.
+      operationId: findHashTagByName
       responses:
         '200':
-          description: The hash tags could be found.
+          description: The description was found and returned.
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/HashTag'
+                $ref: '#/components/schemas/HashTag'
         '400':
           description: Bad Request
         '404':
-          description: The blog post could not be found.
+          description: The metadata could not be found.
+    put:
+      tags:
+        - hashtag
+      summary: Assign some metadata to a hash tag name.
+      operationId: assignHashTagMetadata
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/HashTag'
+        required: true
+      responses:
+        '201':
+          description: The metadata was assigned for the first time.
+          headers:
+            Location:
+              $ref: '#/components/headers/LocationHeader'
+        '204':
+          description: The metadata already existed and was successfully replaced.
+        '400':
+          description: The sent data is not valid.
+        '404':
+          description: Not Found
+    delete:
+      tags:
+        - hashtag
+      summary: Deletes the metadata of a hash tag name.
+      operationId: deleteHashTagMetadata
+      responses:
+        '204':
+          description: The metadata was successfully deleted.
+        '400':
+          description: Bad Request
+        '404':
+          description: The metadata did not exist before.
 components:
   schemas:
     HashTag:
