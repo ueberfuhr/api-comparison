@@ -105,6 +105,23 @@
   </dependencies>
 
   <build>
+    <pluginManagement>
+      <plugins>
+        <!--
+         to generate SOAP stubs, run mvn jaxws:wsimport
+         -->
+        <plugin>
+          <groupId>com.sun.xml.ws</groupId>
+          <artifactId>jaxws-maven-plugin</artifactId>
+          <version>4.0.2</version>
+          <configuration>
+            <wsdlDirectory>${project.basedir}/src/main/resources/soap/</wsdlDirectory>
+            <packageName>de.samples.apicomparison.provider.boundary.soap.stubs</packageName>
+            <sourceDestDir>src/main/java</sourceDestDir>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>

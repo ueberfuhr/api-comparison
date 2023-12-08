@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions
+  name="HelloService"
+  targetNamespace="http://samples.de/spring/soap/blog/service"
+  xmlns:blogService="http://samples.de/spring/soap/blog/service"
+  xmlns:blog="http://samples.de/spring/soap/blog/types"
+  xmlns:messages="http://samples.de/spring/soap/blog/messages"
+  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+>
+
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://samples.de/spring/soap/blog/messages">
+      <xsd:import
+        namespace="http://samples.de/spring/soap/blog/types"
+        schemaLocation="blogpost-datatypes.xsd"
+      />
+      <xsd:element name="BlogPostListResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="blogPost" type="blog:BlogPost" minOccurs="0" maxOccurs="unbounded"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="BlogPostInputRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="input" type="blog:BlogPostInput"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="UuidRequest">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="id" type="blog:uuid"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+
+  <wsdl:message name="findAllInput">
+    <!-- empty -->
+  </wsdl:message>
+  <wsdl:message name="findAllOutput">
+    <wsdl:part name="blogPosts" element="messages:BlogPostListResponse"/>
+  </wsdl:message>
+
+  <wsdl:message name="createInput">
+    <wsdl:part name="input" element="messages:BlogPostInputRequest"/>
+  </wsdl:message>
+
+  <wsdl:message name="deleteInput">
+    <wsdl:part name="id" element="messages:UuidRequest"/>
+  </wsdl:message>
+
+  <wsdl:portType name="BlogPostServiceInterface">
+    <wsdl:operation name="findAll">
+      <wsdl:input message="blogService:findAllInput"/>
+      <wsdl:output message="blogService:findAllOutput"/>
+      <!-- use 'wsdl:fault' for error messages -->
+    </wsdl:operation>
+    <wsdl:operation name="create">
+      <wsdl:input message="blogService:createInput"/>
+      <!-- use 'wsdl:fault' for error messages -->
+    </wsdl:operation>
+    <wsdl:operation name="deleteById">
+      <wsdl:input message="blogService:deleteInput"/>
+      <!-- use 'wsdl:fault' for error messages -->
+    </wsdl:operation>
+  </wsdl:portType>
+
+
+  <!-- SOAP over HTTP binding -->
+  <wsdl:binding name="blogPostServiceHttpBinding" type="blogService:BlogPostServiceInterface">
+    <!-- http://javainsimpleway.com/soap-message-binding-style/ -->
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="findAll">
+      <soap:operation soapAction="findAll"/>
+      <wsdl:input>
+        <soap:body
+          use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body
+          use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="create">
+      <soap:operation soapAction="create"/>
+      <wsdl:input>
+        <soap:body
+          use="literal"/>
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="deleteById">
+      <soap:operation soapAction="deleteById"/>
+      <wsdl:input>
+        <soap:body
+          use="literal"/>
+      </wsdl:input>
+    </wsdl:operation>
+  </wsdl:binding>
+
+  <!-- Concrete WSDL (server URL) -->
+  <wsdl:service name="BlogPostService">
+    <wsdl:port binding="blogService:blogPostServiceHttpBinding" name="BlogPostServicePort">
+      <soap:address
+        location="http://localhost:8081/ws/BlogPostService"/>
+    </wsdl:port>
+  </wsdl:service>
+
+</wsdl:definitions>
