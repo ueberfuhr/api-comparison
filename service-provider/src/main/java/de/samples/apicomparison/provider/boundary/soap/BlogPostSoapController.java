@@ -5,6 +5,7 @@ import de.samples.apicomparison.provider.boundary.soap.stub.messages.*;
 import de.samples.apicomparison.provider.boundary.soap.stub.service.BlogPostServiceInterface;
 import de.samples.apicomparison.provider.domain.AuthorService;
 import de.samples.apicomparison.provider.domain.BlogPostService;
+import de.samples.apicomparison.provider.domain.NotFoundException;
 import jakarta.validation.ValidationException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
@@ -28,7 +29,11 @@ public class BlogPostSoapController implements BlogPostServiceInterface {
   )
   @ResponsePayload
   @Override
-  public FindAllBlogPostsResponse findAll(@RequestPayload FindAllBlogPostsRequest request) {
+  public FindAllBlogPostsResponse findAll(
+    @RequestPayload
+    FindAllBlogPostsRequest
+      request
+  ) {
     final var response = new FindAllBlogPostsResponse();
     this.service
       .findAll()
@@ -80,10 +85,19 @@ public class BlogPostSoapController implements BlogPostServiceInterface {
   )
   @ResponsePayload
   @Override
-  public DeleteBlogPostResponse deleteById(DeleteBlogPostRequest deleteInputPart) {
+  public DeleteBlogPostResponse deleteById(
+    @RequestPayload
+    DeleteBlogPostRequest deleteInputPart
+  ) {
     final var uuid = this.parseId(deleteInputPart.getId());
-    this.service.deleteById(uuid);
-    return new DeleteBlogPostResponse();
+    final var response = new DeleteBlogPostResponse();
+    try {
+      this.service.deleteById(uuid);
+      response.setStatus(DeleteBlogPostResponse.DeleteOperationStatus.DELETED);
+    } catch(NotFoundException e) {
+      response.setStatus(DeleteBlogPostResponse.DeleteOperationStatus.NOT_FOUND);
+    }
+    return response;
   }
 
   @PayloadRoot(
@@ -92,7 +106,10 @@ public class BlogPostSoapController implements BlogPostServiceInterface {
   )
   @ResponsePayload
   @Override
-  public FindBlogPostByIdResponse findById(FindBlogPostByIdRequest findByIdInputPart) {
+  public FindBlogPostByIdResponse findById(
+    @RequestPayload
+    FindBlogPostByIdRequest findByIdInputPart
+  ) {
     final var uuid = this.parseId(findByIdInputPart.getId());
     final var response = new FindBlogPostByIdResponse();
     this.service.findById(uuid)

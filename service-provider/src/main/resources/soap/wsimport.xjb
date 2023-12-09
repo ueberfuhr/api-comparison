@@ -20,6 +20,9 @@
     <jaxb:bindings node="//xs:element[@name='findAllBlogPostsResponse']/xs:complexType/xs:sequence/xs:element[@name='blogPost']">
       <jaxb:property name="blogPosts"/>
     </jaxb:bindings>
+    <jaxb:bindings node="//xs:element[@name='deleteBlogPostResponse']/xs:complexType/xs:sequence/xs:element[@name='status']/xs:simpleType">
+      <jaxb:typesafeEnumClass name="DeleteOperationStatus"/>
+    </jaxb:bindings>
     <jaxb:bindings node="//xs:element[@name='findBlogPostByIdResponse']/xs:complexType/xs:sequence/xs:element[@name='blogPost']">
       <jaxb:property name="blogPosts"/>
     </jaxb:bindings>

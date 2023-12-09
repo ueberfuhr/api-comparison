@@ -4,21 +4,20 @@ SOAPAction: create
 
 <soapenv:Envelope
   xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
-  xmlns:blog-messages="http://samples.de/spring/soap/blog/messages"
-  xmlns:blog-types="http://samples.de/spring/soap/blog/types">
+  xmlns:blog-messages="http://samples.de/spring/soap/blog/messages">
   <soapenv:Header/>
   <soapenv:Body>
     <blog-messages:createBlogPostRequest>
       <input>
-        <blog-types:title>SOAP-Test Post</blog-types:title>
-        <blog-types:content>Das ist ein toller BlogPost.</blog-types:content>
+        <title>SOAP-Test Post</title>
+        <content>Das ist ein toller BlogPost.</content>
       </input>
     </blog-messages:createBlogPostRequest>
   </soapenv:Body>
 </soapenv:Envelope>
 
 > {%
-  client.test("BlogPost created", () => {
+  client.test("Request handled successfully", () => {
     client.assert(response.status === 200);
   });
 %}
@@ -29,21 +28,20 @@ SOAPAction: create
 
 <soapenv:Envelope
   xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
-  xmlns:blog-messages="http://samples.de/spring/soap/blog/messages"
-  xmlns:blog-types="http://samples.de/spring/soap/blog/types">
+  xmlns:blog-messages="http://samples.de/spring/soap/blog/messages">
   <soapenv:Header/>
   <soapenv:Body>
     <blog-messages:createBlogPostRequest>
       <input>
-        <blog-types:title>s</blog-types:title>
-        <blog-types:content>Das ist ein toller BlogPost.</blog-types:content>
+        <blog-messages:title>s</blog-messages:title>
+        <blog-messages:content>Das ist ein toller BlogPost.</blog-messages:content>
       </input>
     </blog-messages:createBlogPostRequest>
   </soapenv:Body>
 </soapenv:Envelope>
 
 > {%
-  client.test("BlogPost created", () => {
+  client.test("Request handled successfully", () => {
     client.assert(response.status === 200);
   });
 %}

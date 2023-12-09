@@ -30,6 +30,16 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link DeleteBlogPostResponse }
+     * 
+     * @return
+     *     the new instance of {@link DeleteBlogPostResponse }
+     */
+    public DeleteBlogPostResponse createDeleteBlogPostResponse() {
+        return new DeleteBlogPostResponse();
+    }
+
+    /**
      * Create an instance of {@link FindAllBlogPostsRequest }
      * 
      * @return
@@ -87,16 +97,6 @@ public class ObjectFactory {
      */
     public DeleteBlogPostRequest createDeleteBlogPostRequest() {
         return new DeleteBlogPostRequest();
-    }
-
-    /**
-     * Create an instance of {@link DeleteBlogPostResponse }
-     * 
-     * @return
-     *     the new instance of {@link DeleteBlogPostResponse }
-     */
-    public DeleteBlogPostResponse createDeleteBlogPostResponse() {
-        return new DeleteBlogPostResponse();
     }
 
     /**

@@ -12,7 +12,7 @@ SOAPAction: findAll
 </soapenv:Envelope>
 
 > {%
-  client.test("BlogPosts found", () => {
+  client.test("Request handled successfully", () => {
     client.assert(response.status === 200);
   });
 %}

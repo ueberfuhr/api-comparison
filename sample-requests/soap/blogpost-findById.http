@@ -7,9 +7,9 @@ SOAPAction: create
   xmlns:blog-messages="http://samples.de/spring/soap/blog/messages">
   <soapenv:Header/>
   <soapenv:Body>
-    <blog-messages:deleteBlogPostRequest>
-      <id>48120bdb-dfcb-47b7-b7ef-43f2d47b808e</id>
-    </blog-messages:deleteBlogPostRequest>
+    <blog-messages:findBlogPostByIdRequest>
+      <id>48120bdb-dfcb-47b7-b7ef-43f2d47b808f</id>
+    </blog-messages:findBlogPostByIdRequest>
   </soapenv:Body>
 </soapenv:Envelope>
 

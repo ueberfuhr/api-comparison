@@ -110,7 +110,16 @@
       </xs:element>
       <xs:element name="deleteBlogPostResponse">
         <xs:complexType>
-          <xs:choice/>
+          <xs:sequence>
+            <xs:element name="status">
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:enumeration value="DELETED"/>
+                  <xs:enumeration value="NOT_FOUND"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+          </xs:sequence>
         </xs:complexType>
       </xs:element>
       <xs:element name="findBlogPostByIdRequest">
