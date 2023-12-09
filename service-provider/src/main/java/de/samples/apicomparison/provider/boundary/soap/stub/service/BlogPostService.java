@@ -1,5 +1,5 @@
 
-package de.samples.apicomparison.provider.boundary.soap.stubs;
+package de.samples.apicomparison.provider.boundary.soap.stub.service;
 
 import java.net.MalformedURLException;
 import java.net.URL;

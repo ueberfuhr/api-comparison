@@ -1,5 +1,5 @@
 
-package de.samples.apicomparison.provider.boundary.soap.stubs;
+package de.samples.apicomparison.provider.boundary.soap.stub.messages;
 
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
@@ -13,16 +13,16 @@ import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 
 /**
- * <p>Java-Klasse für UuidRequest complex type.
+ * <p>Java-Klasse für anonymous complex type.
  * 
  * <p>Das folgende Schemafragment gibt den erwarteten Content an, der in dieser Klasse enthalten ist.
  * 
  * <pre>{@code
- * <complexType name="UuidRequest">
+ * <complexType>
  *   <complexContent>
  *     <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       <sequence>
- *         <element name="id" type="{http://samples.de/spring/soap/blog/types}uuid"/>
+ *         <element name="id" type="{http://samples.de/spring/soap/blog/types}UUID"/>
  *       </sequence>
  *     </restriction>
  *   </complexContent>
@@ -32,13 +32,13 @@ import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "UuidRequest", propOrder = {
+@XmlType(name = "", propOrder = {
     "id"
 })
-@XmlRootElement(name = "deleteBlogPostRequest")
-public class DeleteBlogPostRequest {
+@XmlRootElement(name = "findBlogPostByIdRequest")
+public class FindBlogPostByIdRequest {
 
-    @XmlElement(namespace = "", required = true)
+    @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     @XmlID
     @XmlSchemaType(name = "ID")

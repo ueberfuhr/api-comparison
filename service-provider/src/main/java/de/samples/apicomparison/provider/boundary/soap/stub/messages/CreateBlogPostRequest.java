@@ -1,5 +1,5 @@
 
-package de.samples.apicomparison.provider.boundary.soap.stubs;
+package de.samples.apicomparison.provider.boundary.soap.stub.messages;
 
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
@@ -9,16 +9,16 @@ import jakarta.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java-Klasse für BlogPostInputRequest complex type.
+ * <p>Java-Klasse für anonymous complex type.
  * 
  * <p>Das folgende Schemafragment gibt den erwarteten Content an, der in dieser Klasse enthalten ist.
  * 
  * <pre>{@code
- * <complexType name="BlogPostInputRequest">
+ * <complexType>
  *   <complexContent>
  *     <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       <sequence>
- *         <element name="input" type="{http://samples.de/spring/soap/blog/types}BlogPostInput"/>
+ *         <element name="input" type="{http://samples.de/spring/soap/blog/messages}BlogPostInput"/>
  *       </sequence>
  *     </restriction>
  *   </complexContent>
@@ -28,13 +28,13 @@ import jakarta.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "BlogPostInputRequest", propOrder = {
+@XmlType(name = "", propOrder = {
     "input"
 })
 @XmlRootElement(name = "createBlogPostRequest")
 public class CreateBlogPostRequest {
 
-    @XmlElement(namespace = "", required = true)
+    @XmlElement(required = true)
     protected BlogPostInput input;
 
     /**

@@ -6,6 +6,6 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface AuthorSoapStubMapper {
 
-  de.samples.apicomparison.provider.boundary.soap.stubs.Author map(Author source);
+  de.samples.apicomparison.provider.boundary.soap.stub.model.Author map(Author source);
 
 }

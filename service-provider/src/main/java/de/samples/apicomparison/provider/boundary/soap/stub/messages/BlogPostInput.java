@@ -1,9 +1,8 @@
 
-package de.samples.apicomparison.provider.boundary.soap.stubs;
+package de.samples.apicomparison.provider.boundary.soap.stub.messages;
 
 import java.util.ArrayList;
 import java.util.List;
-import javax.xml.datatype.XMLGregorianCalendar;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlElement;
@@ -15,20 +14,30 @@ import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 
 /**
- * <p>Java-Klasse für BlogPost complex type.
+ * <p>Java-Klasse für BlogPostInput complex type.
  * 
  * <p>Das folgende Schemafragment gibt den erwarteten Content an, der in dieser Klasse enthalten ist.
  * 
  * <pre>{@code
- * <complexType name="BlogPost">
+ * <complexType name="BlogPostInput">
  *   <complexContent>
  *     <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       <sequence>
- *         <element name="id" type="{http://samples.de/spring/soap/blog/types}uuid"/>
- *         <element name="title" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         <element name="content" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         <element name="timestamp" type="{http://www.w3.org/2001/XMLSchema}dateTime"/>
- *         <element name="author" type="{http://samples.de/spring/soap/blog/types}Author" minOccurs="0"/>
+ *         <element name="title">
+ *           <simpleType>
+ *             <restriction base="{http://www.w3.org/2001/XMLSchema}string">
+ *               <minLength value="3"/>
+ *             </restriction>
+ *           </simpleType>
+ *         </element>
+ *         <element name="content">
+ *           <simpleType>
+ *             <restriction base="{http://www.w3.org/2001/XMLSchema}string">
+ *               <minLength value="10"/>
+ *             </restriction>
+ *           </simpleType>
+ *         </element>
+ *         <element name="author" type="{http://samples.de/spring/soap/blog/types}UUID" minOccurs="0"/>
  *         <element name="tag" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/>
  *       </sequence>
  *     </restriction>
@@ -39,55 +48,24 @@ import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "BlogPost", namespace = "http://samples.de/spring/soap/blog/types", propOrder = {
-    "id",
+@XmlType(name = "BlogPostInput", propOrder = {
     "title",
     "content",
-    "timestamp",
     "author",
     "tags"
 })
-public class BlogPost {
+public class BlogPostInput {
 
-    @XmlElement(required = true)
-    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    @XmlID
-    @XmlSchemaType(name = "ID")
-    protected String id;
     @XmlElement(required = true)
     protected String title;
     @XmlElement(required = true)
     protected String content;
-    @XmlElement(required = true)
-    @XmlSchemaType(name = "dateTime")
-    protected XMLGregorianCalendar timestamp;
-    protected Author author;
+    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
+    @XmlID
+    @XmlSchemaType(name = "ID")
+    protected String author;
     @XmlElement(name = "tag")
     protected List<String> tags;
-
-    /**
-     * Ruft den Wert der id-Eigenschaft ab.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getId() {
-        return id;
-    }
-
-    /**
-     * Legt den Wert der id-Eigenschaft fest.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setId(String value) {
-        this.id = value;
-    }
 
     /**
      * Ruft den Wert der title-Eigenschaft ab.
@@ -138,38 +116,14 @@ public class BlogPost {
     }
 
     /**
-     * Ruft den Wert der timestamp-Eigenschaft ab.
-     * 
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
-     */
-    public XMLGregorianCalendar getTimestamp() {
-        return timestamp;
-    }
-
-    /**
-     * Legt den Wert der timestamp-Eigenschaft fest.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
-     */
-    public void setTimestamp(XMLGregorianCalendar value) {
-        this.timestamp = value;
-    }
-
-    /**
      * Ruft den Wert der author-Eigenschaft ab.
      * 
      * @return
      *     possible object is
-     *     {@link Author }
+     *     {@link String }
      *     
      */
-    public Author getAuthor() {
+    public String getAuthor() {
         return author;
     }
 
@@ -178,10 +132,10 @@ public class BlogPost {
      * 
      * @param value
      *     allowed object is
-     *     {@link Author }
+     *     {@link String }
      *     
      */
-    public void setAuthor(Author value) {
+    public void setAuthor(String value) {
         this.author = value;
     }
 

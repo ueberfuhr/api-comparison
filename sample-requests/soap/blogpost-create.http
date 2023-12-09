@@ -9,10 +9,35 @@ SOAPAction: create
   <soapenv:Header/>
   <soapenv:Body>
     <blog-messages:createBlogPostRequest>
-      <blog-messages:input>
+      <input>
         <blog-types:title>SOAP-Test Post</blog-types:title>
         <blog-types:content>Das ist ein toller BlogPost.</blog-types:content>
-      </blog-messages:input>
+      </input>
+    </blog-messages:createBlogPostRequest>
+  </soapenv:Body>
+</soapenv:Envelope>
+
+> {%
+  client.test("BlogPost created", () => {
+    client.assert(response.status === 200);
+  });
+%}
+###
+POST {{endpoint}}
+Content-Type: text/xml;charset=UTF-8
+SOAPAction: create
+
+<soapenv:Envelope
+  xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+  xmlns:blog-messages="http://samples.de/spring/soap/blog/messages"
+  xmlns:blog-types="http://samples.de/spring/soap/blog/types">
+  <soapenv:Header/>
+  <soapenv:Body>
+    <blog-messages:createBlogPostRequest>
+      <input>
+        <blog-types:title>s</blog-types:title>
+        <blog-types:content>Das ist ein toller BlogPost.</blog-types:content>
+      </input>
     </blog-messages:createBlogPostRequest>
   </soapenv:Body>
 </soapenv:Envelope>

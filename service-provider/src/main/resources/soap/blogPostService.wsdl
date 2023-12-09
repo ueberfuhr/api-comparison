@@ -2,45 +2,133 @@
 <wsdl:definitions
   name="BlogPostService"
   targetNamespace="http://samples.de/spring/soap/blog/service"
-  xmlns:blogService="http://samples.de/spring/soap/blog/service"
-  xmlns:blog="http://samples.de/spring/soap/blog/types"
+  xmlns:service="http://samples.de/spring/soap/blog/service"
   xmlns:messages="http://samples.de/spring/soap/blog/messages"
+  xmlns:types="http://samples.de/spring/soap/blog/types"
   xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
   xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
-  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
->
+  xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
   <wsdl:types>
-    <xsd:schema targetNamespace="http://samples.de/spring/soap/blog/messages">
-      <xsd:import
-        namespace="http://samples.de/spring/soap/blog/types"
-        schemaLocation="blogPostDatatypes.xsd"
-      />
-      <xsd:complexType name="void">
-        <xsd:choice/>
-      </xsd:complexType>
-      <xsd:complexType name="BlogPostListResponse">
-        <xsd:sequence>
-          <xsd:element name="blogPost" type="blog:BlogPost" minOccurs="0" maxOccurs="unbounded"/>
-        </xsd:sequence>
-      </xsd:complexType>
-      <xsd:complexType name="BlogPostInputRequest">
-        <xsd:sequence>
-          <xsd:element name="input" type="blog:BlogPostInput"/>
-        </xsd:sequence>
-      </xsd:complexType>
-      <xsd:complexType name="UuidRequest">
-        <xsd:sequence>
-          <xsd:element name="id" type="blog:uuid"/>
-        </xsd:sequence>
-      </xsd:complexType>
+    <xs:schema id="types-schema"
+               targetNamespace="http://samples.de/spring/soap/blog/types"
+               xmlns:this="http://samples.de/spring/soap/blog/types">
 
-      <xsd:element name="findAllBlogPostsRequest" type="messages:void"/>
-      <xsd:element name="findAllBlogPostsResponse" type="messages:BlogPostListResponse"/>
-      <xsd:element name="createBlogPostRequest" type="messages:BlogPostInputRequest"/>
-      <xsd:element name="deleteBlogPostRequest" type="messages:UuidRequest"/>
+      <xs:simpleType name="UUID">
+        <xs:restriction base="xs:ID">
+          <xs:pattern
+            value="[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}">
+          </xs:pattern>
+        </xs:restriction>
+      </xs:simpleType>
 
-    </xsd:schema>
+      <xs:complexType name="HashTag">
+        <xs:sequence>
+          <xs:element name="name" type="xs:string"/>
+          <xs:element name="description" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="Author">
+        <xs:sequence>
+          <xs:element name="id" type="this:UUID"/>
+          <xs:element name="name" type="xs:string"/>
+          <xs:element name="description" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <xs:complexType name="BlogPost">
+        <xs:sequence>
+          <xs:element name="id" type="this:UUID"/>
+          <xs:element name="title" type="xs:string"/>
+          <xs:element name="content" type="xs:string"/>
+          <xs:element name="timestamp" type="xs:dateTime"/>
+          <xs:element name="author" type="this:Author" minOccurs="0"/>
+          <xs:element name="tag" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+
+    <xs:schema id="messages-schema"
+               targetNamespace="http://samples.de/spring/soap/blog/messages"
+               xmlns:this="http://samples.de/spring/soap/blog/messages">
+      <xs:import namespace="http://samples.de/spring/soap/blog/types"/>
+      <xs:complexType name="BlogPostInput">
+        <xs:sequence>
+          <xs:element name="title">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:minLength value="3"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element name="content">
+            <xs:simpleType>
+              <xs:restriction base="xs:string">
+                <xs:minLength value="10"/>
+              </xs:restriction>
+            </xs:simpleType>
+          </xs:element>
+          <xs:element name="author" type="types:UUID" minOccurs="0"/>
+          <xs:element name="tag" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+      </xs:complexType>
+
+      <!-- embed complex type, do not refer to other types to get @XmlRootElement's generated -->
+      <xs:element name="findAllBlogPostsRequest">
+        <xs:complexType>
+          <xs:choice/>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="findAllBlogPostsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="blogPost" type="types:BlogPost" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="createBlogPostRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="input" type="this:BlogPostInput"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="createBlogPostResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="blogPost" type="types:BlogPost"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="deleteBlogPostRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="id" type="types:UUID"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="deleteBlogPostResponse">
+        <xs:complexType>
+          <xs:choice/>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="findBlogPostByIdRequest">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="id" type="types:UUID"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="findBlogPostByIdResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="blogPost" type="types:BlogPost" minOccurs="0" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+
+    </xs:schema>
   </wsdl:types>
 
   <wsdl:message name="findAllInputMessage">
@@ -51,32 +139,52 @@
   </wsdl:message>
 
   <wsdl:message name="createInputMessage">
-    <wsdl:part name="input" element="messages:createBlogPostRequest"/>
+    <wsdl:part name="createInputPart" element="messages:createBlogPostRequest"/>
+  </wsdl:message>
+  <wsdl:message name="createOutputMessage">
+    <wsdl:part name="createOutputPart" element="messages:createBlogPostResponse"/>
   </wsdl:message>
 
   <wsdl:message name="deleteInputMessage">
-    <wsdl:part name="id" element="messages:deleteBlogPostRequest"/>
+    <wsdl:part name="deleteInputPart" element="messages:deleteBlogPostRequest"/>
+  </wsdl:message>
+  <wsdl:message name="deleteOutputMessage">
+    <wsdl:part name="deleteOutputPart" element="messages:deleteBlogPostResponse"/>
+  </wsdl:message>
+
+  <wsdl:message name="findByIdInputMessage">
+    <wsdl:part name="findByIdInputPart" element="messages:findBlogPostByIdRequest"/>
+  </wsdl:message>
+  <wsdl:message name="findByIdOutputMessage">
+    <wsdl:part name="findByIdOutputPart" element="messages:findBlogPostByIdResponse"/>
   </wsdl:message>
 
   <wsdl:portType name="BlogPostServiceInterface">
     <wsdl:operation name="findAll">
-      <wsdl:input message="blogService:findAllInputMessage"/>
-      <wsdl:output message="blogService:findAllOutputMessage"/>
+      <wsdl:input message="service:findAllInputMessage"/>
+      <wsdl:output message="service:findAllOutputMessage"/>
       <!-- use 'wsdl:fault' for error messages -->
     </wsdl:operation>
     <wsdl:operation name="create">
-      <wsdl:input message="blogService:createInputMessage"/>
+      <wsdl:input message="service:createInputMessage"/>
+      <wsdl:output message="service:createOutputMessage"/>
       <!-- use 'wsdl:fault' for error messages -->
     </wsdl:operation>
     <wsdl:operation name="deleteById">
-      <wsdl:input message="blogService:deleteInputMessage"/>
+      <wsdl:input message="service:deleteInputMessage"/>
+      <wsdl:output message="service:deleteOutputMessage"/>
+      <!-- use 'wsdl:fault' for error messages -->
+    </wsdl:operation>
+    <wsdl:operation name="findById">
+      <wsdl:input message="service:findByIdInputMessage"/>
+      <wsdl:output message="service:findByIdOutputMessage"/>
       <!-- use 'wsdl:fault' for error messages -->
     </wsdl:operation>
   </wsdl:portType>
 
 
   <!-- SOAP over HTTP binding -->
-  <wsdl:binding name="blogPostServiceHttpBinding" type="blogService:BlogPostServiceInterface">
+  <wsdl:binding name="blogPostServiceHttpBinding" type="service:BlogPostServiceInterface">
     <!-- http://javainsimpleway.com/soap-message-binding-style/ -->
     <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
     <wsdl:operation name="findAll">
@@ -96,6 +204,10 @@
         <soap:body
           use="literal"/>
       </wsdl:input>
+      <wsdl:output>
+        <soap:body
+          use="literal"/>
+      </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="deleteById">
       <soap:operation soapAction="deleteById"/>
@@ -103,12 +215,27 @@
         <soap:body
           use="literal"/>
       </wsdl:input>
+      <wsdl:output>
+        <soap:body
+          use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="findById">
+      <soap:operation soapAction="findById"/>
+      <wsdl:input>
+        <soap:body
+          use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body
+          use="literal"/>
+      </wsdl:output>
     </wsdl:operation>
   </wsdl:binding>
 
   <!-- Concrete WSDL (server URL) -->
   <wsdl:service name="BlogPostService">
-    <wsdl:port binding="blogService:blogPostServiceHttpBinding" name="BlogPostServicePort">
+    <wsdl:port binding="service:blogPostServiceHttpBinding" name="BlogPostServicePort">
       <soap:address
         location="http://localhost:8081/ws/BlogPostService"/>
     </wsdl:port>

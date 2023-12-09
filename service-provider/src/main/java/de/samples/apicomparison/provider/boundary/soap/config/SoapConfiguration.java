@@ -11,8 +11,6 @@ import org.springframework.ws.config.annotation.WsConfigurerAdapter;
 import org.springframework.ws.transport.http.MessageDispatcherServlet;
 import org.springframework.ws.wsdl.wsdl11.SimpleWsdl11Definition;
 import org.springframework.ws.wsdl.wsdl11.Wsdl11Definition;
-import org.springframework.xml.xsd.SimpleXsdSchema;
-import org.springframework.xml.xsd.XsdSchema;
 
 @Configuration
 @EnableWs
@@ -32,11 +30,6 @@ public class SoapConfiguration extends WsConfigurerAdapter {
     final var result = new SimpleWsdl11Definition();
     result.setWsdl(new ClassPathResource("soap/blogPostService.wsdl"));
     return result;
-  }
-
-  @Bean // http://localhost:8081/ws/blogPostDatatypes.xsd
-  public XsdSchema blogPostDatatypes() {
-    return new SimpleXsdSchema(new ClassPathResource("soap/blogPostDatatypes.xsd"));
   }
 
 }

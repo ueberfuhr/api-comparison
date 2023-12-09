@@ -1,5 +1,5 @@
 
-package de.samples.apicomparison.provider.boundary.soap.stubs;
+package de.samples.apicomparison.provider.boundary.soap.stub.messages;
 
 import jakarta.xml.bind.annotation.XmlRegistry;
 
@@ -7,7 +7,7 @@ import jakarta.xml.bind.annotation.XmlRegistry;
 /**
  * This object contains factory methods for each 
  * Java content interface and Java element interface 
- * generated in the de.samples.apicomparison.provider.boundary.soap.stubs package. 
+ * generated in the de.samples.apicomparison.provider.boundary.soap.stub.messages package. 
  * <p>An ObjectFactory allows you to programatically 
  * construct new instances of the Java representation 
  * for XML content. The Java representation of XML 
@@ -23,7 +23,7 @@ public class ObjectFactory {
 
 
     /**
-     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: de.samples.apicomparison.provider.boundary.soap.stubs
+     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: de.samples.apicomparison.provider.boundary.soap.stub.messages
      * 
      */
     public ObjectFactory() {
@@ -50,16 +50,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link BlogPost }
-     * 
-     * @return
-     *     the new instance of {@link BlogPost }
-     */
-    public BlogPost createBlogPost() {
-        return new BlogPost();
-    }
-
-    /**
      * Create an instance of {@link CreateBlogPostRequest }
      * 
      * @return
@@ -80,6 +70,16 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link CreateBlogPostResponse }
+     * 
+     * @return
+     *     the new instance of {@link CreateBlogPostResponse }
+     */
+    public CreateBlogPostResponse createCreateBlogPostResponse() {
+        return new CreateBlogPostResponse();
+    }
+
+    /**
      * Create an instance of {@link DeleteBlogPostRequest }
      * 
      * @return
@@ -90,23 +90,33 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link HashTag }
+     * Create an instance of {@link DeleteBlogPostResponse }
      * 
      * @return
-     *     the new instance of {@link HashTag }
+     *     the new instance of {@link DeleteBlogPostResponse }
      */
-    public HashTag createHashTag() {
-        return new HashTag();
+    public DeleteBlogPostResponse createDeleteBlogPostResponse() {
+        return new DeleteBlogPostResponse();
     }
 
     /**
-     * Create an instance of {@link Author }
+     * Create an instance of {@link FindBlogPostByIdRequest }
      * 
      * @return
-     *     the new instance of {@link Author }
+     *     the new instance of {@link FindBlogPostByIdRequest }
      */
-    public Author createAuthor() {
-        return new Author();
+    public FindBlogPostByIdRequest createFindBlogPostByIdRequest() {
+        return new FindBlogPostByIdRequest();
+    }
+
+    /**
+     * Create an instance of {@link FindBlogPostByIdResponse }
+     * 
+     * @return
+     *     the new instance of {@link FindBlogPostByIdResponse }
+     */
+    public FindBlogPostByIdResponse createFindBlogPostByIdResponse() {
+        return new FindBlogPostByIdResponse();
     }
 
 }

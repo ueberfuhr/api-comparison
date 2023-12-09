@@ -1,0 +1,20 @@
+POST {{endpoint}}
+Content-Type: text/xml;charset=UTF-8
+SOAPAction: create
+
+<soapenv:Envelope
+  xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+  xmlns:blog-messages="http://samples.de/spring/soap/blog/messages">
+  <soapenv:Header/>
+  <soapenv:Body>
+    <blog-messages:deleteBlogPostRequest>
+      <id>45346645656565</id>
+    </blog-messages:deleteBlogPostRequest>
+  </soapenv:Body>
+</soapenv:Envelope>
+
+> {%
+  client.test("BlogPost created", () => {
+    client.assert(response.status === 200);
+  });
+%}

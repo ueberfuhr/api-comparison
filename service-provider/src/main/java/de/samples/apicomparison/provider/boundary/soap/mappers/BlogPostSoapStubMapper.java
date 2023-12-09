@@ -14,8 +14,9 @@ import org.mapstruct.Mapping;
 )
 public interface BlogPostSoapStubMapper {
 
-  de.samples.apicomparison.provider.boundary.soap.stubs.BlogPost map(BlogPost source);
+  de.samples.apicomparison.provider.boundary.soap.stub.model.BlogPost map(BlogPost source);
 
-  BlogPost map(de.samples.apicomparison.provider.boundary.soap.stubs.BlogPost source);
+  @Mapping(target = "author", ignore = true)
+  BlogPost map(de.samples.apicomparison.provider.boundary.soap.stub.messages.BlogPostInput source);
 
 }

@@ -109,6 +109,7 @@
       <plugins>
         <!--
          to generate SOAP stubs, run mvn jaxws:wsimport
+         (if the plugin ignores the wsdl, delete /target/jaxws/stale
          -->
         <plugin>
           <groupId>com.sun.xml.ws</groupId>
@@ -116,7 +117,6 @@
           <version>4.0.2</version>
           <configuration>
             <wsdlDirectory>${project.basedir}/src/main/resources/soap/</wsdlDirectory>
-            <packageName>de.samples.apicomparison.provider.boundary.soap.stubs</packageName>
             <sourceDestDir>src/main/java</sourceDestDir>
             <bindingFiles>
               <bindingFile>${project.basedir}/src/main/resources/soap/wsimport.xjb</bindingFile>

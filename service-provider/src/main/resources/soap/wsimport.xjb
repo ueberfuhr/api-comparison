@@ -5,13 +5,32 @@
   xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
   xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
   xmlns:xs="http://www.w3.org/2001/XMLSchema" >
+  <jaxws:package name="de.samples.apicomparison.provider.boundary.soap.stub.service"/>
+  <jaxb:globalBindings>
+    <xjc:simple/>
+  </jaxb:globalBindings>
   <jaxws:bindings
     node="wsdl:definitions/wsdl:types/xs:schema[@targetNamespace='http://samples.de/spring/soap/blog/messages']">
     <jaxb:globalBindings>
       <xjc:simple/>
     </jaxb:globalBindings>
-    <jaxb:bindings node="//xs:complexType[@name='BlogPostListResponse']/xs:sequence/xs:element[@name='blogPost']">
+    <jaxb:schemaBindings>
+      <jaxb:package name="de.samples.apicomparison.provider.boundary.soap.stub.messages"/>
+    </jaxb:schemaBindings>
+    <jaxb:bindings node="//xs:element[@name='findAllBlogPostsResponse']/xs:complexType/xs:sequence/xs:element[@name='blogPost']">
       <jaxb:property name="blogPosts"/>
     </jaxb:bindings>
+    <jaxb:bindings node="//xs:element[@name='findBlogPostByIdResponse']/xs:complexType/xs:sequence/xs:element[@name='blogPost']">
+      <jaxb:property name="blogPosts"/>
+    </jaxb:bindings>
+  </jaxws:bindings>
+  <jaxws:bindings
+    node="wsdl:definitions/wsdl:types/xs:schema[@targetNamespace='http://samples.de/spring/soap/blog/types']">
+    <jaxb:globalBindings>
+      <xjc:simple/>
+    </jaxb:globalBindings>
+    <jaxb:schemaBindings>
+      <jaxb:package name="de.samples.apicomparison.provider.boundary.soap.stub.model"/>
+    </jaxb:schemaBindings>
   </jaxws:bindings>
 </jaxws:bindings>

@@ -1,5 +1,5 @@
 
-package de.samples.apicomparison.provider.boundary.soap.stubs;
+package de.samples.apicomparison.provider.boundary.soap.stub.model;
 
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
@@ -21,7 +21,7 @@ import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  *   <complexContent>
  *     <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       <sequence>
- *         <element name="id" type="{http://samples.de/spring/soap/blog/types}uuid"/>
+ *         <element name="id" type="{http://samples.de/spring/soap/blog/types}UUID"/>
  *         <element name="name" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         <element name="description" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       </sequence>
@@ -33,7 +33,7 @@ import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "Author", namespace = "http://samples.de/spring/soap/blog/types", propOrder = {
+@XmlType(name = "Author", propOrder = {
     "id",
     "name",
     "description"
