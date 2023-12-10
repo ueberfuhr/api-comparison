@@ -40,7 +40,18 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-validation</artifactId>
     </dependency>
-
+    <!-- webservice clients need JAX-B / SAAJ -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web-services</artifactId>
+      <exclusions>
+        <!-- but no WebMVC here, because this is the client -->
+        <exclusion>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-web</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-devtools</artifactId>
@@ -79,6 +90,22 @@
   <build>
     <pluginManagement>
       <plugins>
+        <!--
+         to generate SOAP stubs, run mvn jaxws:wsimport
+         (if the plugin ignores the wsdl, delete /target/jaxws/stale
+         -->
+        <plugin>
+          <groupId>com.sun.xml.ws</groupId>
+          <artifactId>jaxws-maven-plugin</artifactId>
+          <version>4.0.2</version>
+          <configuration>
+            <wsdlDirectory>${project.basedir}/src/main/resources/soap/</wsdlDirectory>
+            <sourceDestDir>src/main/java</sourceDestDir>
+            <bindingFiles>
+              <bindingFile>${project.basedir}/src/main/resources/soap/wsimport.xjb</bindingFile>
+            </bindingFiles>
+          </configuration>
+        </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>

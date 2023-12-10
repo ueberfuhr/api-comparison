@@ -1,9 +1,9 @@
 
-package de.samples.apicomparison.provider.boundary.soap.stub.messages;
+package de.samples.apicomparison.consumer.clients.soap.stub.messages;
 
-import de.samples.apicomparison.provider.boundary.soap.stub.model.BlogPost;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlRootElement;
 import jakarta.xml.bind.annotation.XmlType;
 
@@ -18,7 +18,7 @@ import jakarta.xml.bind.annotation.XmlType;
  *   <complexContent>
  *     <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       <sequence>
- *         <element name="blogPost" type="{http://samples.de/spring/soap/blog/types}BlogPost" minOccurs="0"/>
+ *         <element name="input" type="{http://samples.de/spring/soap/blog/messages}BlogPostInput"/>
  *       </sequence>
  *     </restriction>
  *   </complexContent>
@@ -29,35 +29,36 @@ import jakarta.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "blogPost"
+    "input"
 })
-@XmlRootElement(name = "findBlogPostByIdResponse")
-public class FindBlogPostByIdResponse {
+@XmlRootElement(name = "createBlogPostRequest")
+public class CreateBlogPostRequest {
 
-    protected BlogPost blogPost;
+    @XmlElement(required = true)
+    protected BlogPostInput input;
 
     /**
-     * Ruft den Wert der blogPost-Eigenschaft ab.
+     * Ruft den Wert der input-Eigenschaft ab.
      * 
      * @return
      *     possible object is
-     *     {@link BlogPost }
+     *     {@link BlogPostInput }
      *     
      */
-    public BlogPost getBlogPost() {
-        return blogPost;
+    public BlogPostInput getInput() {
+        return input;
     }
 
     /**
-     * Legt den Wert der blogPost-Eigenschaft fest.
+     * Legt den Wert der input-Eigenschaft fest.
      * 
      * @param value
      *     allowed object is
-     *     {@link BlogPost }
+     *     {@link BlogPostInput }
      *     
      */
-    public void setBlogPost(BlogPost value) {
-        this.blogPost = value;
+    public void setInput(BlogPostInput value) {
+        this.input = value;
     }
 
 }

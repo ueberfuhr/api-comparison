@@ -1,7 +1,7 @@
 
-package de.samples.apicomparison.provider.boundary.soap.stub.messages;
+package de.samples.apicomparison.consumer.clients.soap.stub.messages;
 
-import de.samples.apicomparison.provider.boundary.soap.stub.model.BlogPost;
+import de.samples.apicomparison.consumer.clients.soap.stub.model.BlogPost;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlRootElement;

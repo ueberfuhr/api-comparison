@@ -94,7 +94,7 @@ public class BlogPostSoapController implements BlogPostServiceInterface {
     try {
       this.service.deleteById(uuid);
       response.setStatus(DeleteBlogPostResponse.DeleteOperationStatus.DELETED);
-    } catch(NotFoundException e) {
+    } catch (NotFoundException e) {
       response.setStatus(DeleteBlogPostResponse.DeleteOperationStatus.NOT_FOUND);
     }
     return response;
@@ -114,7 +114,7 @@ public class BlogPostSoapController implements BlogPostServiceInterface {
     final var response = new FindBlogPostByIdResponse();
     this.service.findById(uuid)
       .map(this.mapper::map)
-      .ifPresent(response.getBlogPosts()::add);
+      .ifPresent(response::setBlogPost);
     return response;
   }
 

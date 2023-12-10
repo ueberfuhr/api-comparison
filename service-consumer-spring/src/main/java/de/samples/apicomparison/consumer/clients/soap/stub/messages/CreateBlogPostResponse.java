@@ -1,9 +1,10 @@
 
-package de.samples.apicomparison.provider.boundary.soap.stub.messages;
+package de.samples.apicomparison.consumer.clients.soap.stub.messages;
 
-import de.samples.apicomparison.provider.boundary.soap.stub.model.BlogPost;
+import de.samples.apicomparison.consumer.clients.soap.stub.model.BlogPost;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlRootElement;
 import jakarta.xml.bind.annotation.XmlType;
 
@@ -18,7 +19,7 @@ import jakarta.xml.bind.annotation.XmlType;
  *   <complexContent>
  *     <restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       <sequence>
- *         <element name="blogPost" type="{http://samples.de/spring/soap/blog/types}BlogPost" minOccurs="0"/>
+ *         <element name="blogPost" type="{http://samples.de/spring/soap/blog/types}BlogPost"/>
  *       </sequence>
  *     </restriction>
  *   </complexContent>
@@ -31,9 +32,10 @@ import jakarta.xml.bind.annotation.XmlType;
 @XmlType(name = "", propOrder = {
     "blogPost"
 })
-@XmlRootElement(name = "findBlogPostByIdResponse")
-public class FindBlogPostByIdResponse {
+@XmlRootElement(name = "createBlogPostResponse")
+public class CreateBlogPostResponse {
 
+    @XmlElement(required = true)
     protected BlogPost blogPost;
 
     /**
