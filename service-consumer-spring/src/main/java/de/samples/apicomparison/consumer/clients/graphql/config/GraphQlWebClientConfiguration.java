@@ -23,7 +23,8 @@ public class GraphQlWebClientConfiguration {
   @Bean
   @GraphQlWebClient
   WebClient graphQlWebClient() {
-    return this.mutator.mutate(graphQlApiConfig());
+    return this.mutator
+      .mutate(graphQlApiConfig());
   }
 
 }

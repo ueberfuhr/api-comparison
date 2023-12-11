@@ -1,7 +1,5 @@
 package de.samples.apicomparison.consumer.boundary;
 
-import de.samples.apicomparison.consumer.clients.graphql.BlogPostGraphQlClient;
-import de.samples.apicomparison.consumer.clients.graphql.model.QlBlogPostInputDto;
 import de.samples.apicomparison.consumer.clients.soap.BlogPostSoapClient;
 import de.samples.apicomparison.consumer.clients.soap.stub.messages.BlogPostInput;
 import jakarta.validation.ValidationException;
@@ -37,7 +35,7 @@ public class BlogPostWithSoapClientController {
         1
       )
     );
-    return "blog-graphql";
+    return "blog-soap";
   }
 
   // this does not work here ([SPR-16190]):
@@ -59,7 +57,7 @@ public class BlogPostWithSoapClientController {
         }
       )
       .flatMap(this.blogPostApi::create)
-      .then(Mono.just("redirect:/blog-graphql"));
+      .then(Mono.just("redirect:/blog-soap"));
   }
 
   protected UUID getId(MultiValueMap<String, String> data) {
@@ -79,7 +77,7 @@ public class BlogPostWithSoapClientController {
     return exchange.getFormData()
       .map(this::getId)
       .flatMap(this.blogPostApi::delete)
-      .then(Mono.just("redirect:/blog-graphql"));
+      .then(Mono.just("redirect:/blog-soap"));
   }
 
 }

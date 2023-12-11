@@ -24,7 +24,7 @@
 
 <div data-th-each="blog: ${blogposts}">
   <h2>[[${blog.title}]]</h2>
-  <p style="font-size: 0.6em;">[[${#temporals.format(blog.timestamp, 'dd.MM.yyyy hh:mm:ss')}]]h</p>
+  <p style="font-size: 0.6em;">[[${blog.timestamp}]]</p>
   <p>[[${blog.content}]]</p>
   <form action="./blog-soap/delete" method="post">
     <input type="hidden" name="id" th:value="${blog.id}">

@@ -2,10 +2,13 @@ package de.samples.apicomparison.consumer.clients.soap.config;
 
 import de.samples.apicomparison.consumer.clients.config.ApiConfig;
 import de.samples.apicomparison.consumer.clients.config.WebClientMutator;
+import de.samples.apicomparison.consumer.clients.soap.config.encoding.Jaxb2SoapDecoder;
+import de.samples.apicomparison.consumer.clients.soap.config.encoding.Jaxb2SoapEncoder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.reactive.function.client.ExchangeStrategies;
 import org.springframework.web.reactive.function.client.WebClient;
 
 @Configuration
@@ -23,7 +26,18 @@ public class SoapWebClientConfiguration {
   @Bean
   @SoapWebClient
   WebClient soapWebClient() {
-    return this.mutator.mutate(soapApiConfig());
+    return this.mutator
+      .mutate(soapApiConfig())
+      .mutate()
+      .exchangeStrategies(
+        ExchangeStrategies
+          .builder()
+          .codecs(clientCodecConfigurer -> {
+            clientCodecConfigurer.customCodecs().register(new Jaxb2SoapEncoder());
+            clientCodecConfigurer.customCodecs().register(new Jaxb2SoapDecoder());
+          }).build()
+      )
+      .build();
   }
 
 }

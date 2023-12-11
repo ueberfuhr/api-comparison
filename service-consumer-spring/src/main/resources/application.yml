@@ -12,3 +12,4 @@ application:
 logging:
   level:
     org.springframework.web.reactive.function.client: debug
+    de.samples.apicomparison.consumer.clients.soap.config.encoding: debug
