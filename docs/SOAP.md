@@ -20,6 +20,8 @@ by the W3C and is called a _SOAP envelope_.
 </soapenv:Envelope>
 ```
 
+[BlogPostService sample requests](../sample-requests/soap)
+
 There is a _SOAP over HTTP_ binding that determines how SOAP messages are transferred via HTTP:
  - use `POST` only (no matter what kind of operation is called)
  - use one single resource URL only
