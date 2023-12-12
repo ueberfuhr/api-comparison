@@ -91,7 +91,7 @@ public class CountryClient extends WebServiceGatewaySupport {
 }
 ```
 
-** Unfortunately, this only supports Spring WebMVC, while we want to use WebFlux in the service consumer project. For this, we need to
+**Unfortunately, this only supports Spring WebMVC, while we want to use WebFlux in the service consumer project.** For this, we need to
 - exclude tomcat from the Spring Webservices Starter dependency (we would just need a JAX-B dependency)
 - use the Reactive WebClient to encode and decode SOAP messages
 
