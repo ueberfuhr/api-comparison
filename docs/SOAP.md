@@ -102,3 +102,5 @@ So the following steps were made:
 - [customize the WebClient](../service-consumer-spring/src/main/java/de/samples/apicomparison/consumer/clients/soap/config/SoapWebClientConfiguration.java) 
   by specifying a custom encoder and decoder to create and parse SOAP envelopes
 - implement the [SOAP Client](../service-consumer-spring/src/main/java/de/samples/apicomparison/consumer/clients/soap/BlogPostSoapClient.java)
+  - we have a [HttpSoapClient](../service-consumer-spring/src/main/java/de/samples/apicomparison/consumer/clients/soap/HttpSoapClient.java) class
+    to simplify SOAP calls to the WebClient and to use injection-by-type which is better that injection-by-qualifier in combination with Lombok's `@RequiredArgsConstructor`
