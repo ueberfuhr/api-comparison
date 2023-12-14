@@ -1,6 +1,6 @@
 # Simple Object Access Protocol (SOAP)
 
-## General Facts
+## Basics
 
 SOAP (Simple Object Access Protocol) is a standards-based web services access protocol 
 that has been around for a long time. Originally developed by Microsoft, SOAP isn’t as 
