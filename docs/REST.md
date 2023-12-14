@@ -1,6 +1,6 @@
 # Representational State Transfer (REST)
 
-[Presentation (German Language)](rest/REST.pdf)
+[Presentation (German Language, PDF)](rest/REST.pdf)
 
 ## Basics
 
