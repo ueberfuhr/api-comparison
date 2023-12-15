@@ -31,11 +31,6 @@ public final class Blogposts {
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_Author_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_HashTag_descriptor;
-  static final 
-    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_HashTag_fieldAccessorTable;
-  static final com.google.protobuf.Descriptors.Descriptor
     internal_static_BlogPost_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
@@ -64,24 +59,22 @@ public final class Blogposts {
       "mp\022\017\n\007seconds\030\001 \001(\003\022\r\n\005nanos\030\002 \001(\005\"S\n\006Au" +
       "thor\022\021\n\002id\030\001 \001(\0132\005.UUID\022\014\n\004name\030\002 \001(\t\022\030\n" +
       "\013description\030\003 \001(\tH\000\210\001\001B\016\n\014_description\"" +
-      "A\n\007HashTag\022\014\n\004name\030\001 \001(\t\022\030\n\013description\030" +
-      "\002 \001(\tH\000\210\001\001B\016\n\014_description\"\241\001\n\010BlogPost\022" +
-      "\021\n\002id\030\001 \001(\0132\005.UUID\022\r\n\005title\030\002 \001(\t\022\017\n\007con" +
-      "tent\030\003 \001(\t\022\035\n\ttimestamp\030\004 \001(\0132\n.Timestam" +
-      "p\022\034\n\006author\030\005 \001(\0132\007.AuthorH\000\210\001\001\022\032\n\010hashT" +
-      "ags\030\006 \003(\0132\010.HashTagB\t\n\007_author\".\n\017ListOf" +
-      "BlogPosts\022\033\n\010blogPost\030\001 \003(\0132\t.BlogPost\"n" +
-      "\n\rBlogPostInput\022\r\n\005title\030\002 \001(\t\022\017\n\007conten" +
-      "t\030\003 \001(\t\022\035\n\tauthor_id\030\005 \001(\0132\005.UUIDH\000\210\001\001\022\020" +
-      "\n\010hashTags\030\006 \003(\tB\014\n\n_author_id2\362\001\n\017BlogP" +
-      "ostService\022<\n\020FindAllBlogPosts\022\026.google." +
-      "protobuf.Empty\032\020.ListOfBlogPosts\022=\n\026Find" +
-      "AllBlogPostsStream\022\026.google.protobuf.Emp" +
-      "ty\032\t.BlogPost0\001\022+\n\016CreateBlogPost\022\016.Blog" +
-      "PostInput\032\t.BlogPost\0225\n\024CreateBlogPostSt" +
-      "ream\022\016.BlogPostInput\032\t.BlogPost(\0010\001B8\n4d" +
-      "e.samples.apicomparison.provider.boundar" +
-      "y.grpc.stubP\001b\006proto3"
+      "\227\001\n\010BlogPost\022\021\n\002id\030\001 \001(\0132\005.UUID\022\r\n\005title" +
+      "\030\002 \001(\t\022\017\n\007content\030\003 \001(\t\022\035\n\ttimestamp\030\004 \001" +
+      "(\0132\n.Timestamp\022\034\n\006author\030\005 \001(\0132\007.AuthorH" +
+      "\000\210\001\001\022\020\n\010hashTags\030\006 \003(\tB\t\n\007_author\".\n\017Lis" +
+      "tOfBlogPosts\022\033\n\010blogPost\030\001 \003(\0132\t.BlogPos" +
+      "t\"n\n\rBlogPostInput\022\r\n\005title\030\002 \001(\t\022\017\n\007con" +
+      "tent\030\003 \001(\t\022\035\n\tauthor_id\030\005 \001(\0132\005.UUIDH\000\210\001" +
+      "\001\022\020\n\010hashTags\030\006 \003(\tB\014\n\n_author_id2\362\001\n\017Bl" +
+      "ogPostService\022<\n\020FindAllBlogPosts\022\026.goog" +
+      "le.protobuf.Empty\032\020.ListOfBlogPosts\022=\n\026F" +
+      "indAllBlogPostsStream\022\026.google.protobuf." +
+      "Empty\032\t.BlogPost0\001\022+\n\016CreateBlogPost\022\016.B" +
+      "logPostInput\032\t.BlogPost\0225\n\024CreateBlogPos" +
+      "tStream\022\016.BlogPostInput\032\t.BlogPost(\0010\001B8" +
+      "\n4de.samples.apicomparison.provider.boun" +
+      "dary.grpc.stubP\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -106,26 +99,20 @@ public final class Blogposts {
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_Author_descriptor,
         new java.lang.String[] { "Id", "Name", "Description", });
-    internal_static_HashTag_descriptor =
-      getDescriptor().getMessageTypes().get(3);
-    internal_static_HashTag_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_HashTag_descriptor,
-        new java.lang.String[] { "Name", "Description", });
     internal_static_BlogPost_descriptor =
-      getDescriptor().getMessageTypes().get(4);
+      getDescriptor().getMessageTypes().get(3);
     internal_static_BlogPost_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_BlogPost_descriptor,
         new java.lang.String[] { "Id", "Title", "Content", "Timestamp", "Author", "HashTags", });
     internal_static_ListOfBlogPosts_descriptor =
-      getDescriptor().getMessageTypes().get(5);
+      getDescriptor().getMessageTypes().get(4);
     internal_static_ListOfBlogPosts_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_ListOfBlogPosts_descriptor,
         new java.lang.String[] { "BlogPost", });
     internal_static_BlogPostInput_descriptor =
-      getDescriptor().getMessageTypes().get(6);
+      getDescriptor().getMessageTypes().get(5);
     internal_static_BlogPostInput_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_BlogPostInput_descriptor,

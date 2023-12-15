@@ -21,18 +21,13 @@ message Author {
   optional string description = 3;
 }
 
-message HashTag {
-  string name = 1;
-  optional string description = 2;
-}
-
 message BlogPost {
   UUID id = 1;
   string title = 2;
   string content = 3;
   Timestamp timestamp = 4;
   optional Author author = 5;
-  repeated HashTag hashTags = 6;
+  repeated string hashTags = 6;
 }
 
 /*

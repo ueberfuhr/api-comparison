@@ -19,7 +19,8 @@ private static final long serialVersionUID = 0L;
   private BlogPost() {
     title_ = "";
     content_ = "";
-    hashTags_ = java.util.Collections.emptyList();
+    hashTags_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
   }
 
   @java.lang.Override
@@ -201,43 +202,39 @@ private static final long serialVersionUID = 0L;
 
   public static final int HASHTAGS_FIELD_NUMBER = 6;
   @SuppressWarnings("serial")
-  private java.util.List<de.samples.apicomparison.provider.boundary.grpc.stub.HashTag> hashTags_;
+  private com.google.protobuf.LazyStringArrayList hashTags_ =
+      com.google.protobuf.LazyStringArrayList.emptyList();
   /**
-   * <code>repeated .HashTag hashTags = 6;</code>
+   * <code>repeated string hashTags = 6;</code>
+   * @return A list containing the hashTags.
    */
-  @java.lang.Override
-  public java.util.List<de.samples.apicomparison.provider.boundary.grpc.stub.HashTag> getHashTagsList() {
+  public com.google.protobuf.ProtocolStringList
+      getHashTagsList() {
     return hashTags_;
   }
   /**
-   * <code>repeated .HashTag hashTags = 6;</code>
+   * <code>repeated string hashTags = 6;</code>
+   * @return The count of hashTags.
    */
-  @java.lang.Override
-  public java.util.List<? extends de.samples.apicomparison.provider.boundary.grpc.stub.HashTagOrBuilder> 
-      getHashTagsOrBuilderList() {
-    return hashTags_;
-  }
-  /**
-   * <code>repeated .HashTag hashTags = 6;</code>
-   */
-  @java.lang.Override
   public int getHashTagsCount() {
     return hashTags_.size();
   }
   /**
-   * <code>repeated .HashTag hashTags = 6;</code>
+   * <code>repeated string hashTags = 6;</code>
+   * @param index The index of the element to return.
+   * @return The hashTags at the given index.
    */
-  @java.lang.Override
-  public de.samples.apicomparison.provider.boundary.grpc.stub.HashTag getHashTags(int index) {
+  public java.lang.String getHashTags(int index) {
     return hashTags_.get(index);
   }
   /**
-   * <code>repeated .HashTag hashTags = 6;</code>
+   * <code>repeated string hashTags = 6;</code>
+   * @param index The index of the value to return.
+   * @return The bytes of the hashTags at the given index.
    */
-  @java.lang.Override
-  public de.samples.apicomparison.provider.boundary.grpc.stub.HashTagOrBuilder getHashTagsOrBuilder(
-      int index) {
-    return hashTags_.get(index);
+  public com.google.protobuf.ByteString
+      getHashTagsBytes(int index) {
+    return hashTags_.getByteString(index);
   }
 
   private byte memoizedIsInitialized = -1;
@@ -270,7 +267,7 @@ private static final long serialVersionUID = 0L;
       output.writeMessage(5, getAuthor());
     }
     for (int i = 0; i < hashTags_.size(); i++) {
-      output.writeMessage(6, hashTags_.get(i));
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 6, hashTags_.getRaw(i));
     }
     getUnknownFields().writeTo(output);
   }
@@ -299,9 +296,13 @@ private static final long serialVersionUID = 0L;
       size += com.google.protobuf.CodedOutputStream
         .computeMessageSize(5, getAuthor());
     }
-    for (int i = 0; i < hashTags_.size(); i++) {
-      size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(6, hashTags_.get(i));
+    {
+      int dataSize = 0;
+      for (int i = 0; i < hashTags_.size(); i++) {
+        dataSize += computeStringSizeNoTag(hashTags_.getRaw(i));
+      }
+      size += dataSize;
+      size += 1 * getHashTagsList().size();
     }
     size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
@@ -503,7 +504,6 @@ private static final long serialVersionUID = 0L;
         getIdFieldBuilder();
         getTimestampFieldBuilder();
         getAuthorFieldBuilder();
-        getHashTagsFieldBuilder();
       }
     }
     @java.lang.Override
@@ -527,13 +527,8 @@ private static final long serialVersionUID = 0L;
         authorBuilder_.dispose();
         authorBuilder_ = null;
       }
-      if (hashTagsBuilder_ == null) {
-        hashTags_ = java.util.Collections.emptyList();
-      } else {
-        hashTags_ = null;
-        hashTagsBuilder_.clear();
-      }
-      bitField0_ = (bitField0_ & ~0x00000020);
+      hashTags_ =
+          com.google.protobuf.LazyStringArrayList.emptyList();
       return this;
     }
 
@@ -560,22 +555,9 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public de.samples.apicomparison.provider.boundary.grpc.stub.BlogPost buildPartial() {
       de.samples.apicomparison.provider.boundary.grpc.stub.BlogPost result = new de.samples.apicomparison.provider.boundary.grpc.stub.BlogPost(this);
-      buildPartialRepeatedFields(result);
       if (bitField0_ != 0) { buildPartial0(result); }
       onBuilt();
       return result;
-    }
-
-    private void buildPartialRepeatedFields(de.samples.apicomparison.provider.boundary.grpc.stub.BlogPost result) {
-      if (hashTagsBuilder_ == null) {
-        if (((bitField0_ & 0x00000020) != 0)) {
-          hashTags_ = java.util.Collections.unmodifiableList(hashTags_);
-          bitField0_ = (bitField0_ & ~0x00000020);
-        }
-        result.hashTags_ = hashTags_;
-      } else {
-        result.hashTags_ = hashTagsBuilder_.build();
-      }
     }
 
     private void buildPartial0(de.samples.apicomparison.provider.boundary.grpc.stub.BlogPost result) {
@@ -604,6 +586,10 @@ private static final long serialVersionUID = 0L;
             ? author_
             : authorBuilder_.build();
         to_bitField0_ |= 0x00000004;
+      }
+      if (((from_bitField0_ & 0x00000020) != 0)) {
+        hashTags_.makeImmutable();
+        result.hashTags_ = hashTags_;
       }
       result.bitField0_ |= to_bitField0_;
     }
@@ -671,31 +657,15 @@ private static final long serialVersionUID = 0L;
       if (other.hasAuthor()) {
         mergeAuthor(other.getAuthor());
       }
-      if (hashTagsBuilder_ == null) {
-        if (!other.hashTags_.isEmpty()) {
-          if (hashTags_.isEmpty()) {
-            hashTags_ = other.hashTags_;
-            bitField0_ = (bitField0_ & ~0x00000020);
-          } else {
-            ensureHashTagsIsMutable();
-            hashTags_.addAll(other.hashTags_);
-          }
-          onChanged();
+      if (!other.hashTags_.isEmpty()) {
+        if (hashTags_.isEmpty()) {
+          hashTags_ = other.hashTags_;
+          bitField0_ |= 0x00000020;
+        } else {
+          ensureHashTagsIsMutable();
+          hashTags_.addAll(other.hashTags_);
         }
-      } else {
-        if (!other.hashTags_.isEmpty()) {
-          if (hashTagsBuilder_.isEmpty()) {
-            hashTagsBuilder_.dispose();
-            hashTagsBuilder_ = null;
-            hashTags_ = other.hashTags_;
-            bitField0_ = (bitField0_ & ~0x00000020);
-            hashTagsBuilder_ = 
-              com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
-                 getHashTagsFieldBuilder() : null;
-          } else {
-            hashTagsBuilder_.addAllMessages(other.hashTags_);
-          }
-        }
+        onChanged();
       }
       this.mergeUnknownFields(other.getUnknownFields());
       onChanged();
@@ -755,16 +725,9 @@ private static final long serialVersionUID = 0L;
               break;
             } // case 42
             case 50: {
-              de.samples.apicomparison.provider.boundary.grpc.stub.HashTag m =
-                  input.readMessage(
-                      de.samples.apicomparison.provider.boundary.grpc.stub.HashTag.parser(),
-                      extensionRegistry);
-              if (hashTagsBuilder_ == null) {
-                ensureHashTagsIsMutable();
-                hashTags_.add(m);
-              } else {
-                hashTagsBuilder_.addMessage(m);
-              }
+              java.lang.String s = input.readStringRequireUtf8();
+              ensureHashTagsIsMutable();
+              hashTags_.add(s);
               break;
             } // case 50
             default: {
@@ -1291,244 +1254,115 @@ private static final long serialVersionUID = 0L;
       return authorBuilder_;
     }
 
-    private java.util.List<de.samples.apicomparison.provider.boundary.grpc.stub.HashTag> hashTags_ =
-      java.util.Collections.emptyList();
+    private com.google.protobuf.LazyStringArrayList hashTags_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
     private void ensureHashTagsIsMutable() {
-      if (!((bitField0_ & 0x00000020) != 0)) {
-        hashTags_ = new java.util.ArrayList<de.samples.apicomparison.provider.boundary.grpc.stub.HashTag>(hashTags_);
-        bitField0_ |= 0x00000020;
-       }
-    }
-
-    private com.google.protobuf.RepeatedFieldBuilderV3<
-        de.samples.apicomparison.provider.boundary.grpc.stub.HashTag, de.samples.apicomparison.provider.boundary.grpc.stub.HashTag.Builder, de.samples.apicomparison.provider.boundary.grpc.stub.HashTagOrBuilder> hashTagsBuilder_;
-
-    /**
-     * <code>repeated .HashTag hashTags = 6;</code>
-     */
-    public java.util.List<de.samples.apicomparison.provider.boundary.grpc.stub.HashTag> getHashTagsList() {
-      if (hashTagsBuilder_ == null) {
-        return java.util.Collections.unmodifiableList(hashTags_);
-      } else {
-        return hashTagsBuilder_.getMessageList();
+      if (!hashTags_.isModifiable()) {
+        hashTags_ = new com.google.protobuf.LazyStringArrayList(hashTags_);
       }
+      bitField0_ |= 0x00000020;
     }
     /**
-     * <code>repeated .HashTag hashTags = 6;</code>
+     * <code>repeated string hashTags = 6;</code>
+     * @return A list containing the hashTags.
+     */
+    public com.google.protobuf.ProtocolStringList
+        getHashTagsList() {
+      hashTags_.makeImmutable();
+      return hashTags_;
+    }
+    /**
+     * <code>repeated string hashTags = 6;</code>
+     * @return The count of hashTags.
      */
     public int getHashTagsCount() {
-      if (hashTagsBuilder_ == null) {
-        return hashTags_.size();
-      } else {
-        return hashTagsBuilder_.getCount();
-      }
+      return hashTags_.size();
     }
     /**
-     * <code>repeated .HashTag hashTags = 6;</code>
+     * <code>repeated string hashTags = 6;</code>
+     * @param index The index of the element to return.
+     * @return The hashTags at the given index.
      */
-    public de.samples.apicomparison.provider.boundary.grpc.stub.HashTag getHashTags(int index) {
-      if (hashTagsBuilder_ == null) {
-        return hashTags_.get(index);
-      } else {
-        return hashTagsBuilder_.getMessage(index);
-      }
+    public java.lang.String getHashTags(int index) {
+      return hashTags_.get(index);
     }
     /**
-     * <code>repeated .HashTag hashTags = 6;</code>
+     * <code>repeated string hashTags = 6;</code>
+     * @param index The index of the value to return.
+     * @return The bytes of the hashTags at the given index.
      */
-    public Builder setHashTags(
-        int index, de.samples.apicomparison.provider.boundary.grpc.stub.HashTag value) {
-      if (hashTagsBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        ensureHashTagsIsMutable();
-        hashTags_.set(index, value);
-        onChanged();
-      } else {
-        hashTagsBuilder_.setMessage(index, value);
-      }
-      return this;
+    public com.google.protobuf.ByteString
+        getHashTagsBytes(int index) {
+      return hashTags_.getByteString(index);
     }
     /**
-     * <code>repeated .HashTag hashTags = 6;</code>
+     * <code>repeated string hashTags = 6;</code>
+     * @param index The index to set the value at.
+     * @param value The hashTags to set.
+     * @return This builder for chaining.
      */
     public Builder setHashTags(
-        int index, de.samples.apicomparison.provider.boundary.grpc.stub.HashTag.Builder builderForValue) {
-      if (hashTagsBuilder_ == null) {
-        ensureHashTagsIsMutable();
-        hashTags_.set(index, builderForValue.build());
-        onChanged();
-      } else {
-        hashTagsBuilder_.setMessage(index, builderForValue.build());
-      }
+        int index, java.lang.String value) {
+      if (value == null) { throw new NullPointerException(); }
+      ensureHashTagsIsMutable();
+      hashTags_.set(index, value);
+      bitField0_ |= 0x00000020;
+      onChanged();
       return this;
     }
     /**
-     * <code>repeated .HashTag hashTags = 6;</code>
-     */
-    public Builder addHashTags(de.samples.apicomparison.provider.boundary.grpc.stub.HashTag value) {
-      if (hashTagsBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        ensureHashTagsIsMutable();
-        hashTags_.add(value);
-        onChanged();
-      } else {
-        hashTagsBuilder_.addMessage(value);
-      }
-      return this;
-    }
-    /**
-     * <code>repeated .HashTag hashTags = 6;</code>
+     * <code>repeated string hashTags = 6;</code>
+     * @param value The hashTags to add.
+     * @return This builder for chaining.
      */
     public Builder addHashTags(
-        int index, de.samples.apicomparison.provider.boundary.grpc.stub.HashTag value) {
-      if (hashTagsBuilder_ == null) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        ensureHashTagsIsMutable();
-        hashTags_.add(index, value);
-        onChanged();
-      } else {
-        hashTagsBuilder_.addMessage(index, value);
-      }
+        java.lang.String value) {
+      if (value == null) { throw new NullPointerException(); }
+      ensureHashTagsIsMutable();
+      hashTags_.add(value);
+      bitField0_ |= 0x00000020;
+      onChanged();
       return this;
     }
     /**
-     * <code>repeated .HashTag hashTags = 6;</code>
-     */
-    public Builder addHashTags(
-        de.samples.apicomparison.provider.boundary.grpc.stub.HashTag.Builder builderForValue) {
-      if (hashTagsBuilder_ == null) {
-        ensureHashTagsIsMutable();
-        hashTags_.add(builderForValue.build());
-        onChanged();
-      } else {
-        hashTagsBuilder_.addMessage(builderForValue.build());
-      }
-      return this;
-    }
-    /**
-     * <code>repeated .HashTag hashTags = 6;</code>
-     */
-    public Builder addHashTags(
-        int index, de.samples.apicomparison.provider.boundary.grpc.stub.HashTag.Builder builderForValue) {
-      if (hashTagsBuilder_ == null) {
-        ensureHashTagsIsMutable();
-        hashTags_.add(index, builderForValue.build());
-        onChanged();
-      } else {
-        hashTagsBuilder_.addMessage(index, builderForValue.build());
-      }
-      return this;
-    }
-    /**
-     * <code>repeated .HashTag hashTags = 6;</code>
+     * <code>repeated string hashTags = 6;</code>
+     * @param values The hashTags to add.
+     * @return This builder for chaining.
      */
     public Builder addAllHashTags(
-        java.lang.Iterable<? extends de.samples.apicomparison.provider.boundary.grpc.stub.HashTag> values) {
-      if (hashTagsBuilder_ == null) {
-        ensureHashTagsIsMutable();
-        com.google.protobuf.AbstractMessageLite.Builder.addAll(
-            values, hashTags_);
-        onChanged();
-      } else {
-        hashTagsBuilder_.addAllMessages(values);
-      }
+        java.lang.Iterable<java.lang.String> values) {
+      ensureHashTagsIsMutable();
+      com.google.protobuf.AbstractMessageLite.Builder.addAll(
+          values, hashTags_);
+      bitField0_ |= 0x00000020;
+      onChanged();
       return this;
     }
     /**
-     * <code>repeated .HashTag hashTags = 6;</code>
+     * <code>repeated string hashTags = 6;</code>
+     * @return This builder for chaining.
      */
     public Builder clearHashTags() {
-      if (hashTagsBuilder_ == null) {
-        hashTags_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000020);
-        onChanged();
-      } else {
-        hashTagsBuilder_.clear();
-      }
+      hashTags_ =
+        com.google.protobuf.LazyStringArrayList.emptyList();
+      bitField0_ = (bitField0_ & ~0x00000020);;
+      onChanged();
       return this;
     }
     /**
-     * <code>repeated .HashTag hashTags = 6;</code>
+     * <code>repeated string hashTags = 6;</code>
+     * @param value The bytes of the hashTags to add.
+     * @return This builder for chaining.
      */
-    public Builder removeHashTags(int index) {
-      if (hashTagsBuilder_ == null) {
-        ensureHashTagsIsMutable();
-        hashTags_.remove(index);
-        onChanged();
-      } else {
-        hashTagsBuilder_.remove(index);
-      }
+    public Builder addHashTagsBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) { throw new NullPointerException(); }
+      checkByteStringIsUtf8(value);
+      ensureHashTagsIsMutable();
+      hashTags_.add(value);
+      bitField0_ |= 0x00000020;
+      onChanged();
       return this;
-    }
-    /**
-     * <code>repeated .HashTag hashTags = 6;</code>
-     */
-    public de.samples.apicomparison.provider.boundary.grpc.stub.HashTag.Builder getHashTagsBuilder(
-        int index) {
-      return getHashTagsFieldBuilder().getBuilder(index);
-    }
-    /**
-     * <code>repeated .HashTag hashTags = 6;</code>
-     */
-    public de.samples.apicomparison.provider.boundary.grpc.stub.HashTagOrBuilder getHashTagsOrBuilder(
-        int index) {
-      if (hashTagsBuilder_ == null) {
-        return hashTags_.get(index);  } else {
-        return hashTagsBuilder_.getMessageOrBuilder(index);
-      }
-    }
-    /**
-     * <code>repeated .HashTag hashTags = 6;</code>
-     */
-    public java.util.List<? extends de.samples.apicomparison.provider.boundary.grpc.stub.HashTagOrBuilder> 
-         getHashTagsOrBuilderList() {
-      if (hashTagsBuilder_ != null) {
-        return hashTagsBuilder_.getMessageOrBuilderList();
-      } else {
-        return java.util.Collections.unmodifiableList(hashTags_);
-      }
-    }
-    /**
-     * <code>repeated .HashTag hashTags = 6;</code>
-     */
-    public de.samples.apicomparison.provider.boundary.grpc.stub.HashTag.Builder addHashTagsBuilder() {
-      return getHashTagsFieldBuilder().addBuilder(
-          de.samples.apicomparison.provider.boundary.grpc.stub.HashTag.getDefaultInstance());
-    }
-    /**
-     * <code>repeated .HashTag hashTags = 6;</code>
-     */
-    public de.samples.apicomparison.provider.boundary.grpc.stub.HashTag.Builder addHashTagsBuilder(
-        int index) {
-      return getHashTagsFieldBuilder().addBuilder(
-          index, de.samples.apicomparison.provider.boundary.grpc.stub.HashTag.getDefaultInstance());
-    }
-    /**
-     * <code>repeated .HashTag hashTags = 6;</code>
-     */
-    public java.util.List<de.samples.apicomparison.provider.boundary.grpc.stub.HashTag.Builder> 
-         getHashTagsBuilderList() {
-      return getHashTagsFieldBuilder().getBuilderList();
-    }
-    private com.google.protobuf.RepeatedFieldBuilderV3<
-        de.samples.apicomparison.provider.boundary.grpc.stub.HashTag, de.samples.apicomparison.provider.boundary.grpc.stub.HashTag.Builder, de.samples.apicomparison.provider.boundary.grpc.stub.HashTagOrBuilder> 
-        getHashTagsFieldBuilder() {
-      if (hashTagsBuilder_ == null) {
-        hashTagsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
-            de.samples.apicomparison.provider.boundary.grpc.stub.HashTag, de.samples.apicomparison.provider.boundary.grpc.stub.HashTag.Builder, de.samples.apicomparison.provider.boundary.grpc.stub.HashTagOrBuilder>(
-                hashTags_,
-                ((bitField0_ & 0x00000020) != 0),
-                getParentForChildren(),
-                isClean());
-        hashTags_ = null;
-      }
-      return hashTagsBuilder_;
     }
     @java.lang.Override
     public final Builder setUnknownFields(

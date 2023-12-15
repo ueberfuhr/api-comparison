@@ -78,26 +78,27 @@ public interface BlogPostOrBuilder extends
   de.samples.apicomparison.provider.boundary.grpc.stub.AuthorOrBuilder getAuthorOrBuilder();
 
   /**
-   * <code>repeated .HashTag hashTags = 6;</code>
+   * <code>repeated string hashTags = 6;</code>
+   * @return A list containing the hashTags.
    */
-  java.util.List<de.samples.apicomparison.provider.boundary.grpc.stub.HashTag> 
+  java.util.List<java.lang.String>
       getHashTagsList();
   /**
-   * <code>repeated .HashTag hashTags = 6;</code>
-   */
-  de.samples.apicomparison.provider.boundary.grpc.stub.HashTag getHashTags(int index);
-  /**
-   * <code>repeated .HashTag hashTags = 6;</code>
+   * <code>repeated string hashTags = 6;</code>
+   * @return The count of hashTags.
    */
   int getHashTagsCount();
   /**
-   * <code>repeated .HashTag hashTags = 6;</code>
+   * <code>repeated string hashTags = 6;</code>
+   * @param index The index of the element to return.
+   * @return The hashTags at the given index.
    */
-  java.util.List<? extends de.samples.apicomparison.provider.boundary.grpc.stub.HashTagOrBuilder> 
-      getHashTagsOrBuilderList();
+  java.lang.String getHashTags(int index);
   /**
-   * <code>repeated .HashTag hashTags = 6;</code>
+   * <code>repeated string hashTags = 6;</code>
+   * @param index The index of the value to return.
+   * @return The bytes of the hashTags at the given index.
    */
-  de.samples.apicomparison.provider.boundary.grpc.stub.HashTagOrBuilder getHashTagsOrBuilder(
-      int index);
+  com.google.protobuf.ByteString
+      getHashTagsBytes(int index);
 }
