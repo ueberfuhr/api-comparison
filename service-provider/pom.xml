@@ -142,7 +142,10 @@
           </configuration>
         </plugin>
         <!--
-         to generate grpc stubs, run mvn protobuf:compile
+         to generate grpc stubs, run
+         mvn protobuf:compile protobuf:compile-custom
+         (Hint: You need to manually correct to @Generated annotation import in the service)
+         (https://github.com/grpc/grpc-java/issues/9179)
         -->
         <plugin>
           <groupId>org.xolstice.maven.plugins</groupId>
@@ -150,6 +153,7 @@
           <version>0.6.1</version>
           <configuration>
             <protoSourceRoot>src/main/resources/grpc</protoSourceRoot>
+            <clearOutputDirectory>false</clearOutputDirectory>
             <outputDirectory>${project.build.sourceDirectory}</outputDirectory>
             <protocArtifact>com.google.protobuf:protoc:${protoc.version}:exe:${os.detected.classifier}</protocArtifact>
             <pluginId>grpc-java</pluginId>
