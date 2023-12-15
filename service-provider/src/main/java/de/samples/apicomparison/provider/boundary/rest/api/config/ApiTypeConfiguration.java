@@ -15,6 +15,9 @@ public class ApiTypeConfiguration {
 
   private final ApiTypeConfigurationProperties config;
 
+  /*
+   * This will configure WebMVC controller's request mapping by adding the "api/v1" prefix.
+   */
   @Bean
   WebMvcConfigurer configureApiTypesToWebMvc() {
     return new WebMvcConfigurer() {
@@ -48,6 +51,26 @@ public class ApiTypeConfiguration {
     return basePath;
   }
 
+  /*
+   * This customizes the generated OpenAPI by removing the "api/v1" prefix from
+   * the paths and appending it directly to the server url.
+   * Instead
+   *
+   * servers:
+   *   - url: http://localhost:8081
+   * paths:
+   *   /api/v1/blogposts:
+   *     ...
+   *
+   * we will get
+
+   * servers:
+   *   - url: http://localhost:8081/api/v1
+   * paths:
+   *   /blogposts:
+   *     ...
+   *
+   */
   @Bean
   OpenApiCustomizer apiTypeBasePathCustomizer() {
     return api -> {
