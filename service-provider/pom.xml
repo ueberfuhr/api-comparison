@@ -18,6 +18,11 @@
     <org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
     <springdoc.version>2.2.0</springdoc.version>
     <graphql-java-extended-validation.version>21.0</graphql-java-extended-validation.version>
+    <!-- grpc -->
+    <grpc-spring-boot-starter.version>5.1.5</grpc-spring-boot-starter.version>
+    <os-maven-plugin.version>1.7.0</os-maven-plugin.version>
+    <protoc.version>3.25.1</protoc.version>
+    <io.grpc.version>1.60.0</io.grpc.version>
   </properties>
   <dependencies>
     <dependency>
@@ -53,7 +58,12 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-actuator</artifactId>
     </dependency>
-
+    <!-- id "io.github.lognet.grpc-spring-boot" version '5.1.5' -->
+    <dependency>
+      <groupId>io.github.lognet</groupId>
+      <artifactId>grpc-spring-boot-starter</artifactId>
+      <version>${grpc-spring-boot-starter.version}</version>
+    </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-devtools</artifactId>
@@ -105,6 +115,14 @@
   </dependencies>
 
   <build>
+    <!-- used for platform-dependent protoc compiler -->
+    <extensions>
+      <extension>
+        <groupId>kr.motd.maven</groupId>
+        <artifactId>os-maven-plugin</artifactId>
+        <version>${os-maven-plugin.version}</version>
+      </extension>
+    </extensions>
     <pluginManagement>
       <plugins>
         <!--
@@ -121,6 +139,21 @@
             <bindingFiles>
               <bindingFile>${project.basedir}/src/main/resources/soap/wsimport.xjb</bindingFile>
             </bindingFiles>
+          </configuration>
+        </plugin>
+        <!--
+         to generate grpc stubs, run mvn protobuf:compile
+        -->
+        <plugin>
+          <groupId>org.xolstice.maven.plugins</groupId>
+          <artifactId>protobuf-maven-plugin</artifactId>
+          <version>0.6.1</version>
+          <configuration>
+            <protoSourceRoot>src/main/resources/grpc</protoSourceRoot>
+            <outputDirectory>${project.build.sourceDirectory}</outputDirectory>
+            <protocArtifact>com.google.protobuf:protoc:${protoc.version}:exe:${os.detected.classifier}</protocArtifact>
+            <pluginId>grpc-java</pluginId>
+            <pluginArtifact>io.grpc:protoc-gen-grpc-java:${io.grpc.version}:exe:${os.detected.classifier}</pluginArtifact>
           </configuration>
         </plugin>
       </plugins>

@@ -53,3 +53,5 @@ application:
 logging:
   level:
     org.springframework.ws.transport.http: debug
+grpc:
+  port: 6566
