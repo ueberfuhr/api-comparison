@@ -13,3 +13,8 @@ logging:
   level:
     org.springframework.web.reactive.function.client: debug
     de.samples.apicomparison.consumer.clients.soap.config.encoding: debug
+grpc:
+  client:
+    blogposts:
+      address: static://localhost:8081
+

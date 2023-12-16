@@ -1,4 +1,4 @@
-package de.samples.apicomparison.provider.boundary.grpc.stub;
+package de.samples.apicomparison.consumer.clients.grpc.stub;
 
 import static io.grpc.MethodDescriptor.generateFullMethodName;
 
@@ -16,28 +16,28 @@ public final class BlogPostServiceGrpc {
 
   // Static method descriptors that strictly reflect the proto.
   private static volatile io.grpc.MethodDescriptor<com.google.protobuf.Empty,
-      de.samples.apicomparison.provider.boundary.grpc.stub.ListOfBlogPosts> getFindAllBlogPostsMethod;
+      de.samples.apicomparison.consumer.clients.grpc.stub.ListOfBlogPosts> getFindAllBlogPostsMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "FindAllBlogPosts",
       requestType = com.google.protobuf.Empty.class,
-      responseType = de.samples.apicomparison.provider.boundary.grpc.stub.ListOfBlogPosts.class,
+      responseType = de.samples.apicomparison.consumer.clients.grpc.stub.ListOfBlogPosts.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
   public static io.grpc.MethodDescriptor<com.google.protobuf.Empty,
-      de.samples.apicomparison.provider.boundary.grpc.stub.ListOfBlogPosts> getFindAllBlogPostsMethod() {
-    io.grpc.MethodDescriptor<com.google.protobuf.Empty, de.samples.apicomparison.provider.boundary.grpc.stub.ListOfBlogPosts> getFindAllBlogPostsMethod;
+      de.samples.apicomparison.consumer.clients.grpc.stub.ListOfBlogPosts> getFindAllBlogPostsMethod() {
+    io.grpc.MethodDescriptor<com.google.protobuf.Empty, de.samples.apicomparison.consumer.clients.grpc.stub.ListOfBlogPosts> getFindAllBlogPostsMethod;
     if ((getFindAllBlogPostsMethod = BlogPostServiceGrpc.getFindAllBlogPostsMethod) == null) {
       synchronized (BlogPostServiceGrpc.class) {
         if ((getFindAllBlogPostsMethod = BlogPostServiceGrpc.getFindAllBlogPostsMethod) == null) {
           BlogPostServiceGrpc.getFindAllBlogPostsMethod = getFindAllBlogPostsMethod =
-              io.grpc.MethodDescriptor.<com.google.protobuf.Empty, de.samples.apicomparison.provider.boundary.grpc.stub.ListOfBlogPosts>newBuilder()
+              io.grpc.MethodDescriptor.<com.google.protobuf.Empty, de.samples.apicomparison.consumer.clients.grpc.stub.ListOfBlogPosts>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "FindAllBlogPosts"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   com.google.protobuf.Empty.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  de.samples.apicomparison.provider.boundary.grpc.stub.ListOfBlogPosts.getDefaultInstance()))
+                  de.samples.apicomparison.consumer.clients.grpc.stub.ListOfBlogPosts.getDefaultInstance()))
               .setSchemaDescriptor(new BlogPostServiceMethodDescriptorSupplier("FindAllBlogPosts"))
               .build();
         }
@@ -47,28 +47,28 @@ public final class BlogPostServiceGrpc {
   }
 
   private static volatile io.grpc.MethodDescriptor<com.google.protobuf.Empty,
-      de.samples.apicomparison.provider.boundary.grpc.stub.BlogPost> getFindAllBlogPostsStreamMethod;
+      de.samples.apicomparison.consumer.clients.grpc.stub.BlogPost> getFindAllBlogPostsStreamMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "FindAllBlogPostsStream",
       requestType = com.google.protobuf.Empty.class,
-      responseType = de.samples.apicomparison.provider.boundary.grpc.stub.BlogPost.class,
+      responseType = de.samples.apicomparison.consumer.clients.grpc.stub.BlogPost.class,
       methodType = io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
   public static io.grpc.MethodDescriptor<com.google.protobuf.Empty,
-      de.samples.apicomparison.provider.boundary.grpc.stub.BlogPost> getFindAllBlogPostsStreamMethod() {
-    io.grpc.MethodDescriptor<com.google.protobuf.Empty, de.samples.apicomparison.provider.boundary.grpc.stub.BlogPost> getFindAllBlogPostsStreamMethod;
+      de.samples.apicomparison.consumer.clients.grpc.stub.BlogPost> getFindAllBlogPostsStreamMethod() {
+    io.grpc.MethodDescriptor<com.google.protobuf.Empty, de.samples.apicomparison.consumer.clients.grpc.stub.BlogPost> getFindAllBlogPostsStreamMethod;
     if ((getFindAllBlogPostsStreamMethod = BlogPostServiceGrpc.getFindAllBlogPostsStreamMethod) == null) {
       synchronized (BlogPostServiceGrpc.class) {
         if ((getFindAllBlogPostsStreamMethod = BlogPostServiceGrpc.getFindAllBlogPostsStreamMethod) == null) {
           BlogPostServiceGrpc.getFindAllBlogPostsStreamMethod = getFindAllBlogPostsStreamMethod =
-              io.grpc.MethodDescriptor.<com.google.protobuf.Empty, de.samples.apicomparison.provider.boundary.grpc.stub.BlogPost>newBuilder()
+              io.grpc.MethodDescriptor.<com.google.protobuf.Empty, de.samples.apicomparison.consumer.clients.grpc.stub.BlogPost>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "FindAllBlogPostsStream"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   com.google.protobuf.Empty.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  de.samples.apicomparison.provider.boundary.grpc.stub.BlogPost.getDefaultInstance()))
+                  de.samples.apicomparison.consumer.clients.grpc.stub.BlogPost.getDefaultInstance()))
               .setSchemaDescriptor(new BlogPostServiceMethodDescriptorSupplier("FindAllBlogPostsStream"))
               .build();
         }
@@ -77,29 +77,29 @@ public final class BlogPostServiceGrpc {
     return getFindAllBlogPostsStreamMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<de.samples.apicomparison.provider.boundary.grpc.stub.BlogPostInput,
-      de.samples.apicomparison.provider.boundary.grpc.stub.BlogPost> getCreateBlogPostMethod;
+  private static volatile io.grpc.MethodDescriptor<de.samples.apicomparison.consumer.clients.grpc.stub.BlogPostInput,
+      de.samples.apicomparison.consumer.clients.grpc.stub.BlogPost> getCreateBlogPostMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "CreateBlogPost",
-      requestType = de.samples.apicomparison.provider.boundary.grpc.stub.BlogPostInput.class,
-      responseType = de.samples.apicomparison.provider.boundary.grpc.stub.BlogPost.class,
+      requestType = de.samples.apicomparison.consumer.clients.grpc.stub.BlogPostInput.class,
+      responseType = de.samples.apicomparison.consumer.clients.grpc.stub.BlogPost.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<de.samples.apicomparison.provider.boundary.grpc.stub.BlogPostInput,
-      de.samples.apicomparison.provider.boundary.grpc.stub.BlogPost> getCreateBlogPostMethod() {
-    io.grpc.MethodDescriptor<de.samples.apicomparison.provider.boundary.grpc.stub.BlogPostInput, de.samples.apicomparison.provider.boundary.grpc.stub.BlogPost> getCreateBlogPostMethod;
+  public static io.grpc.MethodDescriptor<de.samples.apicomparison.consumer.clients.grpc.stub.BlogPostInput,
+      de.samples.apicomparison.consumer.clients.grpc.stub.BlogPost> getCreateBlogPostMethod() {
+    io.grpc.MethodDescriptor<de.samples.apicomparison.consumer.clients.grpc.stub.BlogPostInput, de.samples.apicomparison.consumer.clients.grpc.stub.BlogPost> getCreateBlogPostMethod;
     if ((getCreateBlogPostMethod = BlogPostServiceGrpc.getCreateBlogPostMethod) == null) {
       synchronized (BlogPostServiceGrpc.class) {
         if ((getCreateBlogPostMethod = BlogPostServiceGrpc.getCreateBlogPostMethod) == null) {
           BlogPostServiceGrpc.getCreateBlogPostMethod = getCreateBlogPostMethod =
-              io.grpc.MethodDescriptor.<de.samples.apicomparison.provider.boundary.grpc.stub.BlogPostInput, de.samples.apicomparison.provider.boundary.grpc.stub.BlogPost>newBuilder()
+              io.grpc.MethodDescriptor.<de.samples.apicomparison.consumer.clients.grpc.stub.BlogPostInput, de.samples.apicomparison.consumer.clients.grpc.stub.BlogPost>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "CreateBlogPost"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  de.samples.apicomparison.provider.boundary.grpc.stub.BlogPostInput.getDefaultInstance()))
+                  de.samples.apicomparison.consumer.clients.grpc.stub.BlogPostInput.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  de.samples.apicomparison.provider.boundary.grpc.stub.BlogPost.getDefaultInstance()))
+                  de.samples.apicomparison.consumer.clients.grpc.stub.BlogPost.getDefaultInstance()))
               .setSchemaDescriptor(new BlogPostServiceMethodDescriptorSupplier("CreateBlogPost"))
               .build();
         }
@@ -108,29 +108,29 @@ public final class BlogPostServiceGrpc {
     return getCreateBlogPostMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<de.samples.apicomparison.provider.boundary.grpc.stub.BlogPostInput,
-      de.samples.apicomparison.provider.boundary.grpc.stub.BlogPost> getCreateBlogPostStreamMethod;
+  private static volatile io.grpc.MethodDescriptor<de.samples.apicomparison.consumer.clients.grpc.stub.BlogPostInput,
+      de.samples.apicomparison.consumer.clients.grpc.stub.BlogPost> getCreateBlogPostStreamMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "CreateBlogPostStream",
-      requestType = de.samples.apicomparison.provider.boundary.grpc.stub.BlogPostInput.class,
-      responseType = de.samples.apicomparison.provider.boundary.grpc.stub.BlogPost.class,
+      requestType = de.samples.apicomparison.consumer.clients.grpc.stub.BlogPostInput.class,
+      responseType = de.samples.apicomparison.consumer.clients.grpc.stub.BlogPost.class,
       methodType = io.grpc.MethodDescriptor.MethodType.BIDI_STREAMING)
-  public static io.grpc.MethodDescriptor<de.samples.apicomparison.provider.boundary.grpc.stub.BlogPostInput,
-      de.samples.apicomparison.provider.boundary.grpc.stub.BlogPost> getCreateBlogPostStreamMethod() {
-    io.grpc.MethodDescriptor<de.samples.apicomparison.provider.boundary.grpc.stub.BlogPostInput, de.samples.apicomparison.provider.boundary.grpc.stub.BlogPost> getCreateBlogPostStreamMethod;
+  public static io.grpc.MethodDescriptor<de.samples.apicomparison.consumer.clients.grpc.stub.BlogPostInput,
+      de.samples.apicomparison.consumer.clients.grpc.stub.BlogPost> getCreateBlogPostStreamMethod() {
+    io.grpc.MethodDescriptor<de.samples.apicomparison.consumer.clients.grpc.stub.BlogPostInput, de.samples.apicomparison.consumer.clients.grpc.stub.BlogPost> getCreateBlogPostStreamMethod;
     if ((getCreateBlogPostStreamMethod = BlogPostServiceGrpc.getCreateBlogPostStreamMethod) == null) {
       synchronized (BlogPostServiceGrpc.class) {
         if ((getCreateBlogPostStreamMethod = BlogPostServiceGrpc.getCreateBlogPostStreamMethod) == null) {
           BlogPostServiceGrpc.getCreateBlogPostStreamMethod = getCreateBlogPostStreamMethod =
-              io.grpc.MethodDescriptor.<de.samples.apicomparison.provider.boundary.grpc.stub.BlogPostInput, de.samples.apicomparison.provider.boundary.grpc.stub.BlogPost>newBuilder()
+              io.grpc.MethodDescriptor.<de.samples.apicomparison.consumer.clients.grpc.stub.BlogPostInput, de.samples.apicomparison.consumer.clients.grpc.stub.BlogPost>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.BIDI_STREAMING)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "CreateBlogPostStream"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  de.samples.apicomparison.provider.boundary.grpc.stub.BlogPostInput.getDefaultInstance()))
+                  de.samples.apicomparison.consumer.clients.grpc.stub.BlogPostInput.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  de.samples.apicomparison.provider.boundary.grpc.stub.BlogPost.getDefaultInstance()))
+                  de.samples.apicomparison.consumer.clients.grpc.stub.BlogPost.getDefaultInstance()))
               .setSchemaDescriptor(new BlogPostServiceMethodDescriptorSupplier("CreateBlogPostStream"))
               .build();
         }
@@ -139,27 +139,27 @@ public final class BlogPostServiceGrpc {
     return getCreateBlogPostStreamMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<de.samples.apicomparison.provider.boundary.grpc.stub.UUID,
+  private static volatile io.grpc.MethodDescriptor<de.samples.apicomparison.consumer.clients.grpc.stub.UUID,
       com.google.protobuf.Empty> getDeleteBlogPostMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
       fullMethodName = SERVICE_NAME + '/' + "DeleteBlogPost",
-      requestType = de.samples.apicomparison.provider.boundary.grpc.stub.UUID.class,
+      requestType = de.samples.apicomparison.consumer.clients.grpc.stub.UUID.class,
       responseType = com.google.protobuf.Empty.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<de.samples.apicomparison.provider.boundary.grpc.stub.UUID,
+  public static io.grpc.MethodDescriptor<de.samples.apicomparison.consumer.clients.grpc.stub.UUID,
       com.google.protobuf.Empty> getDeleteBlogPostMethod() {
-    io.grpc.MethodDescriptor<de.samples.apicomparison.provider.boundary.grpc.stub.UUID, com.google.protobuf.Empty> getDeleteBlogPostMethod;
+    io.grpc.MethodDescriptor<de.samples.apicomparison.consumer.clients.grpc.stub.UUID, com.google.protobuf.Empty> getDeleteBlogPostMethod;
     if ((getDeleteBlogPostMethod = BlogPostServiceGrpc.getDeleteBlogPostMethod) == null) {
       synchronized (BlogPostServiceGrpc.class) {
         if ((getDeleteBlogPostMethod = BlogPostServiceGrpc.getDeleteBlogPostMethod) == null) {
           BlogPostServiceGrpc.getDeleteBlogPostMethod = getDeleteBlogPostMethod =
-              io.grpc.MethodDescriptor.<de.samples.apicomparison.provider.boundary.grpc.stub.UUID, com.google.protobuf.Empty>newBuilder()
+              io.grpc.MethodDescriptor.<de.samples.apicomparison.consumer.clients.grpc.stub.UUID, com.google.protobuf.Empty>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(SERVICE_NAME, "DeleteBlogPost"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  de.samples.apicomparison.provider.boundary.grpc.stub.UUID.getDefaultInstance()))
+                  de.samples.apicomparison.consumer.clients.grpc.stub.UUID.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
                   com.google.protobuf.Empty.getDefaultInstance()))
               .setSchemaDescriptor(new BlogPostServiceMethodDescriptorSupplier("DeleteBlogPost"))
@@ -221,34 +221,34 @@ public final class BlogPostServiceGrpc {
     /**
      */
     default void findAllBlogPosts(com.google.protobuf.Empty request,
-        io.grpc.stub.StreamObserver<de.samples.apicomparison.provider.boundary.grpc.stub.ListOfBlogPosts> responseObserver) {
+        io.grpc.stub.StreamObserver<de.samples.apicomparison.consumer.clients.grpc.stub.ListOfBlogPosts> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getFindAllBlogPostsMethod(), responseObserver);
     }
 
     /**
      */
     default void findAllBlogPostsStream(com.google.protobuf.Empty request,
-        io.grpc.stub.StreamObserver<de.samples.apicomparison.provider.boundary.grpc.stub.BlogPost> responseObserver) {
+        io.grpc.stub.StreamObserver<de.samples.apicomparison.consumer.clients.grpc.stub.BlogPost> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getFindAllBlogPostsStreamMethod(), responseObserver);
     }
 
     /**
      */
-    default void createBlogPost(de.samples.apicomparison.provider.boundary.grpc.stub.BlogPostInput request,
-        io.grpc.stub.StreamObserver<de.samples.apicomparison.provider.boundary.grpc.stub.BlogPost> responseObserver) {
+    default void createBlogPost(de.samples.apicomparison.consumer.clients.grpc.stub.BlogPostInput request,
+        io.grpc.stub.StreamObserver<de.samples.apicomparison.consumer.clients.grpc.stub.BlogPost> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getCreateBlogPostMethod(), responseObserver);
     }
 
     /**
      */
-    default io.grpc.stub.StreamObserver<de.samples.apicomparison.provider.boundary.grpc.stub.BlogPostInput> createBlogPostStream(
-        io.grpc.stub.StreamObserver<de.samples.apicomparison.provider.boundary.grpc.stub.BlogPost> responseObserver) {
+    default io.grpc.stub.StreamObserver<de.samples.apicomparison.consumer.clients.grpc.stub.BlogPostInput> createBlogPostStream(
+        io.grpc.stub.StreamObserver<de.samples.apicomparison.consumer.clients.grpc.stub.BlogPost> responseObserver) {
       return io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall(getCreateBlogPostStreamMethod(), responseObserver);
     }
 
     /**
      */
-    default void deleteBlogPost(de.samples.apicomparison.provider.boundary.grpc.stub.UUID request,
+    default void deleteBlogPost(de.samples.apicomparison.consumer.clients.grpc.stub.UUID request,
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getDeleteBlogPostMethod(), responseObserver);
     }
@@ -284,7 +284,7 @@ public final class BlogPostServiceGrpc {
     /**
      */
     public void findAllBlogPosts(com.google.protobuf.Empty request,
-        io.grpc.stub.StreamObserver<de.samples.apicomparison.provider.boundary.grpc.stub.ListOfBlogPosts> responseObserver) {
+        io.grpc.stub.StreamObserver<de.samples.apicomparison.consumer.clients.grpc.stub.ListOfBlogPosts> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getFindAllBlogPostsMethod(), getCallOptions()), request, responseObserver);
     }
@@ -292,30 +292,30 @@ public final class BlogPostServiceGrpc {
     /**
      */
     public void findAllBlogPostsStream(com.google.protobuf.Empty request,
-        io.grpc.stub.StreamObserver<de.samples.apicomparison.provider.boundary.grpc.stub.BlogPost> responseObserver) {
+        io.grpc.stub.StreamObserver<de.samples.apicomparison.consumer.clients.grpc.stub.BlogPost> responseObserver) {
       io.grpc.stub.ClientCalls.asyncServerStreamingCall(
           getChannel().newCall(getFindAllBlogPostsStreamMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public void createBlogPost(de.samples.apicomparison.provider.boundary.grpc.stub.BlogPostInput request,
-        io.grpc.stub.StreamObserver<de.samples.apicomparison.provider.boundary.grpc.stub.BlogPost> responseObserver) {
+    public void createBlogPost(de.samples.apicomparison.consumer.clients.grpc.stub.BlogPostInput request,
+        io.grpc.stub.StreamObserver<de.samples.apicomparison.consumer.clients.grpc.stub.BlogPost> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getCreateBlogPostMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
      */
-    public io.grpc.stub.StreamObserver<de.samples.apicomparison.provider.boundary.grpc.stub.BlogPostInput> createBlogPostStream(
-        io.grpc.stub.StreamObserver<de.samples.apicomparison.provider.boundary.grpc.stub.BlogPost> responseObserver) {
+    public io.grpc.stub.StreamObserver<de.samples.apicomparison.consumer.clients.grpc.stub.BlogPostInput> createBlogPostStream(
+        io.grpc.stub.StreamObserver<de.samples.apicomparison.consumer.clients.grpc.stub.BlogPost> responseObserver) {
       return io.grpc.stub.ClientCalls.asyncBidiStreamingCall(
           getChannel().newCall(getCreateBlogPostStreamMethod(), getCallOptions()), responseObserver);
     }
 
     /**
      */
-    public void deleteBlogPost(de.samples.apicomparison.provider.boundary.grpc.stub.UUID request,
+    public void deleteBlogPost(de.samples.apicomparison.consumer.clients.grpc.stub.UUID request,
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getDeleteBlogPostMethod(), getCallOptions()), request, responseObserver);
@@ -340,14 +340,14 @@ public final class BlogPostServiceGrpc {
 
     /**
      */
-    public de.samples.apicomparison.provider.boundary.grpc.stub.ListOfBlogPosts findAllBlogPosts(com.google.protobuf.Empty request) {
+    public de.samples.apicomparison.consumer.clients.grpc.stub.ListOfBlogPosts findAllBlogPosts(com.google.protobuf.Empty request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getFindAllBlogPostsMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public java.util.Iterator<de.samples.apicomparison.provider.boundary.grpc.stub.BlogPost> findAllBlogPostsStream(
+    public java.util.Iterator<de.samples.apicomparison.consumer.clients.grpc.stub.BlogPost> findAllBlogPostsStream(
         com.google.protobuf.Empty request) {
       return io.grpc.stub.ClientCalls.blockingServerStreamingCall(
           getChannel(), getFindAllBlogPostsStreamMethod(), getCallOptions(), request);
@@ -355,14 +355,14 @@ public final class BlogPostServiceGrpc {
 
     /**
      */
-    public de.samples.apicomparison.provider.boundary.grpc.stub.BlogPost createBlogPost(de.samples.apicomparison.provider.boundary.grpc.stub.BlogPostInput request) {
+    public de.samples.apicomparison.consumer.clients.grpc.stub.BlogPost createBlogPost(de.samples.apicomparison.consumer.clients.grpc.stub.BlogPostInput request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getCreateBlogPostMethod(), getCallOptions(), request);
     }
 
     /**
      */
-    public com.google.protobuf.Empty deleteBlogPost(de.samples.apicomparison.provider.boundary.grpc.stub.UUID request) {
+    public com.google.protobuf.Empty deleteBlogPost(de.samples.apicomparison.consumer.clients.grpc.stub.UUID request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getDeleteBlogPostMethod(), getCallOptions(), request);
     }
@@ -386,7 +386,7 @@ public final class BlogPostServiceGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<de.samples.apicomparison.provider.boundary.grpc.stub.ListOfBlogPosts> findAllBlogPosts(
+    public com.google.common.util.concurrent.ListenableFuture<de.samples.apicomparison.consumer.clients.grpc.stub.ListOfBlogPosts> findAllBlogPosts(
         com.google.protobuf.Empty request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getFindAllBlogPostsMethod(), getCallOptions()), request);
@@ -394,8 +394,8 @@ public final class BlogPostServiceGrpc {
 
     /**
      */
-    public com.google.common.util.concurrent.ListenableFuture<de.samples.apicomparison.provider.boundary.grpc.stub.BlogPost> createBlogPost(
-        de.samples.apicomparison.provider.boundary.grpc.stub.BlogPostInput request) {
+    public com.google.common.util.concurrent.ListenableFuture<de.samples.apicomparison.consumer.clients.grpc.stub.BlogPost> createBlogPost(
+        de.samples.apicomparison.consumer.clients.grpc.stub.BlogPostInput request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getCreateBlogPostMethod(), getCallOptions()), request);
     }
@@ -403,7 +403,7 @@ public final class BlogPostServiceGrpc {
     /**
      */
     public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> deleteBlogPost(
-        de.samples.apicomparison.provider.boundary.grpc.stub.UUID request) {
+        de.samples.apicomparison.consumer.clients.grpc.stub.UUID request) {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getDeleteBlogPostMethod(), getCallOptions()), request);
     }
@@ -434,18 +434,18 @@ public final class BlogPostServiceGrpc {
       switch (methodId) {
         case METHODID_FIND_ALL_BLOG_POSTS:
           serviceImpl.findAllBlogPosts((com.google.protobuf.Empty) request,
-              (io.grpc.stub.StreamObserver<de.samples.apicomparison.provider.boundary.grpc.stub.ListOfBlogPosts>) responseObserver);
+              (io.grpc.stub.StreamObserver<de.samples.apicomparison.consumer.clients.grpc.stub.ListOfBlogPosts>) responseObserver);
           break;
         case METHODID_FIND_ALL_BLOG_POSTS_STREAM:
           serviceImpl.findAllBlogPostsStream((com.google.protobuf.Empty) request,
-              (io.grpc.stub.StreamObserver<de.samples.apicomparison.provider.boundary.grpc.stub.BlogPost>) responseObserver);
+              (io.grpc.stub.StreamObserver<de.samples.apicomparison.consumer.clients.grpc.stub.BlogPost>) responseObserver);
           break;
         case METHODID_CREATE_BLOG_POST:
-          serviceImpl.createBlogPost((de.samples.apicomparison.provider.boundary.grpc.stub.BlogPostInput) request,
-              (io.grpc.stub.StreamObserver<de.samples.apicomparison.provider.boundary.grpc.stub.BlogPost>) responseObserver);
+          serviceImpl.createBlogPost((de.samples.apicomparison.consumer.clients.grpc.stub.BlogPostInput) request,
+              (io.grpc.stub.StreamObserver<de.samples.apicomparison.consumer.clients.grpc.stub.BlogPost>) responseObserver);
           break;
         case METHODID_DELETE_BLOG_POST:
-          serviceImpl.deleteBlogPost((de.samples.apicomparison.provider.boundary.grpc.stub.UUID) request,
+          serviceImpl.deleteBlogPost((de.samples.apicomparison.consumer.clients.grpc.stub.UUID) request,
               (io.grpc.stub.StreamObserver<com.google.protobuf.Empty>) responseObserver);
           break;
         default:
@@ -460,7 +460,7 @@ public final class BlogPostServiceGrpc {
       switch (methodId) {
         case METHODID_CREATE_BLOG_POST_STREAM:
           return (io.grpc.stub.StreamObserver<Req>) serviceImpl.createBlogPostStream(
-              (io.grpc.stub.StreamObserver<de.samples.apicomparison.provider.boundary.grpc.stub.BlogPost>) responseObserver);
+              (io.grpc.stub.StreamObserver<de.samples.apicomparison.consumer.clients.grpc.stub.BlogPost>) responseObserver);
         default:
           throw new AssertionError();
       }
@@ -474,34 +474,34 @@ public final class BlogPostServiceGrpc {
           io.grpc.stub.ServerCalls.asyncUnaryCall(
             new MethodHandlers<
               com.google.protobuf.Empty,
-              de.samples.apicomparison.provider.boundary.grpc.stub.ListOfBlogPosts>(
+              de.samples.apicomparison.consumer.clients.grpc.stub.ListOfBlogPosts>(
                 service, METHODID_FIND_ALL_BLOG_POSTS)))
         .addMethod(
           getFindAllBlogPostsStreamMethod(),
           io.grpc.stub.ServerCalls.asyncServerStreamingCall(
             new MethodHandlers<
               com.google.protobuf.Empty,
-              de.samples.apicomparison.provider.boundary.grpc.stub.BlogPost>(
+              de.samples.apicomparison.consumer.clients.grpc.stub.BlogPost>(
                 service, METHODID_FIND_ALL_BLOG_POSTS_STREAM)))
         .addMethod(
           getCreateBlogPostMethod(),
           io.grpc.stub.ServerCalls.asyncUnaryCall(
             new MethodHandlers<
-              de.samples.apicomparison.provider.boundary.grpc.stub.BlogPostInput,
-              de.samples.apicomparison.provider.boundary.grpc.stub.BlogPost>(
+              de.samples.apicomparison.consumer.clients.grpc.stub.BlogPostInput,
+              de.samples.apicomparison.consumer.clients.grpc.stub.BlogPost>(
                 service, METHODID_CREATE_BLOG_POST)))
         .addMethod(
           getCreateBlogPostStreamMethod(),
           io.grpc.stub.ServerCalls.asyncBidiStreamingCall(
             new MethodHandlers<
-              de.samples.apicomparison.provider.boundary.grpc.stub.BlogPostInput,
-              de.samples.apicomparison.provider.boundary.grpc.stub.BlogPost>(
+              de.samples.apicomparison.consumer.clients.grpc.stub.BlogPostInput,
+              de.samples.apicomparison.consumer.clients.grpc.stub.BlogPost>(
                 service, METHODID_CREATE_BLOG_POST_STREAM)))
         .addMethod(
           getDeleteBlogPostMethod(),
           io.grpc.stub.ServerCalls.asyncUnaryCall(
             new MethodHandlers<
-              de.samples.apicomparison.provider.boundary.grpc.stub.UUID,
+              de.samples.apicomparison.consumer.clients.grpc.stub.UUID,
               com.google.protobuf.Empty>(
                 service, METHODID_DELETE_BLOG_POST)))
         .build();
@@ -513,7 +513,7 @@ public final class BlogPostServiceGrpc {
 
     @java.lang.Override
     public com.google.protobuf.Descriptors.FileDescriptor getFileDescriptor() {
-      return de.samples.apicomparison.provider.boundary.grpc.stub.Blogposts.getDescriptor();
+      return de.samples.apicomparison.consumer.clients.grpc.stub.Blogposts.getDescriptor();
     }
 
     @java.lang.Override

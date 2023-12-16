@@ -53,5 +53,8 @@ application:
 logging:
   level:
     org.springframework.ws.transport.http: debug
+#grpc:
+#  port: 6566
 grpc:
-  port: 6566
+  server:
+    port: -1 #use in-process server

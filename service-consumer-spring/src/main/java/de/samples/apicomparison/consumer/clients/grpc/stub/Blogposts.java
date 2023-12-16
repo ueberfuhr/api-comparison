@@ -2,7 +2,7 @@
 // source: blogposts.proto
 
 // Protobuf Java Version: 3.25.1
-package de.samples.apicomparison.provider.boundary.grpc.stub;
+package de.samples.apicomparison.consumer.clients.grpc.stub;
 
 public final class Blogposts {
   private Blogposts() {}
@@ -74,8 +74,8 @@ public final class Blogposts {
       "logPostInput\032\t.BlogPost\0225\n\024CreateBlogPos" +
       "tStream\022\016.BlogPostInput\032\t.BlogPost(\0010\001\022/" +
       "\n\016DeleteBlogPost\022\005.UUID\032\026.google.protobu" +
-      "f.EmptyB8\n4de.samples.apicomparison.prov" +
-      "ider.boundary.grpc.stubP\001b\006proto3"
+      "f.EmptyB7\n3de.samples.apicomparison.cons" +
+      "umer.clients.grpc.stubP\001b\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,

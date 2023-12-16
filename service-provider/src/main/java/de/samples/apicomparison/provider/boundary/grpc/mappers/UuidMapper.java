@@ -17,7 +17,7 @@ public interface UuidMapper {
   }
 
   default UUID map(de.samples.apicomparison.provider.boundary.grpc.stub.UUID source) {
-    if (null == source) {
+    if (null == source || source.getValue().isEmpty()) {
       return null;
     }
     return UUID.fromString(source.getValue());

@@ -1,6 +1,6 @@
 syntax = "proto3";
 import "google/protobuf/empty.proto";
-option java_package = "de.samples.apicomparison.provider.boundary.grpc.stub";
+option java_package = "de.samples.apicomparison.consumer.clients.grpc.stub";
 option java_multiple_files = true;
 
 /*
