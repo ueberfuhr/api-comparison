@@ -51,7 +51,7 @@ public class BlogPostGrpClient {
 
   public Mono<Void> delete(@PathVariable UUID id) {
     final var bridge = StreamObserverUtility.
-      <Empty, Void>createStreamObserverFluxPair(_ -> null);
+      <Empty, Void>createStreamObserverFluxPair(empty -> null);
     this.blogPostClient
       .deleteBlogPost(
         de.samples.apicomparison.consumer.clients.grpc.stub.UUID

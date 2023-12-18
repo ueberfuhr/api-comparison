@@ -57,4 +57,4 @@ logging:
 #  port: 6566
 grpc:
   server:
-    port: -1 #use in-process server
+    port: 6566 # -1 #use in-process server

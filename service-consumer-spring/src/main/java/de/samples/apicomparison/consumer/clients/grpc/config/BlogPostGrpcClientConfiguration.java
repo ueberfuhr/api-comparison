@@ -9,11 +9,11 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class BlogPostGrpcClientConfiguration {
 
+  @GrpcClient("blogposts")
+  BlogPostServiceGrpc.BlogPostServiceStub blogPostClient;
+
   @Bean
   BlogPostGrpClient blogPostClient(
-    @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
-    @GrpcClient("blogposts")
-    BlogPostServiceGrpc.BlogPostServiceStub blogPostClient
   ) {
     return new BlogPostGrpClient(blogPostClient);
   }

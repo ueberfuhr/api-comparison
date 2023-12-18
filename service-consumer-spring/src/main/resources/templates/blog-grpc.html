@@ -7,7 +7,6 @@
 <body th:inline="text">
 
 <h1>Welcome to my blog</h1>
-
 <form method="post">
   <div>
     <label for="txtTitle">Title</label>
@@ -24,7 +23,6 @@
 
 <div data-th-each="blog: ${blogposts}">
   <h2>[[${blog.title}]]</h2>
-  <p style="font-size: 0.6em;">[[${#temporals.format(blog.timestamp, 'dd.MM.yyyy hh:mm:ss')}]]h</p>
   <p>[[${blog.content}]]</p>
   <form action="./blog-grpc/delete" method="post">
     <input type="hidden" name="id" th:value="${blog.id}">

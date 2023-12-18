@@ -16,5 +16,6 @@ logging:
 grpc:
   client:
     blogposts:
-      address: static://localhost:8081
+      address: localhost:6566
+      negotiation-type: plaintext
 
