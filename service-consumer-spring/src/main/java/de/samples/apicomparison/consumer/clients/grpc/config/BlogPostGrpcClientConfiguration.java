@@ -13,8 +13,7 @@ public class BlogPostGrpcClientConfiguration {
   BlogPostServiceGrpc.BlogPostServiceStub blogPostClient;
 
   @Bean
-  BlogPostGrpClient blogPostClient(
-  ) {
+  BlogPostGrpClient blogPostClient() {
     return new BlogPostGrpClient(blogPostClient);
   }
 
