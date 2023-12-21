@@ -15,6 +15,9 @@ and make it open source. The result was gRPC, which is now used in many organiza
 Google to power use cases from microservices to the “last mile” of computing (mobile, web, and 
 Internet of Things).
 
+The "g" in gRPC initially stood for "Google", but it gets 
+[replaced in every version](https://github.com/grpc/grpc/blob/master/doc/g_stands_for.md). 
+
 Technically, gRPC is based on HTTP/2, because it uses the features of HTTP/2 like 
  - binary framing
  - header compression (HPACK)
