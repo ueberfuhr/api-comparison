@@ -18,10 +18,6 @@
     <org.mapstruct.version>1.5.5.Final</org.mapstruct.version>
     <thymeleaf-extras-java8time.version>3.0.4.RELEASE</thymeleaf-extras-java8time.version>
     <grpc-spring-boot-starter.version>2.15.0.RELEASE</grpc-spring-boot-starter.version>
-    <os-maven-plugin.version>1.7.0</os-maven-plugin.version>
-    <protoc.version>3.25.1</protoc.version>
-    <io.grpc.version>1.60.0</io.grpc.version>
-    <annotation-api.version>1.3.2</annotation-api.version>
   </properties>
   <dependencies>
     <dependency>
@@ -62,13 +58,10 @@
       <artifactId>grpc-client-spring-boot-starter</artifactId>
       <version>${grpc-spring-boot-starter.version}</version>
     </dependency>
-    <!-- we need this because protoc adds a @javax.annotation.Generated annotation to the sources -->
     <dependency>
-      <groupId>javax.annotation</groupId>
-      <artifactId>javax.annotation-api</artifactId>
-      <version>${annotation-api.version}</version>
-      <scope>provided</scope>
-      <optional>true</optional>
+      <groupId>de.samples.api-comparison</groupId>
+      <artifactId>api-stubs-grpc</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -105,14 +98,6 @@
   </dependencies>
 
   <build>
-    <!-- used for platform-dependent protoc compiler -->
-    <extensions>
-      <extension>
-        <groupId>kr.motd.maven</groupId>
-        <artifactId>os-maven-plugin</artifactId>
-        <version>${os-maven-plugin.version}</version>
-      </extension>
-    </extensions>
     <pluginManagement>
       <plugins>
         <!--
@@ -129,23 +114,6 @@
             <bindingFiles>
               <bindingFile>${project.basedir}/src/main/resources/soap/wsimport.xjb</bindingFile>
             </bindingFiles>
-          </configuration>
-        </plugin>
-        <!--
-         to generate grpc stubs, run
-         mvn protobuf:compile protobuf:compile-custom
-         (Hint: You need to manually correct to @Generated annotation import in the service)
-         (https://github.com/grpc/grpc-java/issues/9179)
-        -->
-        <plugin>
-          <groupId>org.xolstice.maven.plugins</groupId>
-          <artifactId>protobuf-maven-plugin</artifactId>
-          <version>0.6.1</version>
-          <configuration>
-            <protoSourceRoot>src/main/resources/grpc</protoSourceRoot>
-            <protocArtifact>com.google.protobuf:protoc:${protoc.version}:exe:${os.detected.classifier}</protocArtifact>
-            <pluginId>grpc-java</pluginId>
-            <pluginArtifact>io.grpc:protoc-gen-grpc-java:${io.grpc.version}:exe:${os.detected.classifier}</pluginArtifact>
           </configuration>
         </plugin>
         <plugin>
@@ -181,20 +149,6 @@
         </plugin>
       </plugins>
     </pluginManagement>
-    <plugins>
-      <plugin>
-        <groupId>org.xolstice.maven.plugins</groupId>
-        <artifactId>protobuf-maven-plugin</artifactId>
-        <executions>
-          <execution>
-            <goals>
-              <goal>compile</goal>
-              <goal>compile-custom</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
   </build>
 
 </project>

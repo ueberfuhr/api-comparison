@@ -1,6 +1,6 @@
 package de.samples.apicomparison.provider.boundary.grpc.mappers;
 
-import de.samples.apicomparison.provider.boundary.grpc.stub.Timestamp;
+import de.samples.apicomparison.stubs.grpc.Timestamp;
 import org.mapstruct.Mapper;
 
 import java.time.Instant;

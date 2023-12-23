@@ -9,6 +9,6 @@ import org.mapstruct.Mapper;
 )
 public interface AuthorMapper {
 
-  de.samples.apicomparison.provider.boundary.grpc.stub.Author map(Author source);
+  de.samples.apicomparison.stubs.grpc.Author map(Author source);
 
 }
