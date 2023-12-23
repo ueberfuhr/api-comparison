@@ -1,5 +1,7 @@
 # API Comparison
 
+[![Java CI with Maven](https://github.com/ueberfuhr/api-comparison/actions/workflows/ci.yml/badge.svg)](https://github.com/ueberfuhr/api-comparison/actions/workflows/ci.yml)
+
 This repository deals with different kinds of APIs (REST, GraphQL, SOAP, gRPC)
 by explaining and comparing them, and by providing sample code for
 
