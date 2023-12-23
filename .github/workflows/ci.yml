@@ -12,13 +12,11 @@ on:
   push:
     branches: [ "main" ]
     paths-ignore:
-      - ".github/**"
       - "sample-requests/**"
       - "**/*.md"
   pull_request:
     branches: [ "main" ]
     paths-ignore:
-      - ".github/**"
       - "sample-requests/**"
       - "**/*.md"
 
