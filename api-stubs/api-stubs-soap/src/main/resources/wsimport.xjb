@@ -5,7 +5,7 @@
   xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
   xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
   xmlns:xs="http://www.w3.org/2001/XMLSchema" >
-  <jaxws:package name="de.samples.apicomparison.consumer.clients.soap.stub.service"/>
+  <jaxws:package name="de.samples.apicomparison.stubs.soap.service"/>
   <jaxb:globalBindings>
     <xjc:simple/>
   </jaxb:globalBindings>
@@ -15,7 +15,7 @@
       <xjc:simple/>
     </jaxb:globalBindings>
     <jaxb:schemaBindings>
-      <jaxb:package name="de.samples.apicomparison.consumer.clients.soap.stub.messages"/>
+      <jaxb:package name="de.samples.apicomparison.stubs.soap.messages"/>
     </jaxb:schemaBindings>
     <jaxb:bindings node="//xs:element[@name='findAllBlogPostsResponse']/xs:complexType/xs:sequence/xs:element[@name='blogPost']">
       <jaxb:property name="blogPosts"/>
@@ -30,7 +30,7 @@
       <xjc:simple/>
     </jaxb:globalBindings>
     <jaxb:schemaBindings>
-      <jaxb:package name="de.samples.apicomparison.consumer.clients.soap.stub.model"/>
+      <jaxb:package name="de.samples.apicomparison.stubs.soap.model"/>
     </jaxb:schemaBindings>
   </jaxws:bindings>
 </jaxws:bindings>

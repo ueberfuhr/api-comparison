@@ -6,7 +6,7 @@
 
   <parent>
     <groupId>de.samples.api-comparison</groupId>
-    <artifactId>agregator</artifactId>
+    <artifactId>aggregator</artifactId>
     <version>0.0.1-SNAPSHOT</version>
   </parent>
 
@@ -27,6 +27,7 @@
 
   <modules>
     <module>api-stubs-grpc</module>
+    <module>api-stubs-soap</module>
   </modules>
 
   <build>

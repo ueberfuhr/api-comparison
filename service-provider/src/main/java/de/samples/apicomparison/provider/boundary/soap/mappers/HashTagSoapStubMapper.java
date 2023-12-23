@@ -6,6 +6,6 @@ import org.mapstruct.Mapper;
 @Mapper(componentModel = "spring")
 public interface HashTagSoapStubMapper {
 
-  de.samples.apicomparison.provider.boundary.soap.stub.model.HashTag map(HashTag source);
+  de.samples.apicomparison.stubs.soap.model.HashTag map(HashTag source);
 
 }

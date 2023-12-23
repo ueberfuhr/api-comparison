@@ -54,6 +54,11 @@
       </exclusions>
     </dependency>
     <dependency>
+      <groupId>de.samples.api-comparison</groupId>
+      <artifactId>api-stubs-soap</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+    </dependency>
+    <dependency>
       <groupId>net.devh</groupId>
       <artifactId>grpc-client-spring-boot-starter</artifactId>
       <version>${grpc-spring-boot-starter.version}</version>
@@ -100,22 +105,6 @@
   <build>
     <pluginManagement>
       <plugins>
-        <!--
-         to generate SOAP stubs, run mvn jaxws:wsimport
-         (if the plugin ignores the wsdl, delete /target/jaxws/stale
-         -->
-        <plugin>
-          <groupId>com.sun.xml.ws</groupId>
-          <artifactId>jaxws-maven-plugin</artifactId>
-          <version>4.0.2</version>
-          <configuration>
-            <wsdlDirectory>${project.basedir}/src/main/resources/soap/</wsdlDirectory>
-            <sourceDestDir>src/main/java</sourceDestDir>
-            <bindingFiles>
-              <bindingFile>${project.basedir}/src/main/resources/soap/wsimport.xjb</bindingFile>
-            </bindingFiles>
-          </configuration>
-        </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>

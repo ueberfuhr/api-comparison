@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>de.samples.api-comparison</groupId>
+    <artifactId>api-stubs</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>api-stubs-soap</artifactId>
+  <name>API Stubs for SOAP</name>
+
+  <properties>
+    <jaxws-maven-plugin.version>4.0.2</jaxws-maven-plugin.version>
+    <jakarta.xml.ws-api.version>4.0.1</jakarta.xml.ws-api.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>jakarta.xml.ws</groupId>
+      <artifactId>jakarta.xml.ws-api</artifactId>
+      <version>${jakarta.xml.ws-api.version}</version>
+      <scope>provided</scope>
+      <optional>true</optional>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <!--
+         (if the plugin ignores the wsdl, delete /target/jaxws/stale
+         -->
+        <plugin>
+          <groupId>com.sun.xml.ws</groupId>
+          <artifactId>jaxws-maven-plugin</artifactId>
+          <version>${jaxws-maven-plugin.version}</version>
+          <configuration>
+            <wsdlDirectory>${project.basedir}/src/main/resources/</wsdlDirectory>
+            <bindingFiles>
+              <bindingFile>${project.basedir}/src/main/resources/wsimport.xjb</bindingFile>
+            </bindingFiles>
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+    <plugins>
+      <plugin>
+      <groupId>com.sun.xml.ws</groupId>
+      <artifactId>jaxws-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>soap-compile</id>
+            <goals>
+              <goal>wsimport</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>

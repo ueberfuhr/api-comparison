@@ -1,7 +1,7 @@
 package de.samples.apicomparison.consumer.clients.soap;
 
-import de.samples.apicomparison.consumer.clients.soap.stub.messages.*;
-import de.samples.apicomparison.consumer.clients.soap.stub.model.BlogPost;
+import de.samples.apicomparison.stubs.soap.messages.*;
+import de.samples.apicomparison.stubs.soap.model.BlogPost;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
