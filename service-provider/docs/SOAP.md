@@ -1,12 +1,7 @@
 # Simple Object Access Protocol (SOAP) - Spring Boot Service Provider
 
 The following steps were made in the service provider project:
- - Specify the [BlogPostService WSDL](../src/main/resources/soap/blogPostService.wsdl)
- - Generate Java code by using the [JAX-WS Maven Plugin](https://www.mojohaus.org/jaxws-maven-plugin/)
-     - Spring does not support JAX-WS, but we can use the generated stubs
-     - in the sample project, we do not invoke this within the context of the Maven build lifecycle, we just call it manually
-       (`mvn jaxws:wsimport`) and store the generated sources in the Git repository
-     - we use a [binding file](../src/main/resources/soap/wsimport.xjb) to customize code generation (e.g. package names)
+- declare a dependency to the [API Stubs](../../api-stubs/api-stubs-soap)
  - Registers Spring's `org.springframework.ws.transport.http.MessageDispatcherServlet` and also make the WSDL available per URL
    (see [`SoapConfiguration`](../src/main/java/de/samples/apicomparison/provider/boundary/soap/config/SoapConfiguration.java))
  - implement the [SOAP Controller](../src/main/java/de/samples/apicomparison/provider/boundary/soap/BlogPostSoapController.java)

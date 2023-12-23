@@ -27,9 +27,7 @@ public class CountryClient extends WebServiceGatewaySupport {
 - use the Reactive WebClient to encode and decode SOAP messages
 
 So the following steps were made:
-- Copy the [BlogPostService WSDL](../src/main/resources/soap/blogPostService.wsdl)
-- Generate Java code by using the [JAX-WS Maven Plugin](https://www.mojohaus.org/jaxws-maven-plugin/)
-  and by specifying a [binding file](../src/main/resources/soap/wsimport.xjb) to customize code generation (e.g. package names)
+- declare a dependency to the [API Stubs](../../api-stubs/api-stubs-soap)
 - [customize the WebClient](../src/main/java/de/samples/apicomparison/consumer/clients/soap/config/SoapWebClientConfiguration.java) 
   by specifying a custom encoder and decoder to create and parse SOAP envelopes
 - implement the [SOAP Client](../src/main/java/de/samples/apicomparison/consumer/clients/soap/BlogPostSoapClient.java)
