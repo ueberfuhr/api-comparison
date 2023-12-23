@@ -129,7 +129,9 @@ There are several Spring Boot Starters to get a good integration:
    (support for both client and server - recommended as part of the ecosystem which provides more
    than just the spring integration, e.g. [links to further information](https://github.com/grpc-ecosystem/awesome-grpc))
 
-In this project, we implement a service provider and a consumer too:
+In this project, we have
 
-- [Service Provider](../service-provider/docs/GRPC.md)
-- [Service Consumer](../service-consumer-spring/docs/GRPC.md)
+- a separate [API Stub Project](../api-stubs/api-stubs-grpc)
+  (see [API Spec (Proto File)](../api-stubs/api-stubs-grpc/src/main/proto/blogposts.proto))
+- a [Service Provider](../service-provider/docs/GRPC.md)
+- a [Service Consumer](../service-consumer-spring/docs/GRPC.md)

@@ -1,7 +1,7 @@
 package de.samples.apicomparison.consumer.clients.grpc.config;
 
 import de.samples.apicomparison.consumer.clients.grpc.BlogPostGrpClient;
-import de.samples.apicomparison.consumer.clients.grpc.stub.BlogPostServiceGrpc;
+import de.samples.apicomparison.stubs.grpc.BlogPostServiceGrpc;
 import net.devh.boot.grpc.client.inject.GrpcClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

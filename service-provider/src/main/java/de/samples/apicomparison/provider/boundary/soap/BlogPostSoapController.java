@@ -1,11 +1,11 @@
 package de.samples.apicomparison.provider.boundary.soap;
 
 import de.samples.apicomparison.provider.boundary.soap.mappers.BlogPostSoapStubMapper;
-import de.samples.apicomparison.provider.boundary.soap.stub.messages.*;
-import de.samples.apicomparison.provider.boundary.soap.stub.service.BlogPostServiceInterface;
 import de.samples.apicomparison.provider.domain.AuthorService;
 import de.samples.apicomparison.provider.domain.BlogPostService;
 import de.samples.apicomparison.provider.domain.NotFoundException;
+import de.samples.apicomparison.stubs.soap.messages.*;
+import de.samples.apicomparison.stubs.soap.service.BlogPostServiceInterface;
 import jakarta.validation.ValidationException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;

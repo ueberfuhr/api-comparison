@@ -7,17 +7,7 @@ platform via `application.properties` or `application.yml`.
 
 To implement a gRPC service consumer, we need to do the following steps:
 
-- specify the API within a [proto file](../src/main/resources/grpc/blogposts.proto)
-  (by default, placed under `src/main/proto`)
-- configure the [`pom.xml`](../pom.xml) to invoke the platform-dependent proto compiler
-  - we could do this automatically within the CI pipeline
-  - in this project, we generate stubs into
-    [`src/main/java`](../src/main/java/de/samples/apicomparison/provider/boundary/grpc/stub)
-    - we do this manually and manage the sources within Git
-- unfortunately, there is a [bug](https://github.com/grpc/grpc-java/issues/9179) that leeds to
-  compiler errors within Spring Boot 3 projects, so when generating automatically, we would prefer
-  doing this within a separate project with old Java EE as a dependency. In this project, we
-  fix this bug by manually fixing the wrong import (which needs to be done after each generation)
+- declare a dependency to the [API Stubs](../../api-stubs/api-stubs-grpc)
 - implement the [Blog Post Service Consumer](../src/main/java/de/samples/apicomparison/consumer/clients/grpc/BlogPostGrpClient.java)
 - configure the server connection within the [`application.yml`](../src/main/resources/application.yml)
 - configure the Blog Post Service Consumer to be available within the context

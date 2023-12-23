@@ -2,12 +2,12 @@ package de.samples.apicomparison.provider.boundary.grpc;
 
 import com.google.protobuf.Empty;
 import de.samples.apicomparison.provider.boundary.grpc.mappers.BlogPostMapper;
-import de.samples.apicomparison.provider.boundary.grpc.stub.BlogPost;
-import de.samples.apicomparison.provider.boundary.grpc.stub.BlogPostInput;
-import de.samples.apicomparison.provider.boundary.grpc.stub.BlogPostServiceGrpc;
-import de.samples.apicomparison.provider.boundary.grpc.stub.ListOfBlogPosts;
 import de.samples.apicomparison.provider.domain.AuthorService;
 import de.samples.apicomparison.provider.domain.BlogPostService;
+import de.samples.apicomparison.stubs.grpc.BlogPost;
+import de.samples.apicomparison.stubs.grpc.BlogPostInput;
+import de.samples.apicomparison.stubs.grpc.BlogPostServiceGrpc;
+import de.samples.apicomparison.stubs.grpc.ListOfBlogPosts;
 import io.grpc.stub.StreamObserver;
 import lombok.RequiredArgsConstructor;
 import net.devh.boot.grpc.server.service.GrpcService;
@@ -68,7 +68,7 @@ public class BlogPostGrpcController extends BlogPostServiceGrpc.BlogPostServiceI
   }
 
   @Override
-  public void deleteBlogPost(de.samples.apicomparison.provider.boundary.grpc.stub.UUID request, StreamObserver<Empty> responseObserver) {
+  public void deleteBlogPost(de.samples.apicomparison.stubs.grpc.UUID request, StreamObserver<Empty> responseObserver) {
     try {
       this.service.deleteById(UUID.fromString(request.getValue()));
     } finally {

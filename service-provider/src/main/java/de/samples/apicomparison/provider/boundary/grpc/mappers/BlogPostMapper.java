@@ -17,6 +17,6 @@ import org.mapstruct.NullValuePropertyMappingStrategy;
 )
 public interface BlogPostMapper {
 
-  de.samples.apicomparison.provider.boundary.grpc.stub.BlogPost map(BlogPost source);
+  de.samples.apicomparison.stubs.grpc.BlogPost map(BlogPost source);
 
 }

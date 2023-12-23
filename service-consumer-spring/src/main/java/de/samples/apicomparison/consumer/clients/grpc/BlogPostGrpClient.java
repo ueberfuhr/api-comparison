@@ -1,11 +1,11 @@
 package de.samples.apicomparison.consumer.clients.grpc;
 
 import com.google.protobuf.Empty;
-import de.samples.apicomparison.consumer.clients.grpc.stub.BlogPost;
-import de.samples.apicomparison.consumer.clients.grpc.stub.BlogPostInput;
-import de.samples.apicomparison.consumer.clients.grpc.stub.BlogPostServiceGrpc;
-import de.samples.apicomparison.consumer.clients.grpc.stub.ListOfBlogPosts;
 import de.samples.apicomparison.consumer.clients.rest.model.BlogPostDto;
+import de.samples.apicomparison.stubs.grpc.BlogPost;
+import de.samples.apicomparison.stubs.grpc.BlogPostInput;
+import de.samples.apicomparison.stubs.grpc.BlogPostServiceGrpc;
+import de.samples.apicomparison.stubs.grpc.ListOfBlogPosts;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -54,7 +54,7 @@ public class BlogPostGrpClient {
       <Empty, Void>createStreamObserverFluxPair(empty -> null);
     this.blogPostClient
       .deleteBlogPost(
-        de.samples.apicomparison.consumer.clients.grpc.stub.UUID
+        de.samples.apicomparison.stubs.grpc.UUID
           .newBuilder()
           .setValue(id.toString())
           .build(),

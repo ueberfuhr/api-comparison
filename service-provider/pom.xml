@@ -21,9 +21,6 @@
     <!-- grpc -->
     <!-- grpc-spring-boot-starter.version>5.1.5</grpc-spring-boot-starter.version -->
     <grpc-spring-boot-starter.version>2.15.0.RELEASE</grpc-spring-boot-starter.version>
-    <os-maven-plugin.version>1.7.0</os-maven-plugin.version>
-    <protoc.version>3.25.1</protoc.version>
-    <io.grpc.version>1.60.0</io.grpc.version>
   </properties>
   <dependencies>
     <dependency>
@@ -56,6 +53,11 @@
       <artifactId>spring-boot-starter-web-services</artifactId>
     </dependency>
     <dependency>
+      <groupId>de.samples.api-comparison</groupId>
+      <artifactId>api-stubs-soap</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+    </dependency>
+    <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-actuator</artifactId>
     </dependency>
@@ -71,6 +73,11 @@
       <groupId>net.devh</groupId>
       <artifactId>grpc-server-spring-boot-starter</artifactId>
       <version>${grpc-spring-boot-starter.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>de.samples.api-comparison</groupId>
+      <artifactId>api-stubs-grpc</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -123,53 +130,6 @@
   </dependencies>
 
   <build>
-    <!-- used for platform-dependent protoc compiler -->
-    <extensions>
-      <extension>
-        <groupId>kr.motd.maven</groupId>
-        <artifactId>os-maven-plugin</artifactId>
-        <version>${os-maven-plugin.version}</version>
-      </extension>
-    </extensions>
-    <pluginManagement>
-      <plugins>
-        <!--
-         to generate SOAP stubs, run mvn jaxws:wsimport
-         (if the plugin ignores the wsdl, delete /target/jaxws/stale
-         -->
-        <plugin>
-          <groupId>com.sun.xml.ws</groupId>
-          <artifactId>jaxws-maven-plugin</artifactId>
-          <version>4.0.2</version>
-          <configuration>
-            <wsdlDirectory>${project.basedir}/src/main/resources/soap/</wsdlDirectory>
-            <sourceDestDir>src/main/java</sourceDestDir>
-            <bindingFiles>
-              <bindingFile>${project.basedir}/src/main/resources/soap/wsimport.xjb</bindingFile>
-            </bindingFiles>
-          </configuration>
-        </plugin>
-        <!--
-         to generate grpc stubs, run
-         mvn protobuf:compile protobuf:compile-custom
-         (Hint: You need to manually correct to @Generated annotation import in the service)
-         (https://github.com/grpc/grpc-java/issues/9179)
-        -->
-        <plugin>
-          <groupId>org.xolstice.maven.plugins</groupId>
-          <artifactId>protobuf-maven-plugin</artifactId>
-          <version>0.6.1</version>
-          <configuration>
-            <protoSourceRoot>src/main/resources/grpc</protoSourceRoot>
-            <clearOutputDirectory>false</clearOutputDirectory>
-            <outputDirectory>${project.build.sourceDirectory}</outputDirectory>
-            <protocArtifact>com.google.protobuf:protoc:${protoc.version}:exe:${os.detected.classifier}</protocArtifact>
-            <pluginId>grpc-java</pluginId>
-            <pluginArtifact>io.grpc:protoc-gen-grpc-java:${io.grpc.version}:exe:${os.detected.classifier}</pluginArtifact>
-          </configuration>
-        </plugin>
-      </plugins>
-    </pluginManagement>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>

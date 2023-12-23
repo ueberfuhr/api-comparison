@@ -32,7 +32,7 @@ Which operation is called can be determined by the payload or by the `SOAPAction
 The response is also a SOAP envelope. The payload is specified by the _Web Services Description Language (WSDL)_,
 which we can understand as an extension of _XML Schema Descriptions (XSD)_.
 
-[BlogPostService WSDL](../service-provider/src/main/resources/soap/blogPostService.wsdl)
+[BlogPostService WSDL](../api-stubs/api-stubs-soap/src/main/resources/blogPostService.wsdl)
 
 ## Examples
 
@@ -51,5 +51,9 @@ SOAP services are supported by the [_Spring Web Services_ project](https://sprin
 It provides XML support (e.g. JAX-B and JAX-P) and integrates with both WS-Security and Spring Security. 
 One restriction is the missing support of Spring WebFlux.
 
-- [Service Provider](../service-provider/docs/SOAP.md)
-- [Service Consumer](../service-consumer-spring/docs/SOAP.md)
+In this project, we have
+
+- a separate [API Stub Project](../api-stubs/api-stubs-soap)
+  (see [API Spec (WSDL File)](../api-stubs/api-stubs-soap/src/main/resources/blogPostService.wsdl))
+- a [Service Provider](../service-provider/docs/SOAP.md)
+- a [Service Consumer](../service-consumer-spring/docs/SOAP.md)

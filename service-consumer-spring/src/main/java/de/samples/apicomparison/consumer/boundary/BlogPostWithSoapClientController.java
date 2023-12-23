@@ -1,7 +1,7 @@
 package de.samples.apicomparison.consumer.boundary;
 
 import de.samples.apicomparison.consumer.clients.soap.BlogPostSoapClient;
-import de.samples.apicomparison.consumer.clients.soap.stub.messages.BlogPostInput;
+import de.samples.apicomparison.stubs.soap.messages.BlogPostInput;
 import jakarta.validation.ValidationException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
