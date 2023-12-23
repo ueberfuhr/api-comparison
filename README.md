@@ -15,7 +15,7 @@ by explaining and comparing them, and by providing sample code for
 We can run the samples as usual, and we can find further endpoints on a landing page:
 
 - http://localhost:8081/ (Service Provider)
-- http://localhost:8081/ (Service Consumer - Spring)
+- http://localhost:8080/ (Service Consumer - Spring)
 - http://localhost:4200/ (Service Consumer - Angular) - _t.b.d._
 
 ## Explore the API types
