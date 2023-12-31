@@ -16,7 +16,7 @@ import reactor.core.publisher.Mono;
 import java.util.UUID;
 
 @RequiredArgsConstructor
-public class BlogPostGrpClient {
+public class BlogPostGrpcClient {
 
   private final BlogPostServiceGrpc.BlogPostServiceStub blogPostClient;
 

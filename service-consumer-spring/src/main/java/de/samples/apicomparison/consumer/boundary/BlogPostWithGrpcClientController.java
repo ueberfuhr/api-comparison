@@ -1,6 +1,6 @@
 package de.samples.apicomparison.consumer.boundary;
 
-import de.samples.apicomparison.consumer.clients.grpc.BlogPostGrpClient;
+import de.samples.apicomparison.consumer.clients.grpc.BlogPostGrpcClient;
 import de.samples.apicomparison.consumer.clients.rest.model.BlogPostDto;
 import jakarta.validation.ValidationException;
 import lombok.RequiredArgsConstructor;
@@ -22,7 +22,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class BlogPostWithGrpcClientController {
 
-  private final BlogPostGrpClient blogPostApi;
+  private final BlogPostGrpcClient blogPostApi;
 
   @GetMapping
   public String showBlogPosts(final Model model) {

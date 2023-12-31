@@ -1,6 +1,6 @@
 package de.samples.apicomparison.consumer.clients.grpc.config;
 
-import de.samples.apicomparison.consumer.clients.grpc.BlogPostGrpClient;
+import de.samples.apicomparison.consumer.clients.grpc.BlogPostGrpcClient;
 import de.samples.apicomparison.stubs.grpc.BlogPostServiceGrpc;
 import net.devh.boot.grpc.client.inject.GrpcClient;
 import org.springframework.context.annotation.Bean;
@@ -13,8 +13,8 @@ public class BlogPostGrpcClientConfiguration {
   BlogPostServiceGrpc.BlogPostServiceStub blogPostClient;
 
   @Bean
-  BlogPostGrpClient blogPostClient() {
-    return new BlogPostGrpClient(blogPostClient);
+  BlogPostGrpcClient blogPostClient() {
+    return new BlogPostGrpcClient(blogPostClient);
   }
 
 }
