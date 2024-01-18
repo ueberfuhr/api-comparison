@@ -42,6 +42,26 @@ Accept: application/json
     client.assert(response.body['id'] === client.global.get('postId'));
   });
 %}
+
+###
+PUT {{postUrl}}
+Accept: application/json
+Content-Type: application/json
+
+{
+  "title": "test blog",
+  "content": "Lorem ipsum..."
+}
+
+> {%
+  client.test("BlogPost found", () => {
+    client.assert(response.status === 200);
+    client.assert(response.body['title'] === 'test blog');
+    client.assert(response.body['id'] === client.global.get('postId'));
+    client.assert(response.body['timestamp'] != null); // null or undefined
+  });
+%}
+
 ###
 GET {{postUrl}}/hashtags
 Accept: application/json
