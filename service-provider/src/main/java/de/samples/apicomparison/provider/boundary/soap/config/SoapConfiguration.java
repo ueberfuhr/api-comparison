@@ -28,7 +28,7 @@ public class SoapConfiguration extends WsConfigurerAdapter {
   @Bean // http://localhost:8081/ws/blogPostServiceApi.wsdl
   public Wsdl11Definition blogPostServiceApi() {
     final var result = new SimpleWsdl11Definition();
-    result.setWsdl(new ClassPathResource("soap/blogPostService.wsdl"));
+    result.setWsdl(new ClassPathResource("blogPostService.wsdl"));
     return result;
   }
 
