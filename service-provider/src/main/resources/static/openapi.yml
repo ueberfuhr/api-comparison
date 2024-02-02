@@ -412,6 +412,7 @@ components:
   schemas:
     HashTag:
       required:
+        - name
         - description
       type: object
       properties:

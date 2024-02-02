@@ -5,9 +5,9 @@
 This repository deals with different kinds of APIs (REST, GraphQL, SOAP, gRPC)
 by explaining and comparing them, and by providing sample code for
 
-- [a Service Provider (implemented with Spring Boot WebMVC)](./service-provider)
-- [a Service Consumer (implemented with Spring Boot WebFlux)](./service-consumer-spring)
-- a service consumer (implemented with Angular) - _t.b.d._
+- [a Service Provider (implemented with Spring Boot WebMVC)](service-provider)
+- [a Service Consumer (implemented with Spring Boot WebFlux)](service-consumer-spring)
+- [a service consumer (implemented with Angular)](service-consumer-ng)
 - [common API stubs for both consumers and providers](api-stubs)
 
 ## Run the samples
