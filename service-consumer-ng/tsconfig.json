@@ -3,10 +3,13 @@
   "compileOnSave": false,
   "compilerOptions": {
     "outDir": "./dist/out-tsc",
+    "baseUrl": "src",
     "paths": {
-      "@app/shared": ["src/app/shared"],
-      "@app/environment": ["src/environments"],
-      "@app/rest/http-client": ["src/app/rest/http-client"],
+      "@app/shared/domain": ["app/shared/domain"],
+      "@app/environment": ["environments"],
+      "@app/clients": ["app/clients/shared"],
+      "@app/clients/rest": ["app/clients/rest"],
+      "@app/clients/graphql": ["app/clients/graphql"]
     },
     "forceConsistentCasingInFileNames": true,
     "strict": true,
